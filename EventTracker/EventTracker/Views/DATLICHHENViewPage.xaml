@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local1="clr-namespace:ChatBot.Controls"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
+             xmlns:ViewModels1="clr-namespace:ChatBot.ViewModels"
+             xmlns:converters="clr-namespace:ChatBot.Items"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.DATLICHHENViewPage"
+             Title="Đặt Lịch Hẹn">
+    <ContentPage.BindingContext>
+        <ViewModels1:DatLichHenViewModell />
+    </ContentPage.BindingContext>
+    <!--<StackLayout Orientation="Vertical">
+            <local1:StepProgressBarControl  StepColor="Orange"
+                                            Steps="3"
+                                            StepSelected="1"
+                                            x:Name="stepBar" />
+        
+    </StackLayout>-->
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Thêm"
+                     IconImageSource="register.png"
+                     Order="Primary"
+                     Priority="0"
+                     Command="{Binding butonAddData}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <StackLayout  >
+                <Frame Margin="5"
+                       HasShadow="True">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Tiều đề"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Entry Placeholder="Tiêu đề..."
+                                   Text="{Binding lichhen.tieuDe, Mode=TwoWay}" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Nội dung cần tư  vấn"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Entry Placeholder="Nội dung tư vấn..."
+                                   Text="{Binding  DatLichhen.datLichHen.noiDung}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame >
+                <Frame  Margin="5"
+                        HasShadow="True">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Thời gian"
+                               FontSize="17"
+                               FontAttributes="Italic"
+                               TextColor="Black" />
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="register.png"
+                                   HeightRequest="40"
+                                   WidthRequest="40"
+                                   VerticalOptions="Start" />
+                            <StackLayout Orientation="Vertical"
+                                         HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Vertical"
+                                             Spacing="0"
+                                             Margin="0,0,0,10">
+                                    <DatePicker />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical"
+                                             Spacing="0"
+                                             Margin="0,0,0,10">
+                                    <TimePicker />
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical"
+                                         HorizontalOptions="CenterAndExpand">
+                                <StackLayout Orientation="Vertical"
+                                             Spacing="0"
+                                             Margin="0,0,0,10">
+                                    <DatePicker />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical"
+                                             Spacing="0"
+                                             Margin="0,0,0,10">
+                                    <TimePicker />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout> 
+                </Frame>
+                <Frame  Margin="5"
+                        HasShadow="True">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Nhắc tôi trước"
+                               FontSize="17"
+                               FontAttributes="Italic"
+                               TextColor="Black" />
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="register.png"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   VerticalOptions="Start" />
+                            <StackLayout Orientation="Vertical"> 
+                                <Picker Margin="0,0,5,0"
+                                         ItemsSource="{Binding ListNgheNghiep}"
+                                    SelectedItem="{Binding SelectedCustomers.NgheNghiep, Mode=TwoWay}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout> 
+                </Frame>
+                <Frame Margin="5"
+                       HasShadow="True"> 
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Chọn dịch vụ"
+                               FontSize="17"
+                               FontAttributes="Italic"
+                               TextColor="Black" />
+                        <ScrollView>
+                            <FlexLayout BindableLayout.ItemsSource="{Binding Items}"
+                                        Wrap="Wrap"
+                                        Direction="Row"
+                                        JustifyContent="Start"
+                                        AlignItems="Start"
+                                        AlignContent="Start" >
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="3"
+                                              FlexLayout.Basis="{OnIdiom Phone='50%', Tablet='33%'}"
+                                              FlexLayout.AlignSelf="Start">
+                                            <Frame Padding="0"
+                                                   VerticalOptions="Start"
+                                                   HasShadow="True">
+                                                <Grid Padding="0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Image Source="{Binding THONGTINDICHVU.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                                           Aspect="AspectFill"
+                                                           HeightRequest="200"/>
+                                                    <CheckBox HorizontalOptions="Start"
+                                                              VerticalOptions="Start"
+                                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                              CheckedChanged="CheckBox_CheckedChanged" />
+                                                    <Label Grid.Row="1"
+                                                           Margin="10,0"
+                                                           Text="{Binding THONGTINDICHVU.TieuDeDV}" />
+                                                    <Label Grid.Row="2"
+                                                           Margin="10,0"
+                                                           Text="{Binding THONGTINDICHVU.ChiPhiDV,  StringFormat='Giá: {0:#,0.#0} VNĐ'}"
+                                                          FontSize="Micro"
+                                                           FontAttributes="Bold"
+                                                           TextColor="Red"/>
+                                                </Grid>
+                                            </Frame> 
+                                        </Grid> 
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content> 
+   
+</ContentPage>

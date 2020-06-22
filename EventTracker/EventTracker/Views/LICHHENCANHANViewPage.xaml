@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.LICHHENCANHANViewPage"
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+             xmlns:controls="clr-namespace:ChatBot.Controls"
+             xmlns:item="clr-namespace:ChatBot.Items"
+             xmlns:local="clr-namespace:ChatBot.Models"
+             Title="Lịch Hẹn">
+    <ContentPage.BindingContext>
+        <ViewModels:LICHHENCANHANViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="KhachHangA">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding HoTen}"
+                               TextColor="Green"
+                               FontAttributes="Bold" />
+                        <Label Grid.Column="1"
+                               Text="{Binding NgaySinh, StringFormat='{0:d}'}"
+                               TextColor="Green" />
+                        <Label Grid.Column="2"
+                               Text="{Binding DiaChi}"
+                               TextColor="Green"
+                               HorizontalTextAlignment="End" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="KhachHangB">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Hoten}"
+                               TextColor="Red"
+                               FontAttributes="Bold" />
+                        <Label Grid.Column="1"
+                               Text="{Binding NgaySinh, StringFormat='{0:d}'}"
+                               TextColor="Red" />
+                        <Label Grid.Column="2"
+                               Text="{Binding DiaChi}"
+                               TextColor="Red"
+                               HorizontalTextAlignment="End" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+                                              KhachHangA="{StaticResource KhachHangA}"
+                                              KhachHangB="{StaticResource KhachHangB}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout >
+        <ListView ItemsSource="{Binding listItem}"
+                  ItemTemplate="{ StaticResource personDataTemplateSelector}"
+                  CachingStrategy="RecycleElement"
+                  SeparatorVisibility="None"
+                  VerticalScrollBarVisibility="Never"
+                  RowHeight="100"/>
+        <StackLayout BackgroundColor="Transparent">
+            <controls:ButtonWithPadding Text="Đặt Lịch Hẹn"
+                                        x:Name="NavigationThemLichHen"
+                                        Clicked="NavigationThemLichHen_Clicked"
+                                        CornerRadius="100"
+                                        HorizontalOptions="End"
+                                        BorderWidth="2"
+                                        BorderColor="DarkOrange"
+                                        Margin="8"
+                                        BackgroundColor="Tomato"
+                                        TextColor="White"
+                                        WidthRequest="120"
+                                        HeightRequest="40"
+                                        FontSize="16" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

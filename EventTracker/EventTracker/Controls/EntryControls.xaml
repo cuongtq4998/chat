@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Controls.EntryControls"
+             x:Name="this">
+  <ContentView.Content>
+        <Grid>
+
+            <Entry x:Name="EntryField"
+                   Text="{Binding Text, Source={x:Reference this}}"
+                   Unfocused="Handle_Unfocused"
+                   Focused="Handle_Focused"
+                   TextColor="#374955" 
+                   HeightRequest="50"
+                   ReturnType="{Binding ReturnType, Source={x:Reference this}}"
+                   IsPassword="{Binding IsPassword, Source={x:Reference this}}"
+                   Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                   Completed="Handle_Completed"/>
+
+            <Label x:Name="LabelTitle"
+                   Text="{Binding Title,Source={x:Reference this}}"
+                   TextColor="#5D98B8"
+                   VerticalOptions="Center"
+                   Margin="-4,0,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Handle_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+        </Grid>
+    </ContentView.Content>
+</ContentView>

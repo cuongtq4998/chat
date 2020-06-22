@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  mc:Ignorable="d"
+                  x:Class="EventTracker.MainPage"
+                  Title="Menu">
+    <MasterDetailPage.Master>
+        <ContentPage  Title="Trang chính">
+            <StackLayout Orientation="Vertical">
+                <StackLayout BackgroundColor="Olive"
+                             HeightRequest="75">
+                    <Label Text="Wellcome Bot!"
+                           FontSize="18"
+                           VerticalOptions="CenterAndExpand"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                </StackLayout>
+                <ListView x:Name="navigationDrawerList"
+                          RowHeight="30"
+                          SeparatorVisibility="None"
+                          ItemSelected="navigationDrawerList_ItemSelected">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <!-- Main design for our menu items -->
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Orientation="Horizontal"
+                                             Spacing="5">
+
+                                    <Image Source="{Binding icon}"
+                                           VerticalOptions="Center" />
+
+                                    <Label Text="{Binding title}"
+                                           FontSize="Subtitle"
+                                           VerticalOptions="Center"
+                                           TextColor="Black" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatBot.Views.DANGKITKViewPage" 
+             xmlns:controls="clr-namespace:ChatBot.Controls"
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot">
+    <ContentPage.BindingContext>
+        <ViewModels:DANGKITKViewModel />
+    </ContentPage.BindingContext>
+    <!--<NavigationPage.TitleView>
+        <Label Text="Nhập thông tin cá nhân"
+               TextColor="White"
+               FontAttributes="Bold"
+               FontSize="17" />
+    </NavigationPage.TitleView>-->
+    <ContentPage.Content>
+        <!--<Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
+        <StackLayout Orientation="Vertical">
+            <Image Source="logo.jpg"
+                   VerticalOptions="FillAndExpand"
+                   Aspect="AspectFill"/>
+            <Frame Margin="10"
+                   BackgroundColor="OldLace">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Họ tên:"
+                               FontSize="15"
+                               VerticalOptions="Center" />
+                        <Entry Placeholder="Nhập họ tên..."
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding SelectedCustomers.nameCustomers,Mode=TwoWay}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tuổi:"
+                               VerticalOptions="Center" />
+                        <Entry Placeholder="Nhập số tuổi..."
+                               HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Nghề nghiệp:"
+                               VerticalOptions="Center" />
+                        <Entry Placeholder="Nhập nghề nghiệp..."
+                               HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Địa chỉ:"
+                               VerticalOptions="Center" />
+                        <Entry Placeholder="Nhập địa chỉ..."
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding SelectedCustomers.country , Mode=TwoWay}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Điện thoại:"
+                               VerticalOptions="Center" />
+                        <Entry Placeholder="Nhập số điện thoại..."
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding SelectedCustomers.phone , Mode=TwoWay}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Button  Text="Cập Nhập"
+                                 Command="{Binding AddInforCus}" />
+                        <Button Text="NEXT"
+                                Clicked="Button_Clicked" />
+                        <Button Text="SKIP"
+                                Clicked="Button_Clicked_1" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>-->
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image Source="register.png"
+                   Aspect="Fill"
+                   HeightRequest="300"
+                   VerticalOptions="StartAndExpand" />
+            <Frame Grid.Row="1"
+                   HasShadow="True"
+                   CornerRadius="10"
+                   Margin="20,-70,20,0"
+                   Padding="10"
+                   HeightRequest="300"
+                   VerticalOptions="Start"
+                   BackgroundColor="White">
+                <StackLayout Orientation="Vertical">
+                    <controls:EntryControls Title="Tài Khoản"
+                                            HorizontalOptions="Center"
+                                            Margin="20,25,20,10"
+                                            Text="{Binding userKhachHang.taiKhoan,Mode=TwoWay}"/>
+                    <controls:EntryControls Title="Mật Khẩu"
+                                            HorizontalOptions="Center"
+                                            Margin="20,15,20,10"
+                                            IsPassword="True"
+                                            Text="{Binding userKhachHang.matKhau, Mode=TwoWay}"/>
+                    <controls:EntryControls Title="Nhập Lại Mật Khẩu"
+                                            HorizontalOptions="Center"
+                                            Margin="20,15,20,10"
+                                            IsPassword="True" />
+                </StackLayout>
+            </Frame>
+
+
+            <controls:ButtonWithPadding Grid.Row="1"
+                                        VerticalOptions="EndAndExpand"
+                                        BackgroundColor="Orange"
+                                        Margin="48,0,48,10"
+                                        CornerRadius="60"
+                                        Text="Đăng ký"
+                                        TextColor="White"
+                                        FontSize="20"
+                                        HeightRequest="40"
+                                        x:Name="ChuyenPageNhapThongTin"
+                                        Command="{Binding NavigationPageInfor}"
+                                        Clicked="ChuyenPageNhapThongTin_Clicked"/>
+            <StackLayout Grid.Row="2"
+                         Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Label Text="Bạn đã có tài khoản?"
+                       Margin="0,10"
+                       FontSize="16"
+                       VerticalOptions="CenterAndExpand" />
+                <Label Text="Đăng nhập"
+                       Margin="0,15"
+                       FontSize="16"
+                       TextColor="SkyBlue"
+                       VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

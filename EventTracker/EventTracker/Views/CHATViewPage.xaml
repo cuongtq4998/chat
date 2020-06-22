@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:item="clr-namespace:ChatBot.Items"
+             x:Class="ChatBot.Views.CHATViewPage"
+             Title="Chat với Diaflow">
+    <NavigationPage.TitleView>
+        <Label Text="Chat"
+               TextColor="White"
+               FontAttributes="Bold"
+               FontSize="17" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="abclist"
+                      SeparatorVisibility="None"
+                      ItemsSource="{Binding ListData}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <item:ItemChatView />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal"
+                         Margin="10,5"
+                         BackgroundColor="WhiteSmoke">
+                <Entry x:Name="message"
+                       Text="{Binding Mesage}"
+                       Placeholder="Nhập tin nhắn..."
+                       HorizontalOptions="FillAndExpand" />
+                <Button x:Name="btnsend"
+                        Text="Gửi"
+                        HorizontalOptions="Center"
+                        Command="{Binding SendCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

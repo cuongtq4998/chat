@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ChatBot.Controls"
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot" 
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.QUATRINHNHAPTHONGTINViewPage" >
+    <ContentPage.BindingContext>
+        <ViewModels:QUATRINHNHAPTHONGTINViewModel />
+    </ContentPage.BindingContext>
+    <!--Text="{Binding SelectedCustomers.nameCustomers,Mode=TwoWay}"-->
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical"
+                         BackgroundColor="White"
+                         Spacing="0">
+                <StackLayout BackgroundColor="Transparent"
+                             Orientation="Horizontal"
+                             Margin="10">
+                    <Frame HeightRequest="70"
+                           WidthRequest="70"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           BorderColor="WhiteSmoke"
+                           Margin="5">
+                        <Image Source="logo.jpg"
+                               Aspect="AspectFill" />
+                    </Frame>
+                    <StackLayout Orientation="Vertical"
+                                 VerticalOptions="CenterAndExpand">
+                        <Label  Text="Thông tin khách hàng"
+                                FontSize="17"
+                                TextColor="Black" />
+                        <Label Text="Thành viên"
+                               TextColor="Black" />
+                    </StackLayout>
+                </StackLayout>
+                <Frame Margin="10,0"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       BorderColor="WhiteSmoke">
+                    <StackLayout Orientation="Vertical"
+                                 Spacing="0"
+                                 Margin="0,0,0,10">
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Họ tên(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Entry Placeholder="Họ tên..."
+                                   Text="{Binding SelectedCustomers.HoTen,Mode=TwoWay}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Ngày sinh(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <DatePicker Date="{Binding SelectedCustomers.NgaySinh,Mode=TwoWay}"
+                                        Format="dd/MM/yyyy"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Ngày sinh(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Picker Title="Giới Tính"
+                                    ItemsSource="{Binding ListGioiTinh}"
+                                    SelectedItem="{Binding SelectedCustomers.GioiTinh, Mode=TwoWay}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Email(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Entry Placeholder="Email..."
+                                   Text="{Binding SelectedCustomers.Email,Mode=TwoWay}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Nghề Nghiệp(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Picker Title="Chọn Nghề Nghiệp"
+                                    ItemsSource="{Binding ListNgheNghiep}"
+                                    SelectedItem="{Binding SelectedCustomers.NgheNghiep, Mode=TwoWay}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Địa chỉ(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Entry Placeholder="Địa chỉ..."
+                                   Text="{Binding SelectedCustomers.DiaChi,Mode=TwoWay}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0"
+                                     Margin="0,0,0,10">
+                            <Label Text="Điện thoại(*)"
+                                   FontSize="17"
+                                   FontAttributes="Italic"
+                                   TextColor="Black" />
+                            <Entry Placeholder="Điện thoại..."
+                                   Text="{Binding SelectedCustomers.DienThoai , Mode=TwoWay}" />
+                        </StackLayout>
+                        <Label Text="Thông tin cá nhân của quý khách chỉ sử dụng cho mục đích công việc(*)"
+                               TextColor="Red"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                    </StackLayout>
+                </Frame>
+                <controls:ButtonWithPadding Grid.Row="1"
+                                            VerticalOptions="EndAndExpand"
+                                            BackgroundColor="Orange"
+                                            Margin="40,10,40,15"
+                                            CornerRadius="60"
+                                            Text="Cập nhập thông tin"
+                                            TextColor="White"
+                                            FontSize="20"
+                                            HeightRequest="50"
+                                            Command="{Binding AddInforCus}"
+                                            Clicked="ButtonWithPadding_Clicked"/>
+            </StackLayout>
+        </ScrollView> 
+    </ContentPage.Content>
+</ContentPage>
