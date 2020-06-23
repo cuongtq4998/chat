@@ -1,4 +1,5 @@
 ﻿using ChatBot.ViewModels;
+using ChatBot.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -66,6 +67,16 @@ namespace EventTracker
                 await CloseAnimation(detailsView);
                 await CloseAnimation(imgView);
             }
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DATLICHHENViewPage());
+        }
+
+        private void ToolbarItem_Clicked_1(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new THONGBAOViewPage());
         }
     }
     public class Event

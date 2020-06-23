@@ -12,15 +12,17 @@ using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
-    class DatLichHenPuss
+    public class DatLichHenPuss
     {
         public int IDDV { get; set; } = 1;
         public int IDKH { get; set; } = 1;
-        public DatLichHen lichhen { get; set; }
+        public DatLichHen datLicHen { get; set; }
         
     }
     class DatLichHenViewModell : INotifyPropertyChanged
     {
+        public int getTTDV;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -58,32 +60,6 @@ namespace ChatBot.ViewModels
             var services = new Service();
             dichVuList = await services.GetTTDV(2);
             List<SetIsSelected> list = new List<SetIsSelected>();
-            //list.Add(new SetIsSelected
-            //{
-            //    IsSelected = false,
-            //    TieuDeDV = dichVuList[0].TieuDeDV,
-            //    THONGTINDICHVU = new THONGTINDICHVU
-            //    {
-            //        ChiPhiDV = dichVuList[0].ChiPhiDV,
-            //        TieuDeDV  = dichVuList[0].TieuDeDV,
-            //        NoiDungDV = dichVuList[0].NoiDungDV,
-            //        ImageDV = dichVuList[0].ImageDV,
-            //        CreateDate = DateTime.Now
-            //    }
-            //});
-            //list.Add(new SetIsSelected
-            //{
-            //    IsSelected = false,
-            //    TieuDeDV = dichVuList[0].TieuDeDV,
-            //    THONGTINDICHVU = new THONGTINDICHVU
-            //    {
-            //        ChiPhiDV = dichVuList[0].ChiPhiDV,
-            //        TieuDeDV = dichVuList[0].TieuDeDV,
-            //        NoiDungDV = dichVuList[0].NoiDungDV,
-            //        ImageDV = dichVuList[0].ImageDV,
-            //        CreateDate = DateTime.Now
-            //    }
-            //});
 
             for(int i = 0; i < dichVuList.Count; i++)
             {
@@ -93,6 +69,7 @@ namespace ChatBot.ViewModels
                     TieuDeDV = dichVuList[i].TieuDeDV,
                     THONGTINDICHVU = new THONGTINDICHVU
                     {
+                        ID = dichVuList[i].ID,
                         ChiPhiDV = dichVuList[i].ChiPhiDV,
                         TieuDeDV = dichVuList[i].TieuDeDV,
                         NoiDungDV = dichVuList[i].NoiDungDV,
@@ -101,12 +78,24 @@ namespace ChatBot.ViewModels
                     }
                 });
             }
+
+            _datLichHen.IDDV = list[getTTDV].THONGTINDICHVU.ID;
             Items = list;
         }
 
         
 
-        private DatLichHenPuss _datLichHen = new DatLichHenPuss();
+        private DatLichHenPuss _datLichHen = new DatLichHenPuss() { 
+            IDDV = 1,
+            IDKH = 1,
+            datLicHen = new DatLichHen {
+                tieuDe = "",
+                noiDung = "", 
+                BatDauHen= DateTime.Now,
+                KetThucHen = DateTime.Now,
+                ThoiGianNhacNho = 1
+            }
+        };
         public DatLichHenPuss datLichhen
         {
             get { return _datLichHen; }
@@ -123,7 +112,7 @@ namespace ChatBot.ViewModels
                 return new Command(async () =>
                 {
                     var services = new Service();
-                    await services.DatLichHen(_datLichHen, (int)getLinkPage.linkDatLichHen); 
+                    await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen); 
                 });
             }
         } 

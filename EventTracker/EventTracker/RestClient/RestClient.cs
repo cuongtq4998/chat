@@ -43,9 +43,11 @@ namespace ChatBot.RestClient
             else if( setLink == (int)getLinkPage.linkGetDichVu)
             {
                 link = UriDichVu;
+
             }else if( setLink == (int)getLinkPage.linkGetChamSocKH)
             {
                 link = UriChamSocKH;
+
             }else if(setLink == (int)getLinkPage.linkDatLichHen)
             {
                 link = UriDatLichHen;

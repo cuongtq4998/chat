@@ -78,9 +78,36 @@ namespace ChatBot.ViewModels
         {
             var services = new Service();
 
-            listItem = await services.GetChamSocKH(3);
-
-            Debug.Write("Invalid object. ");
+            listItem = await services.GetChamSocKH(3); 
         }
+        #region Refreshing
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    var customersService = new Service();
+
+                    listItem = await customersService.GetChamSocKH(3);
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+        #endregion
     }
 }

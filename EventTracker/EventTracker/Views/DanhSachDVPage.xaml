@@ -7,11 +7,22 @@
              xmlns:converters="clr-namespace:ChatBot.Items"
              mc:Ignorable="d"
              x:Class="EventTracker.DanhSachDVPage"
-             Title="Dịch Vụ">
+             Title="Gói Dịch Vụ">
     <ContentPage.BindingContext>
         <ViewModels:DANHSACHDVViewModel />
     </ContentPage.BindingContext>
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Đặt Lịch Hẹn"
+                     IconImageSource="calendar3.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Thông Báo"
+                     IconImageSource="alarm.png"
+                     Order="Primary"
+                     Priority="0" 
+                     Clicked="ToolbarItem_Clicked_1"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
@@ -102,7 +113,7 @@
                                         </Grid.RowDefinitions>
                                         <Grid x:Name="ImageView"
                                               IsVisible="False">
-                                            <Image Source="{Binding ImageDV, Converter={StaticResource ByteArrayToImage}}}"
+                                            <Image Source="{Binding ImageDV, Converter={StaticResource ByteArrayToImage}}"
                                                    Aspect="AspectFill"
                                                    HorizontalOptions="FillAndExpand"
                                                    VerticalOptions="FillAndExpand" />

@@ -23,7 +23,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Thêm"
-                     IconImageSource="register.png"
+                     IconImageSource="tick2.png"
                      Order="Primary"
                      Priority="0"
                      Command="{Binding butonAddData}"/>
@@ -50,7 +50,7 @@
                                    FontAttributes="Italic"
                                    TextColor="Black" />
                             <Entry Placeholder="Tiêu đề..."
-                                   Text="{Binding lichhen.tieuDe, Mode=TwoWay}" />
+                                   Text="{Binding datLichhen.datLicHen.tieuDe, Mode=TwoWay}" />
                         </StackLayout>
                         <StackLayout Orientation="Vertical"
                                      Spacing="0"
@@ -60,28 +60,29 @@
                                    FontAttributes="Italic"
                                    TextColor="Black" />
                             <Entry Placeholder="Nội dung tư vấn..."
-                                   Text="{Binding  DatLichhen.datLichHen.noiDung}" />
+                                   Text="{Binding datLichhen.datLicHen.noiDung}" />
                         </StackLayout>
                     </StackLayout>
                 </Frame >
                 <Frame  Margin="5"
                         HasShadow="True">
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Thời gian"
+                        <Label Text="Thời gian bắt đầu - kết thúc"
                                FontSize="17"
                                FontAttributes="Italic"
                                TextColor="Black" />
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="register.png"
-                                   HeightRequest="40"
-                                   WidthRequest="40"
+                            <Image Source="alarm.png"
+                                   HeightRequest="30"
+                                   WidthRequest="30"
                                    VerticalOptions="Start" />
                             <StackLayout Orientation="Vertical"
                                          HorizontalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
                                              Margin="0,0,0,10">
-                                    <DatePicker />
+                                    <DatePicker Date="{Binding datLichhen.datLicHen.BatDauHen,Mode=TwoWay}"
+                                        Format="dd/MM/yyyy"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
@@ -94,7 +95,8 @@
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
                                              Margin="0,0,0,10">
-                                    <DatePicker />
+                                    <DatePicker Date="{Binding datLichhen.datLicHen.KetThucHen,Mode=TwoWay}"
+                                        Format="dd/MM/yyyy"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
@@ -108,19 +110,20 @@
                 <Frame  Margin="5"
                         HasShadow="True">
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Nhắc tôi trước"
+                        <Label Text="Nhắc tôi trước:"
                                FontSize="17"
                                FontAttributes="Italic"
                                TextColor="Black" />
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="register.png"
-                                   WidthRequest="40"
-                                   HeightRequest="40"
+                            <Image Source="alarm.png"
+                                   WidthRequest="30"
+                                   HeightRequest="30"
                                    VerticalOptions="Start" />
                             <StackLayout Orientation="Vertical"> 
                                 <Picker Margin="0,0,5,0"
                                          ItemsSource="{Binding ListNgheNghiep}"
-                                    SelectedItem="{Binding SelectedCustomers.NgheNghiep, Mode=TwoWay}"/>
+                                    SelectedItem="{Binding SelectedCustomers.NgheNghiep, Mode=TwoWay}"
+                                        Title="Chọn thời gian nhắc nhỡ..."/>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout> 

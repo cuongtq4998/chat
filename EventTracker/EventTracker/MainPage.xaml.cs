@@ -20,33 +20,32 @@ namespace EventTracker
         public MainPage()
         {
             InitializeComponent();
-            menuList = new List<ItemMenu>();
-            var Home = new ItemMenu()
-            {
-                title = "Trang Chủ",
-                icon = "",
-                TagetType = typeof(TRANGCHUviewPage)
-            };
+            menuList = new List<ItemMenu>(); 
             var Dangkitaikhoan = new ItemMenu()
             {
-                title = "Đăng Ký",
-                icon = "",
+                title = "Đăng ký thông tin",
+                icon = "registration.png",
                 TagetType = typeof(DANGKITKViewPage)
             };
             var ChatwithDiaflow = new ItemMenu()
             {
                 title = "Chat với Diaflow",
-                icon = "",
+                icon = "chatdl.png",
                 TagetType = typeof(CHATViewPage)
             };
-
-            menuList.Add(Home);
+            var dichVu = new ItemMenu()
+            {
+                title = "Gói Dịch Vụ",
+                icon = "tick.png",
+                TagetType = typeof(DanhSachDVPage)
+            };
             menuList.Add(Dangkitaikhoan);
             menuList.Add(ChatwithDiaflow);
+            menuList.Add(dichVu);
              
             navigationDrawerList.ItemsSource = menuList;
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(TRANGCHUviewPage)));
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(DanhSachDVPage)));
         } 
 
         public List<ItemMenu> menuList { get; set; }

@@ -5,11 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="ChatBot.Views.THONGBAOViewPage"
-              xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+              xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot" xmlns:converters="clr-namespace:ChatBot.Items"
              Title="Thông Báo">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
@@ -24,12 +29,12 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal"
                                          Margin="5">
-                                <Frame HeightRequest="30"
-                                       WidthRequest="30"
-                                       HasShadow="True"
-                                       CornerRadius="10">
-                                    <Image Source="chatbot.png" />
-                                </Frame>
+                                <Image Source="{Binding thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="Fill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Fill"
+                                        HeightRequest="50"
+                                        WidthRequest="50"/>
                                 <StackLayout BackgroundColor="Azure"
                                              Orientation="Vertical"
                                              Spacing="0"
@@ -37,12 +42,12 @@
                                              HorizontalOptions="FillAndExpand"
                                              Padding="5,0,0,0">
 
-                                    <Label Text="{Binding TIEU_DE, Mode=TwoWay}"
+                                    <Label Text="{Binding tieU_DE, Mode=TwoWay}"
                                            FontAttributes="Bold" />
-                                    <Label Text="{Binding NOI_DUNG, Mode=TwoWay}"
+                                    <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
                                            FontAttributes="Italic"
                                            FontSize="13" />
-                                    <Label Text="{Binding THOI_GIAN, Mode=TwoWay}" />
+                                    <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" /> 
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

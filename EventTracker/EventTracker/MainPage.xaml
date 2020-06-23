@@ -9,18 +9,16 @@
     <MasterDetailPage.Master>
         <ContentPage  Title="Trang chính">
             <StackLayout Orientation="Vertical">
-                <StackLayout BackgroundColor="Olive"
-                             HeightRequest="75">
-                    <Label Text="Wellcome Bot!"
-                           FontSize="18"
-                           VerticalOptions="CenterAndExpand"
-                           TextColor="White"
-                           HorizontalOptions="Center" />
+                <StackLayout  >
+                    <Image Source="banner.png"
+                           Aspect="AspectFit"
+                           HeightRequest="200"/> 
                 </StackLayout>
                 <ListView x:Name="navigationDrawerList"
                           RowHeight="30"
                           SeparatorVisibility="None"
-                          ItemSelected="navigationDrawerList_ItemSelected">
+                          ItemSelected="navigationDrawerList_ItemSelected"
+                          Margin="5">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -29,15 +27,18 @@
                                 <!-- Main design for our menu items -->
                                 <StackLayout VerticalOptions="FillAndExpand"
                                              Orientation="Horizontal"
-                                             Spacing="5">
+                                             Spacing="5"
+                                             Margin="5">
 
                                     <Image Source="{Binding icon}"
-                                           VerticalOptions="Center" />
+                                           VerticalOptions="Center" 
+                                           Aspect="AspectFit"
+                                           Margin="0,0,10,0"/>
 
                                     <Label Text="{Binding title}"
                                            FontSize="Subtitle"
                                            VerticalOptions="Center"
-                                           TextColor="Black" />
+                                           TextColor="Blue" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
