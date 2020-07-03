@@ -48,7 +48,7 @@ namespace ChatBot.ViewModels
             {
                 new Customers
                 {
-                    ID = Path.GetRandomFileName(),
+                    id = Path.GetRandomFileName(),
                     HoTen = "Trần Quốc " + random.Next( 1,30),
                     DiaChi = "Thành Phố Hồ Chí Minh",
                     DienThoai = "",
@@ -58,7 +58,7 @@ namespace ChatBot.ViewModels
                 },
                 new Customers
                 {
-                    ID =Path.GetRandomFileName(),
+                    id =Path.GetRandomFileName(),
                     HoTen = "Trần Quốc " + random.Next( 1,30),
                     DiaChi = "Lê Trọng Tấn,  Sơn Kì, Tần Phú",
                     DienThoai = "9",
@@ -68,7 +68,7 @@ namespace ChatBot.ViewModels
                 },
                 new Customers
                 {
-                    ID = Path.GetRandomFileName(),
+                    id = Path.GetRandomFileName(),
                     HoTen = "Trần Quốc " + random.Next( 1,30),
                     DiaChi = "Thành Phố Hồ Chí Minh",
                     DienThoai = "",
@@ -78,7 +78,7 @@ namespace ChatBot.ViewModels
                 },
                 new Customers
                 {
-                    ID = Path.GetRandomFileName(),
+                    id = Path.GetRandomFileName(),
                     HoTen = "Trần Quốc " + random.Next( 1,30),
                     DiaChi = "Lê Trọng Tấn,  Sơn Kì, Tần Phú",
                     DienThoai = "",

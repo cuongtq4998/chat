@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatBot.Views.DANGKITKViewPage" 
-             xmlns:controls="clr-namespace:ChatBot.Controls"
-             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:ChatBot.Controls" xmlns:ViewModels="clr-namespace:ChatBot.ViewModels"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.LOGIN">
     <ContentPage.BindingContext>
-        <ViewModels:DANGKITKViewModel />
-    </ContentPage.BindingContext> 
+        <ViewModels:LOGINViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
@@ -30,16 +32,14 @@
                     <controls:EntryControls Title="Tài Khoản"
                                             HorizontalOptions="Center"
                                             Margin="20,25,20,10"
-                                            Text="{Binding userKhachHang.taiKhoan,Mode=TwoWay}"/>
+                                            Text="{Binding checkLogin.taiKhoan,Mode=TwoWay}"
+                                            x:Name="Taikhoan"/>
                     <controls:EntryControls Title="Mật Khẩu"
                                             HorizontalOptions="Center"
                                             Margin="20,15,20,10"
                                             IsPassword="True"
-                                            Text="{Binding userKhachHang.matKhau, Mode=TwoWay}"/>
-                    <controls:EntryControls Title="Nhập Lại Mật Khẩu"
-                                            HorizontalOptions="Center"
-                                            Margin="20,15,20,10"
-                                            IsPassword="True" />
+                                            Text="{Binding checkLogin.matKhau, Mode=TwoWay}"
+                                            x:Name="Matkhau"/> 
                 </StackLayout>
             </Frame>
 
@@ -49,22 +49,22 @@
                                         BackgroundColor="Orange"
                                         Margin="48,0,48,10"
                                         CornerRadius="60"
-                                        Text="Đăng ký"
+                                        Text="Đăng nhập"
                                         TextColor="White"
                                         FontSize="20"
                                         HeightRequest="40"
                                         x:Name="ChuyenPageNhapThongTin"
-                                        Command="{Binding NavigationPageInfor}"
+                                        Command="{Binding loginAccount}"
                                         Clicked="ChuyenPageNhapThongTin_Clicked"/>
             <StackLayout Grid.Row="2"
                          Orientation="Horizontal"
                          VerticalOptions="EndAndExpand"
                          HorizontalOptions="CenterAndExpand">
-                <Label Text="Bạn đã có tài khoản?"
+                <Label Text="Bạn chưa có tài khoản?"
                        Margin="0,10"
                        FontSize="16"
                        VerticalOptions="CenterAndExpand" />
-                <Label Text="Đăng nhập"
+                <Label Text="Đăng ký"
                        Margin="0,15"
                        FontSize="16"
                        TextColor="SkyBlue"

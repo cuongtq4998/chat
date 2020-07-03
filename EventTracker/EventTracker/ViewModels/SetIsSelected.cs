@@ -36,6 +36,17 @@ namespace ChatBot.ViewModels
             }
             get => _TieuDeDV;
         }
+
+        int _IdKH;
+        public int IdKH
+        {
+            set
+            {
+                _IdKH = value;
+                OnPropertyChanged();
+            }
+            get => _IdKH;
+        }
         THONGTINDICHVU _TTDV;
         public THONGTINDICHVU THONGTINDICHVU
         {

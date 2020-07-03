@@ -20,7 +20,14 @@ namespace EventTracker
         public MainPage()
         {
             InitializeComponent();
-            menuList = new List<ItemMenu>(); 
+            menuList = new List<ItemMenu>();
+
+            var dichVu = new ItemMenu()
+            {
+                title = "Trang chủ",
+                icon = "tick.png",
+                TagetType = typeof(DanhSachDVPage)
+            };
             var Dangkitaikhoan = new ItemMenu()
             {
                 title = "Đăng ký thông tin",
@@ -33,15 +40,25 @@ namespace EventTracker
                 icon = "chatdl.png",
                 TagetType = typeof(CHATViewPage)
             };
-            var dichVu = new ItemMenu()
+            
+            var tt = new ItemMenu()
             {
-                title = "Gói Dịch Vụ",
+                title = "Thông tin cá nhân",
                 icon = "tick.png",
-                TagetType = typeof(DanhSachDVPage)
+                TagetType = typeof(HIENTHITHONGTINViewPage)
             };
-            menuList.Add(Dangkitaikhoan);
-            menuList.Add(ChatwithDiaflow);
+            var login = new ItemMenu()
+             {
+                 title = "Login",
+                 icon = "tick.png",
+                 TagetType = typeof(LOGIN)
+             };
+
             menuList.Add(dichVu);
+            menuList.Add(Dangkitaikhoan);
+            menuList.Add(ChatwithDiaflow); 
+            menuList.Add(tt);
+            menuList.Add(login);
              
             navigationDrawerList.ItemsSource = menuList;
 
@@ -54,8 +71,12 @@ namespace EventTracker
             var item = (ItemMenu)e.SelectedItem;
             Type page = item.TagetType;
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(page));
-            IsPresented = false;
+            try
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+                IsPresented = false;
+            }catch(Exception) { }
+            
         }
     } 
 }

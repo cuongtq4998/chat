@@ -131,7 +131,7 @@
                                             TextColor="White"
                                             FontSize="20"
                                             HeightRequest="50"
-                                            Command="{Binding AddInforCus}"
+                                            Command="{Binding AddInforCus}" 
                                             Clicked="ButtonWithPadding_Clicked"/>
             </StackLayout>
         </ScrollView> 

@@ -14,14 +14,15 @@ namespace ChatBot.ViewModels
 {
     public class DatLichHenPuss
     {
-        public int IDDV { get; set; } = 1;
-        public int IDKH { get; set; } = 1;
+        public int IDDV { get; set; }
+        public int IDKH { get; set; }
         public DatLichHen datLicHen { get; set; }
         
     }
     class DatLichHenViewModell : INotifyPropertyChanged
     {
-        public int getTTDV;
+        public List<SetIsSelected> listTTDV = new List<SetIsSelected>();
+        List<Customers> khachhangList = new List<Customers>();
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -52,18 +53,41 @@ namespace ChatBot.ViewModels
         //public ObservableCollection<SetIsSelected> Items { set; get; }
         public DatLichHenViewModell()
         {
-            InitializeDataAsync();
+            getDataAsync();
+            InitializeDataAsync(); 
+            
         }
 
+        DatLichHenPuss _datLichHen = new DatLichHenPuss()
+        {
+            datLicHen = new DatLichHen
+            {
+                tieuDe = "",
+                noiDung = "",
+                BatDauHen = DateTime.Now,
+                KetThucHen = DateTime.Now,
+                ThoiGianNhacNho = 1
+            }
+        };
+        public DatLichHenPuss datLichhen
+        {
+            get { return _datLichHen; }
+            set
+            {
+                _datLichHen = value;
+            }
+        }
+
+        
         private async Task InitializeDataAsync()
         {
             var services = new Service();
             dichVuList = await services.GetTTDV(2);
-            List<SetIsSelected> list = new List<SetIsSelected>();
+            
 
             for(int i = 0; i < dichVuList.Count; i++)
             {
-                list.Add(new SetIsSelected
+                listTTDV.Add(new SetIsSelected
                 {
                     IsSelected = false,
                     TieuDeDV = dichVuList[i].TieuDeDV,
@@ -78,40 +102,37 @@ namespace ChatBot.ViewModels
                     }
                 });
             }
-
-            _datLichHen.IDDV = list[getTTDV].THONGTINDICHVU.ID;
-            Items = list;
+           
+            Items = listTTDV;
+            
         }
 
-        
-
-        private DatLichHenPuss _datLichHen = new DatLichHenPuss() { 
-            IDDV = 1,
-            IDKH = 1,
-            datLicHen = new DatLichHen {
-                tieuDe = "",
-                noiDung = "", 
-                BatDauHen= DateTime.Now,
-                KetThucHen = DateTime.Now,
-                ThoiGianNhacNho = 1
-            }
-        };
-        public DatLichHenPuss datLichhen
+        public async Task<List<Customers>> getDataAsync()
         {
-            get { return _datLichHen; }
-            set
+            string taikhoan = "";
+            string matkhau = "";
+            if (Application.Current.Properties.ContainsKey("Taikhoan") && Application.Current.Properties.ContainsKey("Matkhau"))
             {
-                datLichhen = value;
+                 taikhoan = Application.Current.Properties["Taikhoan"].ToString();
+                 matkhau = Application.Current.Properties["Matkhau"].ToString();
             }
+            var services = new Service();
+            
+            if (taikhoan != null && matkhau != null)
+            {
+                 khachhangList = await services.GetCustomersWithID(taikhoan, matkhau, 1);
+                 
+            }
+            datLichhen.IDKH = Convert.ToInt32(khachhangList[0].id);
+            return khachhangList;
         }
-
         public Command butonAddData
         {
             get
             {
                 return new Command(async () =>
                 {
-                    var services = new Service();
+                    var services = new Service(); 
                     await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen); 
                 });
             }

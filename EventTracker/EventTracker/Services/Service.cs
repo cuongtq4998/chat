@@ -4,6 +4,7 @@ using ChatBot.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,11 +32,11 @@ namespace ChatBot.Services
             return listChamSocKH;
         }
 
-        public async Task<List<Customers>> GetCustomersWithID(string ID)
+        public async Task<List<Customers>> GetCustomersWithID(string Taikhoan, string Matkhau, int linkKhachHang)
         {
-            RestClient<Customers> restClient = new RestClient<Customers>(1);
+            RestClient<Customers> restClient = new RestClient<Customers>(linkKhachHang);
 
-            var customerList = await restClient.GetCustomersID(ID);
+            var customerList = await restClient.GetCustomersID(Taikhoan, Matkhau);
 
             return customerList;
         }
@@ -52,5 +53,8 @@ namespace ChatBot.Services
             RestClient<DatLichHenPuss> restClientDatLichHen = new RestClient<DatLichHenPuss>(linkDatLichhen);
             var datLichHen = await restClientDatLichHen.PostAsync(datLichHenPuss);
         }
+
+        //Login
+        
     }
 }

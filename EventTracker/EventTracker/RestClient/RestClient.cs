@@ -16,9 +16,9 @@ namespace ChatBot.RestClient
         linkGetChamSocKH = 3,
         linkDatLichHen = 4
     }
-    public class RestClient<T> 
+    public class RestClient<T>
     {
-      
+
         public RestClient(int getLink)
         {
             setLink = getLink;
@@ -26,29 +26,31 @@ namespace ChatBot.RestClient
 
         public const string Https = "https://admin-chatbot.conveyor.cloud/";
 
-        private const string UriKhachHang = Https + "api/khach_hangAPI";
+        private const string UriKhachHang = Https + "api/KHACH_HANG";
         private const string UriDichVu = Https + "api/THONG_TIN_DICH_VUAPI";
         private const string UriChamSocKH = Https + "api/CHAM_SOC_KHAPI";
         private const string UriDatLichHen = Https + "api/DAT_LICH_HEN";
 
         public static int setLink { get; set; }
 
-         public static string getLink()
+        public static string getLink()
         {
             string link = "";
-            if( setLink == (int)getLinkPage.linkKhachHang)
+            if (setLink == (int)getLinkPage.linkKhachHang)
             {
                 link = UriKhachHang;
             }
-            else if( setLink == (int)getLinkPage.linkGetDichVu)
+            else if (setLink == (int)getLinkPage.linkGetDichVu)
             {
                 link = UriDichVu;
 
-            }else if( setLink == (int)getLinkPage.linkGetChamSocKH)
+            }
+            else if (setLink == (int)getLinkPage.linkGetChamSocKH)
             {
                 link = UriChamSocKH;
 
-            }else if(setLink == (int)getLinkPage.linkDatLichHen)
+            }
+            else if (setLink == (int)getLinkPage.linkDatLichHen)
             {
                 link = UriDatLichHen;
             }
@@ -57,7 +59,7 @@ namespace ChatBot.RestClient
         HttpClientHandler httpHandler = new HttpClientHandler
         {
             ServerCertificateCustomValidationCallback = (o, cert, chain, errors) => true
-        }; 
+        };
 
         public async Task<ObservableCollection<T>> GetAsync()
         {
@@ -73,14 +75,16 @@ namespace ChatBot.RestClient
 
         }
 
-        public async Task<List<T>> GetCustomersID(String ID)
+        public async Task<List<T>> GetCustomersID(string TaiKhoan1, string MatKhau1)
         {
             using (var client = new HttpClient(httpHandler))
             {
 
-                var json = await client.GetStringAsync(UriKhachHang + "/" + ID);
+                var json = await client.GetStringAsync(getLink() + "/" + TaiKhoan1 + "/" + MatKhau1);
 
                 var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+                //taskModels.ToString();
 
                 return taskModels;
             }

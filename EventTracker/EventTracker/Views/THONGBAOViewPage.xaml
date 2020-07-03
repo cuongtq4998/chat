@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="ChatBot.Views.THONGBAOViewPage"
-              xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot" xmlns:converters="clr-namespace:ChatBot.Items"
+              xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+             xmlns:converters="clr-namespace:ChatBot.Items"
              Title="Thông Báo">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
@@ -47,7 +48,7 @@
                                     <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
                                            FontAttributes="Italic"
                                            FontSize="13" />
-                                    <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" /> 
+                                    <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -55,6 +56,6 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-        </RefreshView> 
+        </RefreshView>
     </StackLayout>
 </ContentPage>

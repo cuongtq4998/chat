@@ -26,7 +26,7 @@ namespace ChatBot.Views
 
         private void ButtonWithPadding_Clicked(object sender, EventArgs e)
         {
-            
+            //Navigation.PushAsync(new HIENTHITHONGTINViewPage());
         } 
     }
 }

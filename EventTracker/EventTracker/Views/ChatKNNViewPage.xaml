@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModels="clr-namespace:ChatBot.ViewModels"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.ChatKNNViewPage">
+    <ContentPage.BindingContext>
+        <ViewModels:ChatKNNViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Trả lời: "/>
+                <Label Text="{Binding messageOut}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" /> 
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Label Text="Nhập tin nhắn: "/>
+                <Entry Text="{Binding messageInput}" />
+                <Button Command="{Binding buttonSend}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -40,8 +40,9 @@ namespace ChatBot.Views
             {
                 var viewModel = BindingContext as DatLichHenViewModell;
                 int index = viewModel.Items.IndexOf(currentModel);
-                viewModel.getTTDV = index;
+                viewModel.datLichhen.IDDV = viewModel.listTTDV[index].THONGTINDICHVU.ID;
             }
+            
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -53,6 +54,11 @@ namespace ChatBot.Views
             //SetIsSelected currentModel = e.SelectedItem as SetIsSelected;
             //currentModel.IsSelected = true;
             //datlichhen = currentModel;
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopToRootAsync();
         }
     }
 }

@@ -1,53 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
              x:Class="ChatBot.Views.HIENTHITHONGTINViewPage"
              Title="Thông Tin Cá Nhân">
-    <NavigationPage.TitleView>
-        <Label TextColor="White"
-               FontAttributes="Bold"
-               FontSize="17"
-               Text="Thông tin cá nhân" />
-    </NavigationPage.TitleView>
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center">
-            <Image Source="chatbot.png" />
-            <StackLayout Orientation="Vertical"
-                         Padding="5,0,0,0">
-                <StackLayout Orientation="Horizontal">
-                    <Label FontSize="15"
-                           Text="Họ tên :" />
-                    <Label FontSize="15"
-                           Text="Trần Quốc Cường" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label FontSize="15"
-                           Text="Tuổi :" />
-                    <Label FontSize="15"
-                           Text="21" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label FontSize="15"
-                           Text="Nghề nghiệp :" />
-                    <Label FontSize="15"
-                           Text="Developer" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label FontSize="15"
-                           Text="Giới tính :" />
-                    <Label FontSize="15"
-                           Text="Nam" />
-                </StackLayout>
+    <ContentPage.BindingContext>
+        <ViewModels:HIENTHITHONGTINViewModel />
+    </ContentPage.BindingContext>
 
-            </StackLayout>
-            <Button   FontSize="15"
-                      Text="OK"
-                      Clicked="Btn_chat_Clicked" />
-            <Button x:Name="btn_chat"
-                    FontSize="15"
-                    Text="CHỈNH SỬA" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}">
+            <ListView ItemsSource="{Binding khachhang}"
+                      CachingStrategy="RecycleElement"
+                      SeparatorVisibility="None"
+                      RowHeight="300">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical"
+                                         Margin="5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                        Text="Họ tên :" />
+                                    <Label Text="{Binding HoTen, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                    Text="Ngày sinh :" />
+                                    <Label Text="{Binding NgaySinh, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                    Text="Nghề nghiệp :" />
+                                    <Label Text="{Binding NgheNghiep, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                        Text="Email :" />
+                                    <Label Text="{Binding Email, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                        Text="Giới tính :" />
+                                    <Label Text="{Binding GioiTinh, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                        Text="Điện thoại :" />
+                                    <Label Text="{Binding DienThoai, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                        Text="Địa chỉ :" />
+                                    <Label Text="{Binding DiaChi, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </RefreshView>
+        
+    </StackLayout> 
 </ContentPage>

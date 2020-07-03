@@ -11,6 +11,7 @@ namespace EventTracker
         {
             InitializeComponent();
             Device.SetFlags(new[] { "Expander_Experimental" });
+            Device.SetFlags(new string[] { "Shapes_Experimental" });
             MainPage = new MainPage();
         }
 

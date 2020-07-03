@@ -48,6 +48,7 @@ namespace ChatBot.ViewModels
         } 
   
         private AddUser _SelectedCustomers = new AddUser();
+        public string Message { get; set; }
         public AddUser SelectedCustomers
         {
             get { return _SelectedCustomers; }
@@ -60,10 +61,11 @@ namespace ChatBot.ViewModels
         { 
             get
             {
-                return new Command(async () =>
+                return new Command( async () =>
                 {
                     var services = new Service(); 
-                   await services.PostCustomers(_SelectedCustomers, (int)getLinkPage.linkKhachHang);  
+                    await services.PostCustomers(_SelectedCustomers, (int)getLinkPage.linkKhachHang); 
+
                 });
             }
         }

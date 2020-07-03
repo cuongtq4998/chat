@@ -26,7 +26,8 @@
                      IconImageSource="tick2.png"
                      Order="Primary"
                      Priority="0"
-                     Command="{Binding butonAddData}"/>
+                     Command="{Binding butonAddData}"
+                     Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Resources>
