@@ -1,6 +1,7 @@
 ﻿using ChatBot.Models;
 using ChatBot.RestClient;
 using ChatBot.Services;
+using ChatBot.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,14 +15,13 @@ using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
-     class HIENTHITHONGTINViewModel: INotifyPropertyChanged
+     public class HIENTHITHONGTINViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-         
 
         private List<Customers> _khachhang;
         public List<Customers> khachhang
@@ -32,10 +32,33 @@ namespace ChatBot.ViewModels
                 _khachhang = value;
                 OnPropertyChanged();
             }
-        } 
+        }
         public HIENTHITHONGTINViewModel()
         { 
+            _ = getDataAsync(); 
         }
+        
+        public async Task getDataAsync()
+        {
+            IsRefreshing = true;
+            string taikhoan = "";
+            string matkhau = "";
+            if (Application.Current.Properties.ContainsKey("Taikhoan") && Application.Current.Properties.ContainsKey("Matkhau"))
+            {
+                taikhoan = Application.Current.Properties["Taikhoan"].ToString();
+                matkhau = Application.Current.Properties["Matkhau"].ToString();
+            }
+            var services = new Service();
+
+            if (taikhoan != null && matkhau != null)
+            {
+                khachhang = await services.GetCustomersWithID(taikhoan, matkhau, 1); 
+
+            }
+            IsRefreshing = false;
+        }
+
+       
 
         #region Refreshing
         private bool _isRefreshing = false;

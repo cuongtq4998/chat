@@ -13,57 +13,103 @@
                  Command="{Binding RefreshCommand}">
             <ListView ItemsSource="{Binding khachhang}"
                       CachingStrategy="RecycleElement"
-                      SeparatorVisibility="None"
-                      RowHeight="300">
+                      SeparatorVisibility="None" 
+                         HasUnevenRows="true"
+                      RowHeight="700">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical"
                                          Margin="5">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                        Text="Họ tên :" />
-                                    <Label Text="{Binding HoTen, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                    Text="Ngày sinh :" />
-                                    <Label Text="{Binding NgaySinh, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                    Text="Nghề nghiệp :" />
-                                    <Label Text="{Binding NgheNghiep, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                        Text="Email :" />
-                                    <Label Text="{Binding Email, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                        Text="Giới tính :" />
-                                    <Label Text="{Binding GioiTinh, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                        Text="Điện thoại :" />
-                                    <Label Text="{Binding DienThoai, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="15"
-                                        Text="Địa chỉ :" />
-                                    <Label Text="{Binding DiaChi, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                </StackLayout>
+                                <Grid BackgroundColor="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- 1. Profile picture-->
+                                    <Image Grid.Row="0"
+                                           Source="onlinetraining.jpg"
+                                           VerticalOptions="Start" />
+                                    <!-- Here add the code that is being explained in the next block-->
+                                </Grid>
+                                <StackLayout Grid.Row="0" BackgroundColor="White" VerticalOptions="End">
+                                    <Frame CornerRadius="30" Style="{StaticResource stlMainFrame}">
+                                        <Grid Padding="15,10,20,0" RowSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/> 
+                                                <ColumnDefinition /> 
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>  
+                                            </Grid.RowDefinitions> 
 
+                                            <!-- Here add the code that is being explained in the next block-->
+                                            
+                                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding HoTen, Mode=TwoWay}" FontAttributes="Bold" FontSize="30"/>
+                                            <StackLayout Orientation="Horizontal"
+                                                         Grid.Row="1"
+                                                    Grid.Column ="0">
+                                                <Image 
+                                                    Source="icaddress.png"
+                                                    VerticalOptions="Start"
+                                                   HorizontalOptions="Start"/>
+                                                <Label  
+                                                   Text="{Binding DiaChi, Mode=TwoWay}" 
+                                                   TextColor="#a5a2a2"
+                                                   FontSize="16"
+                                                   HorizontalOptions="Start"/>
+                                            </StackLayout>
+                                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Padding="0,3,0,0" FontSize="16">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Email: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding Email, Mode=TwoWay}"  />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Nghề Nghiệp: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding NgheNghiep, Mode=TwoWay}"  />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Điện thoại: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding DienThoai, Mode=TwoWay}"  />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Giới tính: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding GioiTinh, Mode=TwoWay}"  />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Ngày sinh: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding NgaySinh, Mode=TwoWay}"  />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <!--4. Contact information: Follow button-->
+                                          
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>   
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

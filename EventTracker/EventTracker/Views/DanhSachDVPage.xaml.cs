@@ -17,8 +17,9 @@ namespace EventTracker
     { 
         public DanhSachDVPage()
         {
-            InitializeComponent(); 
-
+            InitializeComponent();
+            var vm = new DANHSACHDVViewModel();
+            vm.InitializeDataAsync();
             //MyEvents = GetEvents();
             //this.BindingContext = this;
         }

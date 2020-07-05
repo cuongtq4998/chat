@@ -106,7 +106,7 @@
                                     </Expander.Header>
                                     <Grid RowSpacing="0"
                                           HorizontalOptions="FillAndExpand"
-                                          HeightRequest="240">
+                                          HeightRequest="340">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="2*" />
                                             <RowDefinition Height="1.5*" />

@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:ChatBot.Controls" xmlns:ViewModels="clr-namespace:ChatBot.ViewModels"
              mc:Ignorable="d"
-             x:Class="ChatBot.Views.LOGIN">
+             x:Class="ChatBot.Views.LOGIN"
+             Title="Đăng nhập">
     <ContentPage.BindingContext>
         <ViewModels:LOGINViewModel />
     </ContentPage.BindingContext>
@@ -25,7 +26,7 @@
                    CornerRadius="10"
                    Margin="20,-70,20,0"
                    Padding="10"
-                   HeightRequest="300"
+                   HeightRequest="250"
                    VerticalOptions="Start"
                    BackgroundColor="White">
                 <StackLayout Orientation="Vertical">

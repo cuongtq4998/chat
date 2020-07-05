@@ -6,26 +6,86 @@
              mc:Ignorable="d"
              x:Class="ChatBot.Views.THONGBAOViewPage"
               xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
-             xmlns:converters="clr-namespace:ChatBot.Items"
+             xmlns:converters="clr-namespace:ChatBot.Items" 
+             xmlns:local="clr-namespace:ChatBot;assembly=ChatBot"
              Title="Thông Báo">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
-        <ResourceDictionary>
+        <ResourceDictionary >
+            <DataTemplate x:Key="templateDatLichHen">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal"
+                                         Margin="5">
+                        <Image Source="{Binding ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="Fill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Fill"
+                                        HeightRequest="50"
+                                        WidthRequest="50"/>
+                        <StackLayout BackgroundColor="Azure"
+                                             Orientation="Vertical"
+                                             Spacing="0"
+                                             VerticalOptions="FillAndExpand"
+                                             HorizontalOptions="FillAndExpand"
+                                             Padding="5,0,0,0">
+
+                            <Label Text="{Binding chamsockhachhang.tieU_DE, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                            <!--<Label Text="{Binding chamsockhachhang.noI_DUNG, Mode=TwoWay}"
+                                           FontAttributes="Italic"
+                                           FontSize="13" />
+                            <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" />-->
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="templateThongBao">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal"
+                                         Margin="5">
+                        <Image Source="{Binding thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="Fill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Fill"
+                                        HeightRequest="50"
+                                        WidthRequest="50"/>
+                        <StackLayout BackgroundColor="Azure"
+                                             Orientation="Vertical"
+                                             Spacing="0"
+                                             VerticalOptions="FillAndExpand"
+                                             HorizontalOptions="FillAndExpand"
+                                             Padding="5,0,0,0">
+
+                            <Label Text="{Binding tieU_DE, Mode=TwoWay}"
+                                           FontAttributes="Bold" />
+                            <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
+                                           FontAttributes="Italic"
+                                           FontSize="13" />
+                            <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" />
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <local:TemplateSelector x:Key="DataTemplateSelector"
+                                    templateChamSocKH="{StaticResource templateThongBao}"
+                                    templateDatLichHen="{StaticResource templateDatLichHen}"/>
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    
 
     <StackLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}">
-            <ListView ItemsSource="{Binding listItem}"
+            <ListView ItemsSource="{Binding khachhang}"
+                      ItemTemplate="{StaticResource DataTemplateSelector}"
                       CachingStrategy="RecycleElement"
                       SeparatorVisibility="None"
                       RowHeight="80">
 
-                <ListView.ItemTemplate>
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal"
@@ -53,7 +113,7 @@
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
 
             </ListView>
         </RefreshView>

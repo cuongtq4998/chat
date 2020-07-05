@@ -6,6 +6,19 @@
              mc:Ignorable="d"
              x:Class="EventTracker.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="stackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation"     Value = "Vertical"   />
+                <Setter Property="WidthRequest"    Value = "150"        />
+                <Setter Property="BackgroundColor" Value = "#BBD8EB"    />
+                <Setter Property="Padding"         Value = "40,60,10,10"/>
+            </Style>
+            <Style x:Key="stlMainFrame" TargetType="Frame">
+                <Setter Property="TranslationY"    Value="{OnPlatform iOS='-150', Android='-33'}"/>
+                <Setter Property="HeightRequest"   Value="{OnPlatform iOS='120', Android='228'}"/>
+                <Setter Property="HasShadow"       Value="False" />
+            </Style> 
 
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

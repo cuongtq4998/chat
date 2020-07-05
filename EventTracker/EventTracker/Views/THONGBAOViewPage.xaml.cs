@@ -15,6 +15,8 @@ namespace ChatBot.Views
         public THONGBAOViewPage()
         {
             InitializeComponent();
+            var vm = new ViewModels.THONGBAOViewModel(); 
+            vm.InitializeDataAsync();
         }
     }
 }

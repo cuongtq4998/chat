@@ -1,6 +1,7 @@
 ﻿using ChatBot.Models;
 using ChatBot.Services;
 using ChatBot.ViewModels;
+using EventTracker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,7 @@ namespace ChatBot.Views
 
         private void ChuyenPageNhapThongTin_Clicked(object sender, EventArgs e)
         { 
-            var vmLogin = this.BindingContext as LOGINViewModel;
-            var vmTT = BindingContext as HIENTHITHONGTINViewModel;
-            if(vmLogin.khachhangList != null)
-            {
-                Navigation.PushAsync(new HIENTHITHONGTINViewPage(vmLogin.khachhangList));
-            }
-            
-           
+            Navigation.PushAsync(new DanhSachDVPage());  
         } 
     }
 }

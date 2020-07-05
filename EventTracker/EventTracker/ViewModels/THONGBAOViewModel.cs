@@ -15,11 +15,22 @@ using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
+    public class ketnoiDLH_TTDV
+    {
+        public DatLichHen datLichHen { get; set; }
+        public THONGTINDICHVU ttdv { get; set; }
+        public Customers khachHang { get; set; }
+    }
+    public class ThongTinChamSocKH
+    {
+        public ObservableCollection<CHAMSOCKH> chamsockhachhang { get; set; }
+        public ObservableCollection<ketnoiDLH_TTDV> ketnoiDLH_DV { get; set; }
+    }
     class THONGBAOViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private ObservableCollection<CHAMSOCKH> _items;
-        public ObservableCollection<CHAMSOCKH> listItem
+        private List<ThongTinChamSocKH> _items;
+        public List<ThongTinChamSocKH> listItem
         {
             get { return _items; }
             set
@@ -28,57 +39,35 @@ namespace ChatBot.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private ObservableCollection<CHAMSOCKH> _khachhang;
+        public ObservableCollection<CHAMSOCKH> khachhang
+        {
+            get { return _khachhang; }
+            set
+            {
+                _khachhang = value;
+                OnPropertyChanged();
+            }
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public THONGBAOViewModel()
-        {
-            #region DumaData
-            Random random = new Random();
-            //listItem = new List<Customers>
-            //{
-            //    new Customers
-            //    {
-            //        ID = Path.GetRandomFileName(),
-            //        HoTen = "Trần Quốc " + random.Next( 1,30),
-            //        DiaChi = "Thành Phố Hồ Chí Minh",
-            //        DienThoai = "",
-            //        GioiTinh = "Nam",
-            //        Email = "",
-            //        NgaySinh = DateTime.Now
-            //    },
-            //    new Customers
-            //    {
-            //        ID = Path.GetRandomFileName(),
-            //        HoTen = "Trần Quốc " + random.Next( 1,30),
-            //        DiaChi = "Lê Trọng Tấn,  Sơn Kì, Tần Phú",
-            //        DienThoai = "",
-            //        GioiTinh = "Nam",
-            //        Email = "",
-            //        NgaySinh = DateTime.Now
-            //    },
-            //    new Customers
-            //    {
-            //        ID = Path.GetRandomFileName(),
-            //        HoTen = "Trần Quốc " + random.Next( 1,30),
-            //        DiaChi = "",
-            //        DienThoai = "",
-            //        GioiTinh = "Nam",
-            //        Email = "",
-            //        NgaySinh = DateTime.Now
-            //    }
-            //};
-
-            #endregion
+        {   
             InitializeDataAsync();
         }
 
-        private async Task InitializeDataAsync()
+        public async Task InitializeDataAsync()
         {
+            IsRefreshing = true;
             var services = new Service();
 
-            listItem = await services.GetChamSocKH(3); 
+            listItem = await services.GetChamSocKH(3);
+            khachhang = listItem[0].chamsockhachhang;
+            IsRefreshing = false;
         }
         #region Refreshing
         private bool _isRefreshing = false;

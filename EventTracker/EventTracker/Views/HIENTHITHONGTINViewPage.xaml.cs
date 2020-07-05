@@ -14,14 +14,11 @@ namespace ChatBot.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HIENTHITHONGTINViewPage : ContentPage
 	{
-		public HIENTHITHONGTINViewPage (List<Customers> kh)
+		public HIENTHITHONGTINViewPage ()
 		{
 			InitializeComponent ();
-            var vm = this.BindingContext as HIENTHITHONGTINViewModel;
-            if (vm != null)
-            {
-                vm.khachhang = kh;
-            }
+            var vm = new HIENTHITHONGTINViewModel();
+            vm.getDataAsync();
         }
         private void Btn_chat_Clicked(object sender, EventArgs e)
         {

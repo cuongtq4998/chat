@@ -2,17 +2,36 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:controls="clr-namespace:ChatBot.Controls"
                   mc:Ignorable="d"
                   x:Class="EventTracker.MainPage"
                   Title="Menu">
     <MasterDetailPage.Master>
         <ContentPage  Title="Trang chính">
             <StackLayout Orientation="Vertical">
-                <StackLayout  >
+                <StackLayout >
                     <Image Source="banner.png"
                            Aspect="AspectFit"
-                           HeightRequest="200"/> 
+                           HeightRequest="200"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="10"> 
+                        <Label Text="HI! Cuon"
+                                Margin="5"
+                               x:Name="nameUser"
+                               TextColor="DarkBlue"/>
+                        <controls:ButtonWithPadding   
+                                        BackgroundColor="BlueViolet"
+                                        Margin="5"
+                                        CornerRadius="10"
+                                        Text=""
+                                        TextColor="White"  
+                                        HeightRequest="15"
+                                        x:Name="Logout" 
+                                        Padding="5"
+                            HorizontalOptions="EndAndExpand"  
+                            Clicked="Logout_Clicked"/>
+                    </StackLayout>
                 </StackLayout>
                 <ListView x:Name="navigationDrawerList"
                           RowHeight="30"

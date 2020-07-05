@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatBot.Views.DANGKITKViewPage" 
              xmlns:controls="clr-namespace:ChatBot.Controls"
-             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot">
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+             Title="Đăng kí tài khoản">
     <ContentPage.BindingContext>
         <ViewModels:DANGKITKViewModel />
     </ContentPage.BindingContext> 

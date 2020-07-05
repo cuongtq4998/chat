@@ -9,9 +9,9 @@ namespace EventTracker
     {
         public App()
         {
-            InitializeComponent();
             Device.SetFlags(new[] { "Expander_Experimental" });
-            Device.SetFlags(new string[] { "Shapes_Experimental" });
+            //Device.SetFlags(new string[] { "Shapes_Experimental" });
+            InitializeComponent(); 
             MainPage = new MainPage();
         }
 
@@ -25,6 +25,6 @@ namespace EventTracker
 
         protected override void OnResume()
         {
-        }
+        } 
     }
 }

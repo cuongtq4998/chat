@@ -3,25 +3,172 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="clr-namespace:ChatBot.Controls"
+             xmlns:customcontrol="clr-namespace:ChatBot.Controls"
              mc:Ignorable="d"
              x:Class="ChatBot.Views.RatingViewPage">
-    <ContentPage.Resources>
-        <converters:ImageSourceToRatingConverter x:Key="ImageSourceToRatingConverter"/>
-
-        <Style TargetType="ImageButton">
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="Command" Value="{Binding Rate}"/>
-        </Style>
-    </ContentPage.Resources>
+   
     
     <ContentPage.Content>
-        <StackLayout Orientation="Horizontal">
-            <ImageButton Source="{Binding Rating, Converter={StaticResource ImageSourceToRatingConverter}, ConverterParameter=1}" CommandParameter="1"/>
-            <ImageButton Source="{Binding Rating, Converter={StaticResource ImageSourceToRatingConverter}, ConverterParameter=2}" CommandParameter="2"/>
-            <ImageButton Source="{Binding Rating, Converter={StaticResource ImageSourceToRatingConverter}, ConverterParameter=3}" CommandParameter="3"/>
-            <ImageButton Source="{Binding Rating, Converter={StaticResource ImageSourceToRatingConverter}, ConverterParameter=4}" CommandParameter="4"/>
-            <ImageButton Source="{Binding Rating, Converter={StaticResource ImageSourceToRatingConverter}, ConverterParameter=5}" CommandParameter="5"/>
-        </StackLayout> 
+        <ScrollView>
+            <StackLayout VerticalOptions="Start" 
+                         Orientation="Vertical"
+                         HorizontalOptions="Start">
+                <Frame HorizontalOptions="Center"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                        Margin="10">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="Cảm ơn bạn đã sử dụng dịch vụ của chúng tối." 
+                                    HorizontalTextAlignment="Start"
+                                   FontSize="20"
+                                   TextColor="Black"/>
+                            <Label Text="Hãy đánh giá để chúng tối có thể cải thiện dịch vụ có thể phục vụ bạn tốt hơn nữa!" 
+                                    HorizontalTextAlignment="Start"
+                                   FontSize="15"
+                                   TextColor="DarkCyan"/>
+                            <customcontrol:RattingBarRating 
+                                    x:Name="customRattingBar"
+                                    HorizontalOptions="Center"  
+                                    ImageWidth="45" 
+                                    ImageHeight="45"    
+                                    Command="{Binding rattingBarCommand}"
+                                    SelectedStarValue="3"  
+                                    FillStarImage="icfillstar"
+                                    EmptyStarImage="icemptystar"   />
+                            <BoxView VerticalOptions="CenterAndExpand"
+                                     BackgroundColor="Black"
+                                     HeightRequest="0.5"
+                                     Margin="50,10" />
+                            <Label Text="{Binding SelectedStar}"  
+                                   HorizontalTextAlignment="Center" 
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <StackLayout 
+                                 Orientation="Horizontal">
+                            <CheckBox  
+                                  Margin="0"  />
+                            <Label Margin="0"
+                                   Text="Không gian phục vụ" />
+                        </StackLayout>
+                        <StackLayout 
+                                 Orientation="Horizontal">
+                            <CheckBox  
+                                  Margin="0" />
+                            <Label Margin="0"
+                                   Text="Thời gian phục vụ" />
+                        </StackLayout>
+                        <StackLayout 
+                                 Orientation="Horizontal">
+                            <CheckBox 
+                                  Margin="0"/>
+                            <Label Margin="0"
+                                   Text="Nhân viên" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Chia sẻ ý kiến của bạn tại đây!"
+                                   FontSize="13"
+                                   TextColor="Black"/>
+                            <Editor Placeholder="Góp ý."
+                                    HeightRequest="70"
+                                    FontSize="12"
+                                    TextColor="Gray"/>
+                        </StackLayout>
+                    </StackLayout> 
+                </Frame>
+
+                <Frame  
+                       CornerRadius="5"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Margin="5">
+                    <StackLayout Orientation="Horizontal" >
+                        <Image Source="banner.png"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Start"/>
+                        <BoxView WidthRequest="1"
+                             BackgroundColor="Black"/>
+                        <StackLayout Orientation="Vertical" 
+                             HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="Center">
+                            <Label Text="Cở sở SPA Hồ Chí Minh" 
+                                    HorizontalTextAlignment="Start"
+                                   FontSize="17"
+                                   TextColor="Black"
+                                   FontAttributes="Italic"/> 
+                        </StackLayout>
+                    </StackLayout>
+
+                </Frame>
+               
+                <Frame  
+                       CornerRadius="5"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Margin="5">
+                    <StackLayout Orientation="Vertical" >
+                        <Label Text="Dịch vụ khách hàng sử dụng"
+                               TextColor="Black"
+                               FontSize="16"
+                               FontAttributes="Bold"/>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="End" >
+                                <Label Text="Cở sở SPA Hồ Chí Minh Cở sở SPA Hồ Chí Minh" 
+                                        HorizontalTextAlignment="Start"
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        VerticalOptions="Center"
+                                           LineBreakMode="WordWrap"/>
+                                <Label Text="30000 đ" 
+                                        HorizontalTextAlignment="Start"
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        FontAttributes="Italic"
+                                        VerticalOptions="Center" 
+                                           LineBreakMode="MiddleTruncation"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="End" >
+                                <Label Text="Cở sở SPA Hồ Chí Minh Cở sở SPA Hồ Chí Minh" 
+                                           LineBreakMode="WordWrap"
+                                        HorizontalTextAlignment="Start"
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                <Label Text="30000 đ" 
+                                        HorizontalTextAlignment="Start"
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        FontAttributes="Italic"
+                                        VerticalOptions="Center"
+                                           LineBreakMode="MiddleTruncation"/>
+                            </StackLayout>
+                            <Label Text="Tổng cộng: 200.000 đ"
+                                       HorizontalOptions="End"
+                                       TextColor="Black"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"/>
+                        </StackLayout>
+                    </StackLayout> 
+                </Frame>
+
+                <customcontrol:ButtonWithPadding Grid.Row="1"
+                                        VerticalOptions="EndAndExpand"
+                                        BackgroundColor="DarkGreen"
+                                        Margin="28,10,28,10"
+                                        CornerRadius="60" 
+                                        TextColor="White"
+                                        FontSize="20" 
+                                         Command="{Binding clickCommand}" 
+                                        CommandParameter="{x:Reference Name=customRattingBar}"
+                                        Text="Gửi đánh giá"/> 
+            </StackLayout>
+        </ScrollView> 
     </ContentPage.Content>
 </ContentPage>

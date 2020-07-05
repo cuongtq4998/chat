@@ -23,11 +23,11 @@ namespace ChatBot.Services
         }
 
         //Lấy thông tin chăm sóc khách hàng
-        public async Task<ObservableCollection<CHAMSOCKH>> GetChamSocKH(int linkChamSocKH)
+        public async Task<List<ThongTinChamSocKH>> GetChamSocKH(int linkChamSocKH)
         {
-            RestClient<CHAMSOCKH> restClient = new RestClient<CHAMSOCKH>(linkChamSocKH);
+            RestClient<ThongTinChamSocKH> restClient = new RestClient<ThongTinChamSocKH>(linkChamSocKH);
 
-            var listChamSocKH = await restClient.GetAsync();
+            var listChamSocKH = await restClient.GetAsyncCSKH();
 
             return listChamSocKH;
         }

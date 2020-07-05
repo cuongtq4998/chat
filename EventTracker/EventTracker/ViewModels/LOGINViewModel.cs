@@ -3,6 +3,7 @@ using ChatBot.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
@@ -34,10 +35,18 @@ namespace ChatBot.ViewModels
                 {
                     var services = new Service();
                     khachhangList = await services.GetCustomersWithID(checkLogin.taiKhoan, checkLogin.matKhau, 1);
-                    Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
-                    Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
 
-                    await Application.Current.SavePropertiesAsync();
+                    if(khachhangList != null)
+                    {
+                        Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
+                        Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
+
+                        await Application.Current.SavePropertiesAsync();
+                    }
+                    else
+                    {
+                        Debug.Write("Error. ");
+                    }
                 });
             }
         }

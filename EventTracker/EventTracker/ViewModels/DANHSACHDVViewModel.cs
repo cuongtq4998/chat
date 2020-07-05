@@ -39,15 +39,15 @@ namespace ChatBot.ViewModels
 
         public DANHSACHDVViewModel()
         {
-             InitializeDataAsync();
-
-            
+            _ = InitializeDataAsync();
         } 
-        private async Task InitializeDataAsync()
+        public async Task InitializeDataAsync()
         {
+            IsRefreshing = true;
             var services = new Service();
 
-            dichVuList = await services.GetTTDV(2); 
+            dichVuList = await services.GetTTDV(2);
+            IsRefreshing = false;
         }
        
  
