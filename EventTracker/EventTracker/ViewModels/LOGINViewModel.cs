@@ -40,6 +40,7 @@ namespace ChatBot.ViewModels
                     {
                         Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
                         Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
+                        Application.Current.Properties["IdKH"] = khachhangList[0].id; 
 
                         await Application.Current.SavePropertiesAsync();
                     }

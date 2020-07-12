@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatBot.Models;
+using MvvmHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +16,35 @@ namespace ChatBot.Views
     {
         public THONGBAOViewPage()
         {
-            InitializeComponent();
-            var vm = new ViewModels.THONGBAOViewModel(); 
-            vm.InitializeDataAsync();
+            InitializeComponent(); 
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var itemSelectedData = e.Item as ObservableObject;
+            if (itemSelectedData is CHAMSOCKH)
+            {
+                DisplayAlert("Alert", "Chăm sóc khách hàng", "OK");
+            }
+            else
+            {
+                var itemDatLichHen = itemSelectedData as ViewModels.ketnoiDLH_TTDV;
+                Navigation.PushAsync(new RatingViewPage(itemDatLichHen));
+
+            }
+        }
+        bool isLoaded = false;
+        protected override void OnAppearing()
+        { 
+            if (!isLoaded)
+            {
+                //Do API Calls
+                var vm = new ViewModels.THONGBAOViewModel();
+
+                vm.InitializeDataAsync();
+                isLoaded = true;
+            }
+           
         }
     }
 }

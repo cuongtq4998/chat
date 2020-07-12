@@ -8,7 +8,8 @@
               xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
              xmlns:converters="clr-namespace:ChatBot.Items" 
              xmlns:local="clr-namespace:ChatBot;assembly=ChatBot"
-             Title="Thông Báo">
+             Title="Thông Báo"
+             BackgroundImageSource="mountain_dark.png">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
     </ContentPage.BindingContext>
@@ -16,41 +17,65 @@
         <ResourceDictionary >
             <DataTemplate x:Key="templateDatLichHen">
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal"
-                                         Margin="5">
-                        <Image Source="{Binding ImageDV, Converter={StaticResource ByteArrayToImage}}"
-                                        Aspect="Fill"
+                    <Frame HasShadow="True"
+                           CornerRadius="10"
+                           Margin="10">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout
+                                Orientation="Horizontal"
+                                HorizontalOptions="Start">
+                                <Image Source="icfillstar.png"
+                               HorizontalOptions="Start"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Đánh giá dịch vu chúng tôi"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                           
+                            <StackLayout Orientation="Vertical">
+
+                                <Image Source="{Binding ttdv.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="AspectFill"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Fill"
-                                        HeightRequest="50"
-                                        WidthRequest="50"/>
-                        <StackLayout BackgroundColor="Azure"
+                                        VerticalOptions="Fill"/>
+                                <StackLayout BackgroundColor="Azure"
                                              Orientation="Vertical"
                                              Spacing="0"
                                              VerticalOptions="FillAndExpand"
                                              HorizontalOptions="FillAndExpand"
                                              Padding="5,0,0,0">
 
-                            <Label Text="{Binding chamsockhachhang.tieU_DE, Mode=TwoWay}"
+                                    <Label Text="{Binding datLichHen.tieuDe, Mode=TwoWay}"
                                            FontAttributes="Bold" />
-                            <!--<Label Text="{Binding chamsockhachhang.noI_DUNG, Mode=TwoWay}"
+                                    <Label Text="{Binding datLichHen.tieuDe, Mode=TwoWay}"
                                            FontAttributes="Italic"
-                                           FontSize="13" />
-                            <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" />-->
+                                           FontSize="13"/>
+                                    <Label Text="{Binding datLichHen.tieuDe, Mode=TwoWay}" />
+                                </StackLayout>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
+                    </Frame> 
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="templateThongBao">
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal"
+                    <Frame HasShadow="True"
+                           CornerRadius="10"
+                           Margin="10">
+                        <StackLayout Orientation="Vertical"
                                          Margin="5">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Image Source="alarm.png"/>
+                            <Label Text="Thông tin dịch vụ"
+                               FontAttributes="Italic"
+                               TextColor="Black"/>
+                        </StackLayout> 
                         <Image Source="{Binding thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
-                                        Aspect="Fill"
+                                        Aspect="AspectFill"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Fill"
-                                        HeightRequest="50"
-                                        WidthRequest="50"/>
+                                        VerticalOptions="Fill" />
                         <StackLayout BackgroundColor="Azure"
                                              Orientation="Vertical"
                                              Spacing="0"
@@ -63,9 +88,10 @@
                             <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
                                            FontAttributes="Italic"
                                            FontSize="13" />
-                            <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" />
+                            <Label Text="{Binding thoI_GIAN, Mode=TwoWay}"/>
                         </StackLayout>
                     </StackLayout>
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
             <local:TemplateSelector x:Key="DataTemplateSelector"
@@ -79,43 +105,12 @@
     <StackLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}">
-            <ListView ItemsSource="{Binding khachhang}"
+            <ListView ItemsSource="{Binding ItemModelObject}"
                       ItemTemplate="{StaticResource DataTemplateSelector}"
                       CachingStrategy="RecycleElement"
                       SeparatorVisibility="None"
-                      RowHeight="80">
-
-                <!--<ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal"
-                                         Margin="5">
-                                <Image Source="{Binding thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
-                                        Aspect="Fill"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Fill"
-                                        HeightRequest="50"
-                                        WidthRequest="50"/>
-                                <StackLayout BackgroundColor="Azure"
-                                             Orientation="Vertical"
-                                             Spacing="0"
-                                             VerticalOptions="FillAndExpand"
-                                             HorizontalOptions="FillAndExpand"
-                                             Padding="5,0,0,0">
-
-                                    <Label Text="{Binding tieU_DE, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                                    <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
-                                           FontAttributes="Italic"
-                                           FontSize="13" />
-                                    <Label Text="{Binding thoI_GIAN, Mode=TwoWay}" />
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
-
-            </ListView>
+                      HasUnevenRows="True"
+                      ItemTapped="ListView_ItemTapped"/>
         </RefreshView>
     </StackLayout>
 </ContentPage>

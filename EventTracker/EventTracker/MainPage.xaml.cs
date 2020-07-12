@@ -1,4 +1,5 @@
-﻿using ChatBot.Models;
+﻿using ChatBot.ABC;
+using ChatBot.Models;
 using ChatBot.Views;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace EventTracker
             {
                 title = "Trang chủ",
                 icon = "tick.png",
-                TagetType = typeof(DanhSachDVPage)
+                TagetType = typeof(TRANGCHUDEMO)
             };
             var Dangkitaikhoan = new ItemMenu()
             {
@@ -82,7 +83,7 @@ namespace EventTracker
              
             navigationDrawerList.ItemsSource = menuList;
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(DanhSachDVPage)));
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(TRANGCHUDEMO)));
         } 
 
         public List<ItemMenu> menuList { get; set; }

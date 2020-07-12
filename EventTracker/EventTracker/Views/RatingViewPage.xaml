@@ -4,9 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:customcontrol="clr-namespace:ChatBot.Controls"
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot" xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls"
              mc:Ignorable="d"
-             x:Class="ChatBot.Views.RatingViewPage">
-   
+             x:Class="ChatBot.Views.RatingViewPage"
+             Title="Đánh Giá Dịch Vụ">
+    <ContentPage.BindingContext>
+        <ViewModels:RattingBarViewModal />
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <ScrollView>
@@ -17,7 +21,8 @@
                        CornerRadius="10"
                        BackgroundColor="White"
                        HasShadow="True"
-                        Margin="10">
+                        Margin="10"
+                       Padding="10">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Vertical" >
                             <Label Text="Cảm ơn bạn đã sử dụng dịch vụ của chúng tối." 
@@ -47,27 +52,22 @@
                                    TextColor="Black"
                                    FontAttributes="Italic"/>
                         </StackLayout>
-                        <StackLayout 
-                                 Orientation="Horizontal">
-                            <CheckBox  
-                                  Margin="0"  />
-                            <Label Margin="0"
-                                   Text="Không gian phục vụ" />
-                        </StackLayout>
-                        <StackLayout 
-                                 Orientation="Horizontal">
-                            <CheckBox  
-                                  Margin="0" />
-                            <Label Margin="0"
-                                   Text="Thời gian phục vụ" />
-                        </StackLayout>
-                        <StackLayout 
-                                 Orientation="Horizontal">
-                            <CheckBox 
-                                  Margin="0"/>
-                            <Label Margin="0"
-                                   Text="Nhân viên" />
-                        </StackLayout>
+
+                        <!--Chọn đánh giá-->
+                        <Frame BorderColor="WhiteSmoke">
+                            <input:SelectionView
+                            Color="Orange"
+                            BackgroundColor="WhiteSmoke"
+                                x:Name="selectionView"
+                                ColumnNumber="2"
+                                ColumnSpacing="5"
+                                ItemDisplayBinding="{Binding Name}"
+                                ItemsSource="{Binding MyList}"
+                                RowSpacing="10"
+                                Padding="20"
+                                SelectionType="MultipleButton"/>
+                        </Frame>
+                        
                         <StackLayout Orientation="Vertical">
                             <Label Text="Chia sẻ ý kiến của bạn tại đây!"
                                    FontSize="13"
@@ -75,7 +75,8 @@
                             <Editor Placeholder="Góp ý."
                                     HeightRequest="70"
                                     FontSize="12"
-                                    TextColor="Gray"/>
+                                    TextColor="Gray"
+                                    Text="{Binding SelectedCustomers.noiDungDanhGia, Mode=TwoWay}"/>
                         </StackLayout>
                     </StackLayout> 
                 </Frame>
@@ -96,7 +97,7 @@
                         <StackLayout Orientation="Vertical" 
                              HorizontalOptions="CenterAndExpand"
                                  VerticalOptions="Center">
-                            <Label Text="Cở sở SPA Hồ Chí Minh" 
+                            <Label Text="Hệ Thống CSKH" 
                                     HorizontalTextAlignment="Start"
                                    FontSize="17"
                                    TextColor="Black"
@@ -106,7 +107,7 @@
 
                 </Frame>
                
-                <Frame  
+                <!--<Frame  
                        CornerRadius="5"
                        BackgroundColor="White"
                        HasShadow="True"
@@ -156,18 +157,20 @@
                                        FontAttributes="Bold"/>
                         </StackLayout>
                     </StackLayout> 
-                </Frame>
+                </Frame>-->
 
                 <customcontrol:ButtonWithPadding Grid.Row="1"
                                         VerticalOptions="EndAndExpand"
-                                        BackgroundColor="DarkGreen"
+                                        BackgroundColor="Orange"
                                         Margin="28,10,28,10"
                                         CornerRadius="60" 
                                         TextColor="White"
                                         FontSize="20" 
-                                         Command="{Binding clickCommand}" 
+                                         Command="{Binding AddInforCus}" 
                                         CommandParameter="{x:Reference Name=customRattingBar}"
-                                        Text="Gửi đánh giá"/> 
+                                        Text="Gửi đánh giá"
+                                                 x:Name="GuiDanhGiaButton"
+                                                 Clicked="GuiDanhGiaButton_Clicked"/> 
             </StackLayout>
         </ScrollView> 
     </ContentPage.Content>

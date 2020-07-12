@@ -15,6 +15,7 @@ namespace EventTracker
             MainPage = new MainPage();
         }
 
+       
         protected override void OnStart()
         {
         }

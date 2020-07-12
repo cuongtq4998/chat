@@ -70,15 +70,7 @@ namespace EventTracker
             }
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new DATLICHHENViewPage());
-        }
-
-        private void ToolbarItem_Clicked_1(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new THONGBAOViewPage());
-        }
+        
     }
     public class Event
     {

@@ -75,12 +75,12 @@ namespace ChatBot.RestClient
 
         }
 
-        public async Task<List<T>> GetAsyncCSKH()
+        public async Task<List<T>> GetAsyncCSKH(int idKH)
         {
             using (var client = new HttpClient(httpHandler))
             {
 
-                var json = await client.GetStringAsync(getLink());
+                var json = await client.GetStringAsync(getLink() + "/" + idKH);
 
                 var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
@@ -142,6 +142,17 @@ namespace ChatBot.RestClient
         {
             var httpClient = new HttpClient(httpHandler);
             var respone = await httpClient.DeleteAsync(UriKhachHang + id);
+
+            return respone.IsSuccessStatusCode;
+        }
+        public async Task<bool> DanhGiaAsync(int id, T t)
+        {
+
+            var httpClient = new HttpClient(httpHandler);
+            var json = JsonConvert.SerializeObject(t);
+            HttpContent httpContent = new StringContent(json);
+            var jsonContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var respone = await httpClient.PutAsync(UriChamSocKH + "/" + id, jsonContent);
 
             return respone.IsSuccessStatusCode;
         }

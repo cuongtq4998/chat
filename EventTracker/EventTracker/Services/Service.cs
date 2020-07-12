@@ -23,11 +23,11 @@ namespace ChatBot.Services
         }
 
         //Lấy thông tin chăm sóc khách hàng
-        public async Task<List<ThongTinChamSocKH>> GetChamSocKH(int linkChamSocKH)
+        public async Task<List<ThongTinChamSocKH>> GetChamSocKH(int linkChamSocKH, int idKH)
         {
             RestClient<ThongTinChamSocKH> restClient = new RestClient<ThongTinChamSocKH>(linkChamSocKH);
 
-            var listChamSocKH = await restClient.GetAsyncCSKH();
+            var listChamSocKH = await restClient.GetAsyncCSKH(idKH);
 
             return listChamSocKH;
         }
@@ -54,7 +54,13 @@ namespace ChatBot.Services
             var datLichHen = await restClientDatLichHen.PostAsync(datLichHenPuss);
         }
 
-        //Login
-        
+        //Đánh giá
+
+        public async Task PostDanhGia(DanhGia danhgia, int linkDanhGia)
+        {
+            RestClient<DanhGia> restClient = new RestClient<DanhGia>(linkDanhGia);
+            var danhgiaList = await restClient.DanhGiaAsync(danhgia.id, danhgia);
+        }
+
     }
 }

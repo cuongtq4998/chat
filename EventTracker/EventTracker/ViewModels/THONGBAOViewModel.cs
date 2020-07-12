@@ -1,6 +1,7 @@
 ﻿using ChatBot.Models;
 using ChatBot.RestClient;
 using ChatBot.Services;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,19 +16,37 @@ using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
-    public class ketnoiDLH_TTDV
+    public class ketnoiDLH_TTDV: ObservableObject
     {
         public DatLichHen datLichHen { get; set; }
         public THONGTINDICHVU ttdv { get; set; }
         public Customers khachHang { get; set; }
+        public int IdDanhGia { get; set; }
+
+
+        public ketnoiDLH_TTDV(DatLichHen datLichHen , THONGTINDICHVU ttdv, Customers khachHang, int idDanhGia)
+        {
+            this.datLichHen = datLichHen;
+            this.ttdv = ttdv;
+            this.khachHang = khachHang;
+            this.IdDanhGia = idDanhGia;
+        }
     }
-    public class ThongTinChamSocKH
+    class ThongTinChamSocKH
     {
-        public ObservableCollection<CHAMSOCKH> chamsockhachhang { get; set; }
+        private ObservableCollection<CHAMSOCKH> _chamsockhachhang;
+        public ObservableCollection<CHAMSOCKH> chamsockhachhang {
+            set
+            {
+                _chamsockhachhang = value;
+            }
+            get => _chamsockhachhang;
+        }
         public ObservableCollection<ketnoiDLH_TTDV> ketnoiDLH_DV { get; set; }
     }
     class THONGBAOViewModel : INotifyPropertyChanged
     {
+        int idKH = 0;
         public event PropertyChangedEventHandler PropertyChanged;
         private List<ThongTinChamSocKH> _items;
         public List<ThongTinChamSocKH> listItem
@@ -38,35 +57,67 @@ namespace ChatBot.ViewModels
                 _items = value;
                 OnPropertyChanged();
             }
-        }
+        } 
 
-        private ObservableCollection<CHAMSOCKH> _khachhang;
-        public ObservableCollection<CHAMSOCKH> khachhang
+        private ObservableCollection<ObservableObject> _ItemModelObject;
+        public ObservableCollection<ObservableObject> ItemModelObject
         {
-            get { return _khachhang; }
+            get { return _ItemModelObject; }
             set
             {
-                _khachhang = value;
+                _ItemModelObject = value;
                 OnPropertyChanged();
             }
-        }
-
+        } 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public THONGBAOViewModel()
-        {   
-            InitializeDataAsync();
+        {
+            try
+            {
+
+            }catch(Exception e) { Debug.WriteLine("Error"); }
+            if (Application.Current.Properties.ContainsKey("IdKH"))
+            {
+                idKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
+            }
+            _ = InitializeDataAsync();
         }
 
         public async Task InitializeDataAsync()
         {
             IsRefreshing = true;
             var services = new Service();
+           
+            
+            listItem = await services.GetChamSocKH(3, idKH);
+            
+            ItemModelObject = new ObservableCollection<ObservableObject>();
 
-            listItem = await services.GetChamSocKH(3);
-            khachhang = listItem[0].chamsockhachhang;
+            for (int i = 0; i < listItem[0].chamsockhachhang.Count; i++)
+            {
+                ItemModelObject.Add(new CHAMSOCKH(
+                    listItem[0].chamsockhachhang[i].ID,
+                    listItem[0].chamsockhachhang[i].tieU_DE,
+                    listItem[0].chamsockhachhang[i].noI_DUNG,
+                    listItem[0].chamsockhachhang[i].thoI_GIAN,
+                    listItem[0].chamsockhachhang[i].thongtindichvu));
+            }
+            if(listItem[0].ketnoiDLH_DV != null)
+            {
+                for (int i = 0; i < listItem[0].ketnoiDLH_DV.Count; i++)
+                {
+                    ItemModelObject.Add(new ketnoiDLH_TTDV(
+                        listItem[0].ketnoiDLH_DV[i].datLichHen,
+                        listItem[0].ketnoiDLH_DV[i].ttdv,
+                        listItem[0].ketnoiDLH_DV[i].khachHang,
+                        listItem[0].ketnoiDLH_DV[i].IdDanhGia
+                        ));
+                }
+            }
+            
             IsRefreshing = false;
         }
         #region Refreshing
@@ -90,8 +141,8 @@ namespace ChatBot.ViewModels
                     IsRefreshing = true;
 
                     var customersService = new Service();
-
-                    listItem = await customersService.GetChamSocKH(3);
+                    
+                    listItem = await customersService.GetChamSocKH(3, idKH);
 
                     IsRefreshing = false;
                 });

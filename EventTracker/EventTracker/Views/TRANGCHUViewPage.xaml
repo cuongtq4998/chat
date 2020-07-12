@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:ChatBot.Controls"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.TRANGCHUViewPage">
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>-->
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <!--  row background colors  -->
+        <BoxView Grid.Row="0" Color="#3A444D" />
+        <BoxView Grid.Row="1" Color="#F1F2F2" />
+        <BoxView Grid.Row="2" Color="#3A444D" />
+
+        <!--  title  -->
+        <Label FontSize="Large" HorizontalOptions="Center" Text="MY SPRINGBOARD"
+               TextColor="White" VerticalOptions="Center" />
+
+        <!--  inner grid for button layouts  -->
+        <Grid Grid.Row="1" ColumnSpacing="30" HorizontalOptions="Center"
+              RowSpacing="30" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <controls:SwitchboardButton Grid.Row="0" Grid.Column="0" Icon="Camera.png"
+                                        Label="Camera">
+                <controls:SwitchboardButton.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CameraButtonTapped" />
+                </controls:SwitchboardButton.GestureRecognizers>
+            </controls:SwitchboardButton>
+
+            <controls:SwitchboardButton Grid.Row="0" Grid.Column="1" Icon="Tag.png"
+                                        Label="Tag">
+                <controls:SwitchboardButton.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TagButtonTapped" />
+                </controls:SwitchboardButton.GestureRecognizers>
+            </controls:SwitchboardButton>
+
+            <controls:SwitchboardButton Grid.Row="1" Grid.Column="0" Icon="Shopping.png"
+                                        Label="Shopping">
+                <controls:SwitchboardButton.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShoppingButtonTapped" />
+                </controls:SwitchboardButton.GestureRecognizers>
+            </controls:SwitchboardButton>
+
+            <controls:SwitchboardButton Grid.Row="1" Grid.Column="1" Icon="Twitter.png"
+                                        Label="Twitter">
+                <controls:SwitchboardButton.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TwitterButtonTapped" />
+                </controls:SwitchboardButton.GestureRecognizers>
+            </controls:SwitchboardButton>
+
+        </Grid>
+    </Grid>
+</ContentPage>

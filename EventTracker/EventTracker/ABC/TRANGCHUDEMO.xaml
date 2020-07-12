@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:circleimge="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:local="clr-namespace:DayVsNight" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:local1="clr-namespace:ChatBot.ABC"
+             mc:Ignorable="d"
+             x:Class="ChatBot.ABC.TRANGCHUDEMO"
+             Title="Trang Chủ">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Đặt Lịch Hẹn"
+                     IconImageSource="calendar3.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Thông Báo"
+                     IconImageSource="alarm.png"
+                     Order="Primary"
+                     Priority="0" 
+                     Clicked="ToolbarItem_Clicked_1"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <skia:SKCanvasView
+            x:Name="BackgroundGradient"
+            Grid.RowSpan="2"
+            HorizontalOptions="Fill"
+            PaintSurface="BackgroundGradient_PaintSurface"
+            VerticalOptions="Fill" />
+
+            <Image
+            Grid.RowSpan="2"
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            Source="{DynamicResource MountainImage}"
+            VerticalOptions="End" />
+
+            <StackLayout Padding="20,30,20,0">
+
+                <!--  Header Section  -->
+                <Grid Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="AUTO" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Style="{StaticResource Header}" Text="TRUNG TÂM CHĂM SÓC KH" FontAttributes="Bold" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Style="{StaticResource SubTextSemiBold}" Text="Xin Chào quý khách, " />
+                                    <Span Style="{StaticResource SubTextSemiBold}" Text="..." />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <circleimge:CircleImage
+                        x:Name="ProfileImge"
+                        Grid.Column="1" 
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        Source="banner"
+                        VerticalOptions="Center"
+                        WidthRequest="100">
+                        <circleimge:CircleImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ProfileImage_Tapped" />
+                        </circleimge:CircleImage.GestureRecognizers>
+                    </circleimge:CircleImage>
+                </Grid>
+
+                <!--  Top events alert  -->
+                <!--<Frame
+                Margin="0,20,0,0"
+                Padding="10"
+                BackgroundColor="Transparent"
+                BorderColor="{StaticResource BorderColor}"
+                CornerRadius="20"
+                HasShadow="False">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                        Margin="10,0,0,0"
+                        HorizontalOptions="Center"
+                        Source="Lightning"
+                        VerticalOptions="Center" />
+                        <Label
+                        Grid.Column="1"
+                        Margin="20,0,0,0"
+                        Style="{StaticResource SubTextSemiBold}"
+                        Text="2 Unchecked Events" />
+                        <Image
+                        Grid.Column="2"
+                        Margin="0,0,10,0"
+                        HorizontalOptions="Center"
+                        Source="Arrow"
+                        VerticalOptions="Center" />
+                    </Grid>
+                </Frame>-->
+
+                <Label Text="Chức Năng"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Blue"/>
+
+                <!--  Temp Guage  -->
+                <Grid HeightRequest="250">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions> 
+
+                    <!--Item 1-->
+                    <local1:GaugeControl1
+                                 Grid.Row="0"
+                                 Grid.Column="0"
+                                 Margin="3">
+                        <local1:GaugeControl1.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="DatLichHenTrigger" Tapped="DatLichHenTrigger_Tapped" NumberOfTapsRequired="1"/>
+                        </local1:GaugeControl1.GestureRecognizers>
+                    </local1:GaugeControl1>
+                    <StackLayout Margin="20,5,0,0"
+                                 InputTransparent="True"
+                                 Grid.Row="0"
+                                 Grid.Column="0"
+                                 >
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource SubTextSemiBold}"
+                            Text="Đặt Lịch Hẹn"
+                            TextColor="White"/>
+                    </StackLayout>
+
+
+                    <!--Item 2-->
+                    <local1:GaugeControl1
+                                Grid.Row="0"
+                                Grid.Column="1"
+                        Margin="3">
+                        <local1:GaugeControl1.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="ChatTrigger" Tapped="ChatTrigger_Tapped" NumberOfTapsRequired="1"/>
+                        </local1:GaugeControl1.GestureRecognizers>
+                    </local1:GaugeControl1>
+                    <StackLayout Margin="20,5,0,0" InputTransparent="True"
+                                  Grid.Row="0"
+                                 Grid.Column="1"> 
+                        <Label 
+                                Style="{StaticResource SubTextSemiBold}"
+                                Text="Trò Chuyện Với Chúng Tôi"
+                                TextColor="White" />
+                    </StackLayout> 
+
+                    <!--Item 2-->
+                    <local1:GaugeControl1
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                        Margin="3">
+                        <local1:GaugeControl1.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="ThongBaoTrigger" Tapped="ThongBaoTrigger_Tapped" NumberOfTapsRequired="1"/>
+                        </local1:GaugeControl1.GestureRecognizers>
+                    </local1:GaugeControl1>
+                    <StackLayout Margin="20,5,0,0" InputTransparent="True"
+                                 Grid.Row="1"
+                                 Grid.Column="0"> 
+                        <Label 
+                            Style="{StaticResource SubTextSemiBold}"
+                            Text="Thông Báo Mới"
+                            TextColor="White" />
+                    </StackLayout> 
+
+
+                    <!--Item 4-->
+                    <local1:GaugeControl1
+                                Grid.Row="1"
+                                Grid.Column="1"
+                        Margin="3">
+                        <local1:GaugeControl1.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="ThongTinCaNhanTrigger" Tapped="ThongTinCaNhanTrigger_Tapped" NumberOfTapsRequired="1"/>
+                        </local1:GaugeControl1.GestureRecognizers>
+                    </local1:GaugeControl1>
+                    <StackLayout Margin="20,5,0,0" InputTransparent="True"
+                                  Grid.Row="1"
+                                 Grid.Column="1"> 
+                        <Label
+                                Style="{StaticResource SubTextSemiBold}"
+                                Text="Thông Tin Cá Nhân"
+                                TextColor="White" />
+                    </StackLayout> 
+                    
+                     <!--Item 5-->
+                    <local1:GaugeControl1
+                                Grid.Row="2"
+                                Grid.Column="0"
+                        Margin="3">
+                        <local1:GaugeControl1.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="DanhSachDichVuTrigger" Tapped="DanhSachDichVuTrigger_Tapped" NumberOfTapsRequired="1"/>
+                        </local1:GaugeControl1.GestureRecognizers>
+                    </local1:GaugeControl1>
+                    <StackLayout Margin="20,5,0,0" InputTransparent="True"
+                                  Grid.Row="2"
+                                 Grid.Column="0"> 
+                        <Label
+                                Style="{StaticResource SubTextSemiBold}"
+                                Text="Dịch Vụ"
+                                TextColor="White"/>
+                    </StackLayout> 
+ 
+                    
+                </Grid>
+                <!--  Security  -->
+                <Label
+                    Text="Dịch vụ"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Blue"/>
+
+                <ScrollView HorizontalScrollBarVisibility="Never" Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                        <!--  room  -->
+                        <pancake:PancakeView CornerRadius="10">
+                            <Grid
+                            BackgroundColor="Red"
+                            HeightRequest="100"
+                            WidthRequest="150">
+                                <Image Aspect="AspectFill" Source="Room1" />
+                                <Frame
+                                Margin="5"
+                                Padding="10,5"
+                                BackgroundColor="{StaticResource TagColor}"
+                                CornerRadius="15"
+                                HasShadow="False"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start">
+                                    <Label Style="{StaticResource TagLabel}" Text="Zone 1" />
+                                </Frame>
+                            </Grid>
+                        </pancake:PancakeView>
+                        <pancake:PancakeView CornerRadius="10">
+                            <Grid
+                            BackgroundColor="Red"
+                            HeightRequest="100"
+                            WidthRequest="150">
+                                <Image Aspect="AspectFill" Source="Room2" />
+                                <Frame
+                                Margin="5"
+                                Padding="10,5"
+                                BackgroundColor="{StaticResource TagColor}"
+                                CornerRadius="15"
+                                HasShadow="False"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start">
+                                    <Label Style="{StaticResource TagLabel}" Text="Zone 2" />
+                                </Frame>
+                            </Grid>
+                        </pancake:PancakeView>
+                        <pancake:PancakeView CornerRadius="10">
+                            <Grid
+                            BackgroundColor="Red"
+                            HeightRequest="100"
+                            WidthRequest="150">
+                                <Image Aspect="AspectFill" Source="Room3" />
+                                <Frame
+                                Margin="5"
+                                Padding="10,5"
+                                BackgroundColor="{StaticResource TagColor}"
+                                CornerRadius="15"
+                                HasShadow="False"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start">
+                                    <Label Style="{StaticResource TagLabel}" Text="Zone 3" />
+                                </Frame>
+                            </Grid>
+                        </pancake:PancakeView>
+
+
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+
+            <!--  bottom tab layout  -->
+            <ScrollView
+            Grid.Row="1"
+            Margin="20,20,20,40"
+            HorizontalScrollBarVisibility="Never"
+            Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <StackLayout Orientation="Vertical">
+                        <BoxView
+                        BackgroundColor="White"
+                        HeightRequest="2"
+                        WidthRequest="130" />
+                        <Label Style="{StaticResource TabHeader}" Text="Kitchen" />
+                        <Label
+                        Margin="0,-5,0,0"
+                        Style="{StaticResource SubText}"
+                        Text="5 Active Devices"
+                        TextColor="White" />
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Vertical">
+                        <BoxView
+                        BackgroundColor="{StaticResource TabSubTextColor}"
+                        HeightRequest="1"
+                        WidthRequest="100" />
+                        <Label
+                        Style="{StaticResource TabHeader}"
+                        Text="Study"
+                        TextColor="{StaticResource TabSubTextColor}" />
+                        <Label
+                        Margin="0,-5,0,0"
+                        Style="{StaticResource TabSubText}"
+                        Text="5 Active Devices"
+                        TextColor="{StaticResource TabSubTextColor}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical">
+                        <BoxView
+                        BackgroundColor="{StaticResource TabSubTextColor}"
+                        HeightRequest="1"
+                        WidthRequest="100" />
+                        <Label
+                        Style="{StaticResource TabHeader}"
+                        Text="Bed Room"
+                        TextColor="{StaticResource TabSubTextColor}" />
+                        <Label
+                        Margin="0,-5,0,0"
+                        Style="{StaticResource TabSubText}"
+                        Text="5 Active Devices"
+                        TextColor="{StaticResource TabSubTextColor}" />
+                    </StackLayout>
+                </StackLayout>
+
+            </ScrollView>
+
+        </Grid>
+    </ScrollView> 
+</ContentPage>
