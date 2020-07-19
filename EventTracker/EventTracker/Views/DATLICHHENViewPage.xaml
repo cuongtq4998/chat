@@ -50,10 +50,11 @@
                                    FontSize="17"
                                    FontAttributes="Italic"
                                    TextColor="Black" />
-                            <Entry Placeholder="Tiêu đề..."
-                                   Text="{Binding datLichhen.datLicHen.tieuDe, Mode=TwoWay}" />
+                            <Picker Title="Yêu cầu hẹn: "
+                                    ItemsSource="{Binding YeuCauHen}"
+                                    SelectedItem="{Binding datLichhen.datLicHen.YeuCau, Mode=TwoWay}"/> 
                         </StackLayout>
-                        <StackLayout Orientation="Vertical"
+                        <!--<StackLayout Orientation="Vertical"
                                      Spacing="0"
                                      Margin="0,0,0,10">
                             <Label Text="Nội dung cần tư  vấn"
@@ -62,13 +63,13 @@
                                    TextColor="Black" />
                             <Entry Placeholder="Nội dung tư vấn..."
                                    Text="{Binding datLichhen.datLicHen.noiDung}" />
-                        </StackLayout>
+                        </StackLayout>-->
                     </StackLayout>
                 </Frame >
                 <Frame  Margin="5"
                         HasShadow="True">
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Thời gian bắt đầu - kết thúc"
+                        <Label Text="Thời gian hẹn"
                                FontSize="17"
                                FontAttributes="Italic"
                                TextColor="Black" />
@@ -82,7 +83,7 @@
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
                                              Margin="0,0,0,10">
-                                    <DatePicker Date="{Binding datLichhen.datLicHen.BatDauHen,Mode=TwoWay}"
+                                    <DatePicker Date="{Binding datLichhen.datLicHen.ThoiGianHen,Mode=TwoWay}"
                                         Format="dd/MM/yyyy"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical"
@@ -91,7 +92,7 @@
                                     <TimePicker />
                                 </StackLayout>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical"
+                            <!--<StackLayout Orientation="Vertical"
                                          HorizontalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
@@ -104,7 +105,7 @@
                                              Margin="0,0,0,10">
                                     <TimePicker />
                                 </StackLayout>
-                            </StackLayout>
+                            </StackLayout>-->
                         </StackLayout>
                     </StackLayout> 
                 </Frame>

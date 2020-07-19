@@ -22,8 +22,8 @@ namespace ChatBot.Views
         }
 
         private void ChuyenPageNhapThongTin_Clicked(object sender, EventArgs e)
-        { 
-            Navigation.PushAsync(new DanhSachDVPage());  
+        {
+            Navigation.PushAsync(new ChatBot.ABC.TRANGCHUDEMO());
         } 
     }
 }

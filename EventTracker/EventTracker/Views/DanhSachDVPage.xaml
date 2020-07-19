@@ -21,7 +21,7 @@
 
     <RefreshView IsRefreshing="{Binding IsRefreshing}"
                  Command="{Binding RefreshCommand}">
-        <StackLayout BackgroundColor="LightGray"
+        <StackLayout 
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand">
             <CollectionView Margin="30"
@@ -99,10 +99,10 @@
                                     </Expander.Header>
                                     <Grid RowSpacing="0"
                                           HorizontalOptions="FillAndExpand"
-                                          HeightRequest="500">
+                                          HeightRequest="300">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <Grid x:Name="ImageView"
                                               IsVisible="False">

@@ -120,10 +120,16 @@ namespace EventTracker
                         Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(LOGIN)));
                         IsPresented = false;
                     }
-                    catch (Exception) { } 
+                    catch (Exception) { }
+                   
                 }
             }
-            catch (Exception) { Debug.WriteLine("Error"); }
+            catch (Exception) { 
+                Debug.WriteLine("Error");
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(LOGIN)));
+                IsPresented = false;
+            }
+
         }
     } 
 }

@@ -42,7 +42,6 @@ namespace ChatBot.Views
                 int index = viewModel.Items.IndexOf(currentModel);
                 viewModel.datLichhen.IDDV = viewModel.listTTDV[index].THONGTINDICHVU.ID;
             }
-            
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

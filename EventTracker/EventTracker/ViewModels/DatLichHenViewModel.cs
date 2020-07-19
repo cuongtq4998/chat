@@ -62,10 +62,9 @@ namespace ChatBot.ViewModels
         {
             datLicHen = new DatLichHen
             {
-                tieuDe = "",
-                noiDung = "",
-                BatDauHen = DateTime.Now,
-                KetThucHen = DateTime.Now,
+                YeuCau = "", 
+                ThoiGianHen = DateTime.Now,
+                NgayTao = DateTime.Now,
                 ThoiGianNhacNho = 1
             }
         };
@@ -136,6 +135,22 @@ namespace ChatBot.ViewModels
                     await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen); 
                 });
             }
-        } 
+        }
+
+        List<string> _yeuCauHen = new List<string>()
+        {
+            "Sử dụng dịch vụ",
+            "Tư vấn",
+            "Khác"
+        };
+        public List<string> YeuCauHen
+        {
+            get { return _yeuCauHen; }
+            private set
+            {
+                _yeuCauHen = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
