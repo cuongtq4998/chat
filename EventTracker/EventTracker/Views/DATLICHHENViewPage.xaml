@@ -29,160 +29,144 @@
                      Command="{Binding butonAddData}"
                      Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
-    
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
+
     <ContentPage.Content>
         
         <ScrollView>
-            <StackLayout  >
+            <StackLayout Margin="10" >
                 <Frame Margin="5"
-                       HasShadow="True">
+                       HasShadow="True"
+                       Padding="10">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Vertical"
                                      Spacing="0"
                                      Margin="0,0,0,10">
                             <Label Text="Tiều đề"
-                                   FontSize="17"
+                                   FontSize="16"
                                    FontAttributes="Italic"
-                                   TextColor="Black" />
-                            <Picker Title="Yêu cầu hẹn: "
+                                   TextColor="Brown" />
+                            <Picker Title="Nhấn chọn yêu cầu hẹn"
                                     ItemsSource="{Binding YeuCauHen}"
-                                    SelectedItem="{Binding datLichhen.datLicHen.YeuCau, Mode=TwoWay}"/> 
-                        </StackLayout>
-                        <!--<StackLayout Orientation="Vertical"
-                                     Spacing="0"
-                                     Margin="0,0,0,10">
-                            <Label Text="Nội dung cần tư  vấn"
-                                   FontSize="17"
-                                   FontAttributes="Italic"
-                                   TextColor="Black" />
-                            <Entry Placeholder="Nội dung tư vấn..."
-                                   Text="{Binding datLichhen.datLicHen.noiDung}" />
-                        </StackLayout>-->
+                                    SelectedItem="{Binding datLichhen.datLicHen.YeuCau, Mode=TwoWay}"
+                                    FontSize="14"
+                                    FontAttributes="Italic"
+                                    TitleColor="Black"
+                                    TextColor="Black"/> 
+                        </StackLayout> 
                     </StackLayout>
                 </Frame >
                 <Frame  Margin="5"
-                        HasShadow="True">
+                        HasShadow="True"
+                        Padding="10">
                     <StackLayout Orientation="Vertical">
                         <Label Text="Thời gian hẹn"
-                               FontSize="17"
+                               FontSize="16"
                                FontAttributes="Italic"
-                               TextColor="Black" />
+                               TextColor="Brown" />
                         <StackLayout Orientation="Horizontal">
                             <Image Source="alarm.png"
-                                   HeightRequest="30"
-                                   WidthRequest="30"
-                                   VerticalOptions="Start" />
-                            <StackLayout Orientation="Vertical"
-                                         HorizontalOptions="CenterAndExpand">
+                                   HeightRequest="25"
+                                   WidthRequest="25"
+                                   VerticalOptions="CenterAndExpand" />
+                            <StackLayout Orientation="Horizontal">
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
-                                             Margin="0,0,0,10">
+                                             Margin="0,0,0,10"
+                                             VerticalOptions="Start">
                                     <DatePicker Date="{Binding datLichhen.datLicHen.ThoiGianHen,Mode=TwoWay}"
                                         Format="dd/MM/yyyy"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical"
                                              Spacing="0"
-                                             Margin="0,0,0,10">
+                                             Margin="0,0,0,10"
+                                             VerticalOptions="Start">
                                     <TimePicker />
                                 </StackLayout>
-                            </StackLayout>
-                            <!--<StackLayout Orientation="Vertical"
-                                         HorizontalOptions="CenterAndExpand">
-                                <StackLayout Orientation="Vertical"
-                                             Spacing="0"
-                                             Margin="0,0,0,10">
-                                    <DatePicker Date="{Binding datLichhen.datLicHen.KetThucHen,Mode=TwoWay}"
-                                        Format="dd/MM/yyyy"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical"
-                                             Spacing="0"
-                                             Margin="0,0,0,10">
-                                    <TimePicker />
-                                </StackLayout>
-                            </StackLayout>-->
+                            </StackLayout> 
                         </StackLayout>
                     </StackLayout> 
                 </Frame>
                 <Frame  Margin="5"
-                        HasShadow="True">
+                        HasShadow="True"
+                        Padding="10">
                     <StackLayout Orientation="Vertical">
                         <Label Text="Nhắc tôi trước:"
                                FontSize="17"
                                FontAttributes="Italic"
-                               TextColor="Black" />
+                               TextColor="Brown" />
                         <StackLayout Orientation="Horizontal">
                             <Image Source="alarm.png"
-                                   WidthRequest="30"
-                                   HeightRequest="30"
-                                   VerticalOptions="Start" />
-                            <StackLayout Orientation="Vertical"> 
+                                   WidthRequest="25"
+                                   HeightRequest="25"
+                                   VerticalOptions="CenterAndExpand" />
+                            <StackLayout Orientation="Horizontal"> 
                                 <Picker Margin="0,0,5,0"
-                                         ItemsSource="{Binding ListNgheNghiep}"
-                                    SelectedItem="{Binding SelectedCustomers.NgheNghiep, Mode=TwoWay}"
-                                        Title="Chọn thời gian nhắc nhỡ..."/>
+                                        ItemsSource="{Binding thoigiannhacnho}"
+                                        SelectedItem="{Binding datLichhen.datLicHen.ThoiGianNhacNho, Mode=TwoWay}"
+                                        Title="Nhắc tôi trước..."
+                                        FontSize="15"
+                                        TitleColor="Black"
+                                        TextColor="Black"
+                                        WidthRequest="150"/>
+                                <Label Text="phút"
+                                       FontSize="16"
+                                       FontAttributes="Italic"
+                                       TextColor="Black"
+                                       VerticalOptions="CenterAndExpand"/>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout> 
                 </Frame>
                 <Frame Margin="5"
-                       HasShadow="True"> 
+                       Padding="10">
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Chọn dịch vụ"
-                               FontSize="17"
+                        <Label Text="Dịch vụ đã chọn"
+                                FontSize="17"
                                FontAttributes="Italic"
-                               TextColor="Black" />
-                        <ScrollView>
-                            <FlexLayout BindableLayout.ItemsSource="{Binding Items}"
-                                        Wrap="Wrap"
-                                        Direction="Row"
-                                        JustifyContent="Start"
-                                        AlignItems="Start"
-                                        AlignContent="Start" >
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="3"
-                                              FlexLayout.Basis="{OnIdiom Phone='50%', Tablet='33%'}"
-                                              FlexLayout.AlignSelf="Start">
-                                            <Frame Padding="0"
-                                                   VerticalOptions="Start"
-                                                   HasShadow="True">
-                                                <Grid Padding="0">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
-                                                    <Image Source="{Binding THONGTINDICHVU.ImageDV, Converter={StaticResource ByteArrayToImage}}"
-                                                           Aspect="AspectFill"
-                                                           HeightRequest="200"/>
-                                                    <CheckBox HorizontalOptions="Start"
-                                                              VerticalOptions="Start"
-                                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                                              CheckedChanged="CheckBox_CheckedChanged" />
-                                                    <Label Grid.Row="1"
-                                                           Margin="10,0"
-                                                           Text="{Binding THONGTINDICHVU.TieuDeDV}" />
-                                                    <Label Grid.Row="2"
-                                                           Margin="10,0"
-                                                           Text="{Binding THONGTINDICHVU.ChiPhiDV,  StringFormat='Giá: {0:#,0.#0} VNĐ'}"
-                                                          FontSize="Micro"
-                                                           FontAttributes="Bold"
-                                                           TextColor="Red"/>
-                                                </Grid>
-                                            </Frame> 
-                                        </Grid> 
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </FlexLayout>
-                        </ScrollView>
-                    </StackLayout>
-                </Frame>
+                               TextColor="Brown" />
+                        <ListView ItemsSource="{Binding thongtindichvu}"
+                                  CachingStrategy="RecycleElement"
+                                  SeparatorVisibility="None"
+                                  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame HasShadow="True">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="{Binding ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                                        Aspect="AspectFill"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"/>
+                                                <StackLayout Orientation="Vertical">
+                                                    <StackLayout Orientation="Vertical">
+                                                        <Label Text="Tên : " 
+                                                               TextColor="Black"
+                                                               FontAttributes="Italic"
+                                                               FontSize="14"/>
+                                                        <Label Text="{Binding TieuDeDV}"
+                                                               TextColor="Red"
+                                                               MaxLines="2"
+                                                               HorizontalOptions="Start"/>
+                                                    </StackLayout> 
+                                                    <Label Text="{Binding NoiDungDV}"
+                                                   MaxLines="2"
+                                                   LineBreakMode="TailTruncation"/>
+                                                    <Label Text="{Binding ChiPhiDV}"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout> 
+                </Frame> 
             </StackLayout>
         </ScrollView>
     </ContentPage.Content> 

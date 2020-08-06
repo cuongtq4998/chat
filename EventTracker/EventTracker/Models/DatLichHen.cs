@@ -11,5 +11,7 @@ namespace ChatBot.Models
         public DateTime ThoiGianHen { get; set; }
         public DateTime NgayTao { get; set; }
         public int ThoiGianNhacNho { get; set; }
+        public int TrangThaiLichHen { get; set; }
+        public string NoiDungHuy { get; set; }
     }
 }

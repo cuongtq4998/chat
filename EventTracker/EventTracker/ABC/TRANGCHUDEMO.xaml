@@ -46,26 +46,16 @@
             Source="{DynamicResource MountainImage}"
             VerticalOptions="End" />
 
-            <StackLayout Padding="20,30,20,0">
+            <StackLayout Padding="20,0,20,0">
 
                 <!--  Header Section  -->
-                <Grid Margin="0,20,0,0">
+                <Grid Margin="0,00,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="AUTO" />
                     </Grid.ColumnDefinitions>
 
-                    <StackLayout>
-                        <Label Style="{StaticResource Header}" Text="TRUNG TÂM CHĂM SÓC KH" FontAttributes="Bold" />
-                        <Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Style="{StaticResource SubTextSemiBold}" Text="Xin Chào quý khách, " />
-                                    <Span Style="{StaticResource SubTextSemiBold}" Text="..." />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                    </StackLayout>
+                    <Label Style="{StaticResource Header}" Text="TRUNG TÂM CSKH" FontAttributes="Bold" />
 
                     <circleimge:CircleImage
                         x:Name="ProfileImge"
@@ -81,44 +71,10 @@
                     </circleimge:CircleImage>
                 </Grid>
 
-                <!--  Top events alert  -->
-                <!--<Frame
-                Margin="0,20,0,0"
-                Padding="10"
-                BackgroundColor="Transparent"
-                BorderColor="{StaticResource BorderColor}"
-                CornerRadius="20"
-                HasShadow="False">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <Image
-                        Margin="10,0,0,0"
-                        HorizontalOptions="Center"
-                        Source="Lightning"
-                        VerticalOptions="Center" />
-                        <Label
-                        Grid.Column="1"
-                        Margin="20,0,0,0"
-                        Style="{StaticResource SubTextSemiBold}"
-                        Text="2 Unchecked Events" />
-                        <Image
-                        Grid.Column="2"
-                        Margin="0,0,10,0"
-                        HorizontalOptions="Center"
-                        Source="Arrow"
-                        VerticalOptions="Center" />
-                    </Grid>
-                </Frame>-->
-
                 <Label Text="Chức Năng"
                        FontSize="20"
                        FontAttributes="Bold"
-                       TextColor="Blue"/>
+                       TextColor="Tomato"/>
 
                 <!--  Temp Guage  -->
                 <Grid HeightRequest="250">
@@ -144,8 +100,7 @@
                     <StackLayout Margin="20,5,0,0"
                                  InputTransparent="True"
                                  Grid.Row="0"
-                                 Grid.Column="0"
-                                 >
+                                 Grid.Column="0">
 
                         <Label
                             Grid.Row="0"
@@ -227,9 +182,27 @@
                                 Style="{StaticResource SubTextSemiBold}"
                                 Text="Dịch Vụ"
                                 TextColor="White"/>
-                    </StackLayout> 
- 
+                    </StackLayout>
                     
+                    <!--Item 5-->
+                    <local1:GaugeControl1
+                                Grid.Row="2"
+                                Grid.Column="1"
+                        Margin="3">
+                        <local1:GaugeControl1.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="DanhSachLichHenTrigger" Tapped="DanhSachLichHenTrigger_Tapped" NumberOfTapsRequired="1"/>
+                        </local1:GaugeControl1.GestureRecognizers>
+                    </local1:GaugeControl1>
+                    <StackLayout Margin="20,5,0,0" InputTransparent="True"
+                                  Grid.Row="2"
+                                 Grid.Column="1">
+                        <Label
+                                Style="{StaticResource SubTextSemiBold}"
+                                Text="Lịch Hẹn Của Tôi"
+                                TextColor="White"/>
+                    </StackLayout>
+
+
                 </Grid>
                 <!--  Security  -->
                 <Label
@@ -303,7 +276,7 @@
             </StackLayout>
 
             <!--  bottom tab layout  -->
-            <ScrollView
+            <!--<ScrollView
             Grid.Row="1"
             Margin="20,20,20,40"
             HorizontalScrollBarVisibility="Never"
@@ -356,7 +329,7 @@
                     </StackLayout>
                 </StackLayout>
 
-            </ScrollView>
+            </ScrollView>-->
 
         </Grid>
     </ScrollView> 

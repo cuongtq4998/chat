@@ -9,10 +9,11 @@
              xmlns:converters="clr-namespace:ChatBot.Items" 
              xmlns:local="clr-namespace:ChatBot;assembly=ChatBot"
              Title="Thông Báo"
-             BackgroundImageSource="mountain_dark.png">
+             BackgroundColor="Transparent">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
     </ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <ResourceDictionary >
             <DataTemplate x:Key="templateDatLichHen">
@@ -21,25 +22,35 @@
                            CornerRadius="10"
                            Margin="10">
                         <StackLayout Orientation="Vertical">
-                            <StackLayout
+                            <!--<StackLayout
                                 Orientation="Horizontal"
                                 HorizontalOptions="Start">
-                                <Image Source="icfillstar.png"
+                                --><!--<Image Source="icfillstar.png"
                                HorizontalOptions="Start"
                                WidthRequest="30"
                                HeightRequest="30"
-                                       VerticalOptions="Center"/>
-                                <Label Text="Đánh giá dịch vu chúng tôi"
-                                       VerticalOptions="Center"/>
-                            </StackLayout>
-                           
-                            <StackLayout Orientation="Vertical">
+                                       VerticalOptions="Center"/>--><!--
+                               
+                            </StackLayout>-->
 
+                            <StackLayout Orientation="Horizontal">
                                 <Image Source="{Binding ttdv.ImageDV, Converter={StaticResource ByteArrayToImage}}"
                                         Aspect="AspectFill"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Fill"/>
-                                <StackLayout BackgroundColor="Azure"
+                                        VerticalOptions="Fill"
+                                       HeightRequest="90"
+                                       WidthRequest="50"/> 
+                                
+                                <BoxView HeightRequest="90"
+                                         WidthRequest="2"
+                                         BackgroundColor="Orange"/>
+                             
+                                <Label Text="Đánh giá dịch vu chúng tôi"
+                                       VerticalOptions="Center"
+                                       FontSize="15"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"/>
+                                <!--<StackLayout BackgroundColor="Azure"
                                              Orientation="Vertical"
                                              Spacing="0"
                                              VerticalOptions="FillAndExpand"
@@ -52,7 +63,7 @@
                                            FontAttributes="Italic"
                                            FontSize="13"/>
                                     <Label Text="{Binding datLichHen.tieuDe, Mode=TwoWay}" />
-                                </StackLayout>
+                                </StackLayout>-->
                             </StackLayout>
                         </StackLayout>
                     </Frame> 
@@ -67,25 +78,21 @@
                                          Margin="5">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Image Source="alarm.png"/>
-                            <Label Text="Thông tin dịch vụ"
-                               FontAttributes="Italic"
-                               TextColor="Black"/>
-                        </StackLayout> 
-                        <Image Source="{Binding thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
-                                        Aspect="AspectFill"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Fill" />
-                        <StackLayout BackgroundColor="Azure"
-                                             Orientation="Vertical"
-                                             Spacing="0"
-                                             VerticalOptions="FillAndExpand"
-                                             HorizontalOptions="FillAndExpand"
-                                             Padding="5,0,0,0">
+                            <Image Source="alarm.png"
+                                   HeightRequest="30"/>
+                                <Label Text="{Binding tieU_DE, Mode=TwoWay}"
+                                        FontAttributes="Bold"
+                                        TextColor="LightSkyBlue"
+                                       FontSize="16"/>
+                            </StackLayout>
 
-                            <Label Text="{Binding tieU_DE, Mode=TwoWay}"
-                                           FontAttributes="Bold" />
-                            <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
+                            <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    Padding="5,0,0,0">
+                                <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
                                            FontAttributes="Italic"
                                            FontSize="13" />
                             <Label Text="{Binding thoI_GIAN, Mode=TwoWay}"/>

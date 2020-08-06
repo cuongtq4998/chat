@@ -19,30 +19,19 @@ namespace ChatBot.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DATLICHHENViewPage : ContentPage
     { 
-        SetIsSelected datlichhen;
-        public DATLICHHENViewPage()
+       
+        public DATLICHHENViewPage(THONGTINDICHVU thongtindichvu)
         {
             InitializeComponent();
-           
+            var vm = this.BindingContext as DatLichHenViewModell;
+            if (vm != null)
+            {
+                vm.datLichhen.IDDV = thongtindichvu.ID;
+                vm.thongtindichvu.Add(thongtindichvu);
+            }
             //BindingContext = new MainPageViewModel(); 
         }
-        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (datlichhen != null)
-            {
-                datlichhen.IsSelected = false;
-            }
-            SetIsSelected currentModel = ((CheckBox)sender).BindingContext as SetIsSelected;
-            datlichhen = currentModel;
-
-            //get index check
-            if (currentModel.IsSelected)
-            {
-                var viewModel = BindingContext as DatLichHenViewModell;
-                int index = viewModel.Items.IndexOf(currentModel);
-                viewModel.datLichhen.IDDV = viewModel.listTTDV[index].THONGTINDICHVU.ID;
-            }
-        }
+       
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -57,7 +46,17 @@ namespace ChatBot.Views
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopToRootAsync();
-        }
+            var vm = this.BindingContext as DatLichHenViewModell;
+            if (vm != null)
+            { 
+                if (vm.checknavigate == true)
+                {
+                    Navigation.PopToRootAsync();
+                }
+            } 
+           
+           
+        } 
+         
     }
 }

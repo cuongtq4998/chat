@@ -12,18 +12,27 @@
             <Setter
                 Property="Content">
                 <ContentView>
-                    <Frame CornerRadius="10"  
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout  HeightRequest="30"
+                                   WidthRequest="30">
+                            <Image Source="iconbot.png" 
+                                   Aspect="Fill"
+                                   HeightRequest="30"
+                                   WidthRequest="30"/>
+                        </StackLayout> 
+                        <Frame CornerRadius="10"  
                            HorizontalOptions="Start" 
-                           BackgroundColor="WhiteSmoke"
+                           BackgroundColor="White"
                            HasShadow="True"
                            Padding="5"
-                           OutlineColor="Wheat"
+                           OutlineColor="WhiteSmoke"
                            Margin="1">
-                        <Label 
-                            TextColor="Black" 
-                            HorizontalOptions="Start" 
-                            Text="{Binding TextChat}"/>
-                    </Frame>
+                            <Label 
+                                    TextColor="Black" 
+                                    HorizontalOptions="Start" 
+                                    Text="{Binding TextChat}"/>
+                        </Frame>
+                    </StackLayout> 
                 </ContentView>
             </Setter>
         </DataTrigger>

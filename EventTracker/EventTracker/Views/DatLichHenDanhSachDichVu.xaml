@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+             xmlns:converters="clr-namespace:ChatBot.Items" xmlns:controls="clr-namespace:ChatBot.Controls"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.DatLichHenDanhSachDichVu"
+             Title="Chọn Dịch Vụ">
+    <ContentPage.BindingContext>
+        <ViewModels:DatLichHenDanhSachDichVuViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}">
+            <StackLayout Orientation="Vertical" >
+                <Frame Margin="5"
+                       HasShadow="True">
+                    <StackLayout Orientation="Vertical"
+                                 BackgroundColor="White">
+                        <StackLayout>
+                            <Image Source="flower.png"
+                                   HeightRequest="100"/>
+                            <Label Text="Chọn dịch vụ bên dưới!"
+                               FontSize="17"
+                               FontAttributes="Bold"
+                               TextColor="LightSkyBlue"
+                               HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout> 
+                        <ScrollView>
+                            <FlexLayout BindableLayout.ItemsSource="{Binding Items}"
+                                        Wrap="Wrap"
+                                        Direction="Row"
+                                        JustifyContent="Start"
+                                        AlignItems="Start"
+                                        AlignContent="Start" >
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame Padding="5"
+                                                VerticalOptions="FillAndExpand"
+                                                Margin="10"
+                                               HorizontalOptions="FillAndExpand"
+                                               WidthRequest="150" 
+                                               >
+                                            <StackLayout Orientation="Vertical"
+                                                             HorizontalOptions="Center">
+                                                <StackLayout>
+                                                    <CheckBox HorizontalOptions="Start"
+                                                              VerticalOptions="Start" 
+                                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                              CheckedChanged="CheckBox_CheckedChanged" />
+                                                    <Image Source="{Binding THONGTINDICHVU.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                                           Aspect="AspectFill"
+                                                           HeightRequest="200"/> 
+                                                </StackLayout>
+                                                <Label Text="{Binding THONGTINDICHVU.TieuDeDV}" 
+                                                       MaxLines="3"
+                                                       LineBreakMode="MiddleTruncation"/>
+
+                                                <Label Text="{Binding THONGTINDICHVU.ChiPhiDV,  StringFormat='Giá: {0:#,0.#0} VNĐ'}"
+                                                          FontSize="Micro"
+                                                           FontAttributes="Bold"
+                                                           TextColor="Red"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>
+                        </ScrollView>
+                        
+                    </StackLayout>
+                </Frame>
+                <StackLayout BackgroundColor="Transparent" 
+                              VerticalOptions="EndAndExpand">
+                    <controls:ButtonWithPadding Text="Tiếp tục" 
+                                            CornerRadius="20" 
+                                            BorderWidth="10"
+                                            BorderColor="LightSkyBlue"
+                                            ImageSource="iconnext.png" 
+                                            Margin="10"
+                                            BackgroundColor="LightSkyBlue" 
+                                            TextColor="White"
+                                            WidthRequest="160"
+                                            HeightRequest="40"
+                                            FontSize="16" 
+                                            x:Name="TiepTucNhapThongTin"
+                                            Clicked="TiepTucNhapThongTin_Clicked"
+                                            IsEnabled="False"
+                                                HorizontalOptions="CenterAndExpand"/>
+                </StackLayout> 
+            </StackLayout>
+        </RefreshView> 
+    </ContentPage.Content>
+</ContentPage>

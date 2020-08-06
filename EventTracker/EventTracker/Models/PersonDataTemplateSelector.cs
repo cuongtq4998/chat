@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatBot.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -16,7 +17,7 @@ namespace ChatBot.Models
 		protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
 		{
 
-            return ((Customers)item).NgaySinh.Date > DateTime.Today ? KhachHangA : KhachHangB ;
+            return ((getDatHenThongTinDichVu)item).DatLichHen.ThoiGianHen.Date > DateTime.Today ? KhachHangA : KhachHangB ;
 		}
 	}
 }

@@ -1,14 +1,23 @@
 ﻿using ChatBot.Models;
+using ChatBot.RestClient;
+using ChatBot.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
+    public class getDatHenThongTinDichVu
+    {
+        public DatLichHen DatLichHen { get; set; }
+        public THONGTINDICHVU ThongTinDichVu { get; set; }
+    }
     class LICHHENCANHANViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,7 +25,17 @@ namespace ChatBot.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
+
+        private List<getDatHenThongTinDichVu> _ListHenList;
+        public List<getDatHenThongTinDichVu> ListHenList
+        {
+            get { return _ListHenList; }
+            set
+            {
+                _ListHenList = value;
+                OnPropertyChanged();
+            }
+        }
         public Command ThemLichHen
         {
             get
@@ -26,67 +45,58 @@ namespace ChatBot.ViewModels
                      //
                 });
             }
+        } 
+
+
+        int idKH = 0;
+        public LICHHENCANHANViewModel()
+        { 
+            if (Application.Current.Properties.ContainsKey("IdKH"))
+            {
+                idKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
+            }
+            _ = InitializeDataAsync();
         }
 
-        private List<Customers> _items;
-        public List<Customers> listItem
+        private async Task InitializeDataAsync()
         {
-            get { return _items; }
+            try
+            {
+                IsRefreshing = true;
+                var services = new Service();
+                ListHenList = await services.GetLichHen((int)getLinkPage.linkDatLichHen, idKH);
+                IsRefreshing = false;
+            }
+            catch (Exception) { } 
+        }
+
+        #region Refreshing
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
             set
             {
-
-                _items = value;
-                OnPropertyChanged();
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
             }
         }
-        public LICHHENCANHANViewModel()
+
+        public ICommand RefreshCommand
         {
-            var today = DateTime.Now;
-            var tomorrow = today.AddDays(1);
-            Random random = new Random();
-            listItem = new List<Customers>
+            get
             {
-                new Customers
+                return new Command(async () =>
                 {
-                    id = Path.GetRandomFileName(),
-                    HoTen = "Trần Quốc " + random.Next( 1,30),
-                    DiaChi = "Thành Phố Hồ Chí Minh",
-                    DienThoai = "",
-                    GioiTinh = "Nam",
-                    Email = "",
-                    NgaySinh = today
-                },
-                new Customers
-                {
-                    id =Path.GetRandomFileName(),
-                    HoTen = "Trần Quốc " + random.Next( 1,30),
-                    DiaChi = "Lê Trọng Tấn,  Sơn Kì, Tần Phú",
-                    DienThoai = "9",
-                    GioiTinh = "Nam",
-                    Email = "",
-                    NgaySinh = tomorrow
-                },
-                new Customers
-                {
-                    id = Path.GetRandomFileName(),
-                    HoTen = "Trần Quốc " + random.Next( 1,30),
-                    DiaChi = "Thành Phố Hồ Chí Minh",
-                    DienThoai = "",
-                    GioiTinh = "Nam",
-                    Email = "",
-                    NgaySinh = DateTime.Now
-                },
-                new Customers
-                {
-                    id = Path.GetRandomFileName(),
-                    HoTen = "Trần Quốc " + random.Next( 1,30),
-                    DiaChi = "Lê Trọng Tấn,  Sơn Kì, Tần Phú",
-                    DienThoai = "",
-                    GioiTinh = "Nam",
-                    Email = "",
-                    NgaySinh = DateTime.Now
-                }
-            };
+                    IsRefreshing = true;
+
+                    var services = new Service();
+                    ListHenList = await services.GetLichHen((int)getLinkPage.linkDatLichHen, idKH);
+
+                    IsRefreshing = false;
+                });
+            }
         }
+        #endregion
     }
 }

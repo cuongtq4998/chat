@@ -1,4 +1,5 @@
-﻿using ChatBot.Models;
+﻿using ChatBot.ABC;
+using ChatBot.Models;
 using ChatBot.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ChatBot.Views
 
         private void ButtonWithPadding_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new HIENTHITHONGTINViewPage());
+            Navigation.PushAsync(new TRANGCHUDEMO());
         } 
     }
 }

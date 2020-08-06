@@ -20,7 +20,7 @@ namespace ChatBot.ABC
         public GaugeControl1()
         {
             InitializeComponent();
-            Percent = 50;
+            Percent = 100;
             MessagingCenter.Subscribe<ThemeMessage>(this, ThemeMessage.ThemeChanged, (tm) => UpdateTheme(tm));
         }
         private void UpdateTheme(ThemeMessage tm)
@@ -53,7 +53,7 @@ namespace ChatBot.ABC
         SKPaint backgroundBrush = new SKPaint()
         {
             Style = SKPaintStyle.Fill,
-            Color = Color.Red.ToSKColor()
+            Color = Color.Tomato.ToSKColor()
         };
         private double percent;
 

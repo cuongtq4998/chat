@@ -40,7 +40,8 @@
                     <controls:EntryControls Title="Nhập Lại Mật Khẩu"
                                             HorizontalOptions="Center"
                                             Margin="20,15,20,10"
-                                            IsPassword="True" />
+                                            IsPassword="True"
+                                            Text="{Binding confilmPassword}"/>
                 </StackLayout>
             </Frame>
 

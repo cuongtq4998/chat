@@ -9,7 +9,9 @@
              xmlns:controls="clr-namespace:ChatBot.Controls"
              xmlns:item="clr-namespace:ChatBot.Items"
              xmlns:local="clr-namespace:ChatBot.Models"
-             Title="Lịch Hẹn">
+             xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Title="Lịch Hẹn Của Tôi"
+             BackgroundImageSource="mountain_dark.png">
     <ContentPage.BindingContext>
         <ViewModels:LICHHENCANHANViewModel/>
     </ContentPage.BindingContext>
@@ -18,59 +20,130 @@
         <ResourceDictionary>
             <DataTemplate x:Key="KhachHangA">
                 <ViewCell>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.4*" />
-                            <ColumnDefinition Width="0.3*" />
-                            <ColumnDefinition Width="0.3*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding HoTen}"
-                               TextColor="Green"
-                               FontAttributes="Bold" />
-                        <Label Grid.Column="1"
-                               Text="{Binding NgaySinh, StringFormat='{0:d}'}"
-                               TextColor="Green" />
-                        <Label Grid.Column="2"
-                               Text="{Binding DiaChi}"
-                               TextColor="Green"
-                               HorizontalTextAlignment="End" />
-                    </Grid>
+                    <Frame HasShadow="True" 
+                           Margin="20,10"
+                           CornerRadius="10"
+                           Padding="10">
+                        <StackLayout Orientation="Vertical"
+                                 BackgroundColor="White">
+                            <PanCake:PancakeView BackgroundGradientStartColor="Green"
+                                             BackgroundGradientEndColor="Green" 
+                                             CornerRadius="20,10,0,0"
+                                             IsClippedToBounds="true" 
+                                             HeightRequest="1"/>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical"> 
+                                    <Label Text="{Binding DatLichHen.YeuCau}"
+                                        TextColor="Black"
+                                           FontSize="16"
+                                        FontAttributes="Bold" />
+                                    <Label Text="{Binding ThongTinDichVu.NoiDungDV}"
+                                           LineBreakMode="WordWrap"
+                                           MaxLines="3"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Thời gian hẹn: "
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="16"/>
+                                        <Label Text="{Binding DatLichHen.ThoiGianHen, StringFormat='{0:d}'}"
+                                           TextColor="Green"/>
+                                    </StackLayout> 
+                                    <Button TextColor="White" 
+                                        CornerRadius="12" 
+                                        WidthRequest="50" 
+                                        HeightRequest="23" 
+                                        Padding="{OnPlatform Android='0,4'}" 
+                                        FontSize="{OnPlatform iOS='15',Android='10'}"
+                                        FontAttributes="Bold" 
+                                        BackgroundColor="#92d5fe"
+                                        Text="Chi tiết"/>
+                                </StackLayout>
+                                <Frame CornerRadius="10"
+                                   HeightRequest="100" 
+                                       HorizontalOptions="EndAndExpand">
+                                    <Image Source="{Binding ThongTinDichVu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                       HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"
+                                       Aspect="AspectFill"/>
+                                </Frame>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame> 
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="KhachHangB">
                 <ViewCell>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.4*" />
-                            <ColumnDefinition Width="0.3*" />
-                            <ColumnDefinition Width="0.3*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Hoten}"
-                               TextColor="Red"
-                               FontAttributes="Bold" />
-                        <Label Grid.Column="1"
-                               Text="{Binding NgaySinh, StringFormat='{0:d}'}"
-                               TextColor="Red" />
-                        <Label Grid.Column="2"
-                               Text="{Binding DiaChi}"
-                               TextColor="Red"
-                               HorizontalTextAlignment="End" />
-                    </Grid>
+                    <Frame HasShadow="True" 
+                           Margin="20,10"
+                           CornerRadius="10"
+                           Padding="10">
+                        <StackLayout Orientation="Vertical"
+                                 BackgroundColor="White">
+                            <PanCake:PancakeView BackgroundGradientStartColor="Green"
+                                             BackgroundGradientEndColor="Green" 
+                                             CornerRadius="20,10,0,0"
+                                             IsClippedToBounds="true" 
+                                             HeightRequest="1"/>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding DatLichHen.YeuCau}"
+                                        TextColor="Black"
+                                           FontSize="16"
+                                        FontAttributes="Bold" />
+                                    <Label Text="{Binding ThongTinDichVu.NoiDungDV}"
+                                           LineBreakMode="WordWrap"
+                                           MaxLines="3"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Thời gian hẹn: "
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="16"/>
+                                        <Label Text="{Binding DatLichHen.ThoiGianHen, StringFormat='{0:d}'}"
+                                           TextColor="Green"/>
+                                    </StackLayout>
+                                    <Button TextColor="White" 
+                                        CornerRadius="12" 
+                                        WidthRequest="50" 
+                                        HeightRequest="23" 
+                                        Padding="{OnPlatform Android='0,4'}" 
+                                        FontSize="{OnPlatform iOS='15',Android='10'}"
+                                        FontAttributes="Bold" 
+                                        BackgroundColor="#92d5fe"
+                                        Text="Chi tiết"/>
+                                </StackLayout>
+                                <Frame CornerRadius="10"
+                                   HeightRequest="100" 
+                                       HorizontalOptions="EndAndExpand">
+                                    <Image Source="{Binding ThongTinDichVu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                       HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"
+                                       Aspect="AspectFill"/>
+                                </Frame>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
             <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
                                               KhachHangA="{StaticResource KhachHangA}"
                                               KhachHangB="{StaticResource KhachHangB}" />
+            <item:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <StackLayout >
-        <ListView ItemsSource="{Binding listItem}"
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+            <ListView ItemsSource="{Binding ListHenList}"
                   ItemTemplate="{ StaticResource personDataTemplateSelector}"
                   CachingStrategy="RecycleElement"
                   SeparatorVisibility="None"
-                  VerticalScrollBarVisibility="Never"
-                  RowHeight="100"/>
+                   HasUnevenRows="True"
+                  ItemTapped="ListView_ItemTapped"
+                  VerticalScrollBarVisibility="Never"/>
+        </RefreshView>
         <StackLayout BackgroundColor="Transparent">
             <controls:ButtonWithPadding Text="Đặt Lịch Hẹn"
                                         x:Name="NavigationThemLichHen"

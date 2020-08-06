@@ -12,7 +12,7 @@ namespace ChatBot.ViewModels
 {
     class LOGINViewModel : INotifyPropertyChanged
     {
-        public List<Customers> khachhangList { get; set; }
+        public Customers itemKhachHang { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -34,13 +34,13 @@ namespace ChatBot.ViewModels
                 return new Command(async () =>
                 {
                     var services = new Service();
-                    khachhangList = await services.GetCustomersWithID(checkLogin.taiKhoan, checkLogin.matKhau, 1);
+                    itemKhachHang = await services.GetCustomersWithID(checkLogin.taiKhoan, checkLogin.matKhau, 1);
 
-                    if(khachhangList != null)
+                    if(itemKhachHang != null)
                     {
                         Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
                         Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
-                        Application.Current.Properties["IdKH"] = khachhangList[0].id; 
+                        Application.Current.Properties["IdKH"] = itemKhachHang.id; 
 
                         await Application.Current.SavePropertiesAsync();
                     }

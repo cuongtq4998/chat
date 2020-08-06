@@ -33,8 +33,21 @@ namespace ChatBot.Views
             var vm = this.BindingContext as DANGKITKViewModel;
             List<User_KH> KH = new List<User_KH>();
             KH.Add(vm.userKhachHang);
-
-            Navigation.PushAsync(new QUATRINHNHAPTHONGTINViewPage(KH));
+            if(vm.confilmPassword != vm.userKhachHang.matKhau)
+            {
+                DisplayAlert("Thông báo", "Xác nhận mật khẩu không hợp lệ!", "OK"); 
+            }
+            else if ( vm.confilmPassword == null ||
+                vm.userKhachHang.taiKhoan == null ||
+                vm.userKhachHang.matKhau == null)
+            {
+                DisplayAlert("Thông báo", "Bạn hãy điền thông tin đầy đủ!", "OK");
+            }
+            else
+            {
+                Navigation.PushAsync(new QUATRINHNHAPTHONGTINViewPage(KH));
+            }
+            
         }
     }
 }

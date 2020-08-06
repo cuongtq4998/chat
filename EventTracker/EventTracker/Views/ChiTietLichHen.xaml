@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ChatBot.Controls"
+             xmlns:converters="clr-namespace:ChatBot.Items"
+             mc:Ignorable="d" 
+             x:Class="ChatBot.Views.ChiTietLichHen"
+             Title="Chi tiết lịch hẹn"
+             BackgroundColor="WhiteSmoke">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     BackgroundColor="Transparent">
+           
+                <Frame Margin="10"
+                   HasShadow="True"
+                       Padding="20">
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0">
+                            <Label Text="Ảnh DV:"
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                            <Image x:Name="ImageDV" Source="{Binding Path=ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Fill"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                      Spacing="0">
+                            <Label Text="Yêu cầu:"
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                            <Label x:Name="YeuCau" Text="{Binding Path=YeuCau}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0">
+                            <Label Text="Thời gian hẹn:"
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                            <Label x:Name="ThoiGianHen" Text="{Binding Path=ThoiGianHen}"/>
+                        </StackLayout>
+
+                        
+                        <!--<Label x:Name="NoiDungHuy" Text="{Binding Path=NoiDungHuy}"/>-->
+                        <!--<Label x:Name="ThoiGianNhacNho" Text="{Binding Path=ThoiGianNhacNho}"/>-->
+                        <!--<Label x:Name="TrangThaiLichHen" Text="{Binding Path=TrangThaiLichHen}"/>-->
+
+                        <ScrollView>
+                        <StackLayout Orientation="Vertical"
+                                         Spacing="0">
+                            <Label Text="Mô tả dịch vụ:"
+                                       FontSize="14"
+                                       FontAttributes="Italic"
+                                       TextColor="Orange"/>
+                            <Label x:Name="NoiDungDV" Text="{Binding Path=NoiDungDV}"/>
+                        </StackLayout>
+                    </ScrollView>
+                       
+                    
+                        <StackLayout Orientation="Vertical"
+                                     Spacing="0">
+                            <Label Text="Chi phí:"
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                            <Label x:Name="ChiPhiDV" Text="{Binding Path=ChiPhiDV}"/>
+                        </StackLayout>
+                        
+                    </StackLayout>
+                </Frame>
+            <Label  x:Name="NoteCancel"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="Orange"
+                    FontSize="16"/>
+            <StackLayout Orientation="Horizontal"
+                          VerticalOptions="EndAndExpand"
+                         Margin="10,0,0,10">
+                <Label Text="(*)Lịch hẹn chỉ được hủy trước 1 ngày so với thời gian hẹn."
+                       TextColor="Red"
+                       FontSize="16"
+                       LineBreakMode="WordWrap"/>
+                <StackLayout BackgroundColor="Transparent" 
+                         HorizontalOptions="EndAndExpand">
+                    <controls:ButtonWithPadding Text="Hủy Lịch Hẹn"
+                                        x:Name="HuyLichHen" 
+                                        CornerRadius="100"
+                                        HorizontalOptions="End"
+                                        BorderWidth="2"
+                                        BorderColor="DarkOrange"
+                                        Margin="0,0,10,20"
+                                        BackgroundColor="Tomato"
+                                        TextColor="White"
+                                        WidthRequest="120"
+                                        HeightRequest="40"
+                                        FontSize="16"
+                                        Clicked="HuyLichHen_Clicked"/>
+                </StackLayout>
+            </StackLayout> 
+        </StackLayout> 
+    </ContentPage.Content>
+</ContentPage>

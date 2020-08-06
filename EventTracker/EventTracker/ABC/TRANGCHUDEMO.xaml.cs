@@ -40,17 +40,17 @@ namespace ChatBot.ABC
             MessagingCenter.Unsubscribe<ThemeMessage>(this, ThemeMessage.ThemeChanged);
         }
 
-        string themeName = "light";
+        string themeName = "dark";  
 
         private void ProfileImage_Tapped(object sender, EventArgs e)
         {
-            if (themeName == "light")
+            if (themeName == "dark")
             {
-                themeName = "dark";
+                themeName = "light";
             }
             else
             {
-                themeName = "light";
+                themeName = "dark";
             }
 
             ThemeHelper.ChangeTheme(themeName);
@@ -60,7 +60,7 @@ namespace ChatBot.ABC
         SKPaint backgroundBrush = new SKPaint()
         {
             Style = SKPaintStyle.Fill,
-            Color = Color.Red.ToSKColor()
+            Color = Color.Tomato.ToSKColor()
         };
 
         private void BackgroundGradient_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
@@ -98,7 +98,7 @@ namespace ChatBot.ABC
         }
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DATLICHHENViewPage());
+            //Navigation.PushAsync(new DATLICHHENViewPage());
         }
 
         private void ToolbarItem_Clicked_1(object sender, EventArgs e)
@@ -108,12 +108,12 @@ namespace ChatBot.ABC
 
         private void DatLichHenTrigger_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DATLICHHENViewPage());
+            OnClickAsync();
         }
 
         private void ChatTrigger_Tapped(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new ChatKNNViewPage());
         }
 
         private void ThongBaoTrigger_Tapped(object sender, EventArgs e)
@@ -129,6 +129,38 @@ namespace ChatBot.ABC
         private void DanhSachDichVuTrigger_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new DanhSachDVPage());
+        }
+
+        private void DanhSachLichHenTrigger_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new LICHHENCANHANViewPage());
+        }
+
+        public async Task OnClickAsync()
+        {
+            try
+            {
+                string taikhoan = "";
+                string matkhau = "";
+                if (Application.Current.Properties.ContainsKey("Taikhoan") && Application.Current.Properties.ContainsKey("Matkhau"))
+                {
+                    taikhoan = Application.Current.Properties["Taikhoan"].ToString();
+                    matkhau = Application.Current.Properties["Matkhau"].ToString();
+                }
+                if (taikhoan == "" || matkhau == "")
+                {
+                    bool check = await DisplayAlert("Thông báo", "Bạn chưa có thông tin.  Hãy đăng kí thông tin!", "Chấp nhận", "Hủy");
+                    if (check)
+                    {
+                        _ = Navigation.PushAsync(new DANGKITKViewPage());
+                    }
+                }
+                else
+                {
+                    _ = Navigation.PushAsync(new DatLichHenDanhSachDichVu());
+                }
+            }
+            catch (Exception) { }
         }
     }
 }

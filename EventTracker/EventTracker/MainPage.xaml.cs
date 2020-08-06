@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -23,13 +24,14 @@ namespace EventTracker
         public MainPage()
         {
             InitializeComponent(); 
+
             try
             {
                 string Taikhoan = (string)Application.Current.Properties["Taikhoan"];
                 string Matkhau = (string)Application.Current.Properties["Matkhau"];
                 if (Taikhoan != null && Matkhau != null)
                 {
-                    nameUser.Text = "HI!" + Taikhoan; 
+                    nameUser.Text = "HI! " + Taikhoan; 
                     Logout.Text = "Đăng xuất";
                 }
                 else

@@ -1,123 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot" xmlns:controls="clr-namespace:ChatBot.Controls"
              x:Class="ChatBot.Views.HIENTHITHONGTINViewPage"
-             Title="Thông Tin Cá Nhân"
-             BackgroundImageSource="mountain_dark.png">
+             Title="Thông Tin Cá Nhân" 
+             BackgroundColor="White">
     <ContentPage.BindingContext>
         <ViewModels:HIENTHITHONGTINViewModel />
     </ContentPage.BindingContext>
  
-    <StackLayout>
-        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+    <ScrollView>
+        <StackLayout>
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
                  Command="{Binding RefreshCommand}">
-            <ListView ItemsSource="{Binding khachhang}"
-                      CachingStrategy="RecycleElement"
-                      SeparatorVisibility="None" 
-                         HasUnevenRows="true" 
-                      BackgroundColor="Transparent">
+         
+                <StackLayout Orientation="Vertical" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                    <StackLayout Padding="20,10" >
+                        <Frame CornerRadius="100" 
+                                HeightRequest="120"
+                                WidthRequest="120"
+                                HorizontalOptions="Center"
+                                Padding="0"
+                                IsClippedToBounds="True"
+                               BackgroundColor="Transparent"
+                               HasShadow="True"
+                               BorderColor="Gainsboro">
+                            <Image Source="onlinetraining.jpg" 
+                                   Aspect="Fill"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="CenterAndExpand"/>
+                        </Frame>
+                    </StackLayout>
+ 
+                    <StackLayout Orientation="Vertical"
+                                 Margin="30">
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="20,10"
+                                 Spacing="0">
+                            <Label Text="Họ tên"
+                                   FontSize="15"
+                                   FontAttributes="Italic"
+                                   TextColor="DeepSkyBlue"/>
+                            <Label Text="{Binding khachhang.HoTen, Mode=TwoWay}"
+                                   FontSize="14"
+                                   Margin="10,0,0,0"
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical"
-                                         Margin="5"> 
-                                <Grid BackgroundColor="Transparent">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <!-- 1. Profile picture-->
-                                    <Image Grid.Row="0"
-                                           Source="onlinetraining.jpg"
-                                           VerticalOptions="Start" />
-                                    <!-- Here add the code that is being explained in the next block-->
-                                </Grid>
-                                <StackLayout Grid.Row="0" BackgroundColor="Transparent" VerticalOptions="End">
-                                    <Frame CornerRadius="15" Style="{StaticResource stlMainFrame}" HasShadow="True" Margin="5,0">
-                                        <Grid Padding="15,10,20,0" RowSpacing="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/> 
-                                                <ColumnDefinition /> 
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>  
-                                            </Grid.RowDefinitions> 
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="20,10"
+                                 Spacing="0">
+                            <Label Text="Điện thoại"
+                                   FontSize="15"
+                                  FontAttributes="Italic"
+                                   TextColor="DeepSkyBlue"/>
+                            <Label Text="{Binding khachhang.DienThoai, Mode=TwoWay}"
+                                   FontSize="14"
+                                    Margin="10,0,0,0"
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
 
-                                            <!-- Here add the code that is being explained in the next block-->
-                                            
-                                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding HoTen, Mode=TwoWay}" FontAttributes="Bold" FontSize="30"/>
-                                            <StackLayout Orientation="Horizontal"
-                                                         Grid.Row="1"
-                                                    Grid.Column ="0">
-                                                <Image 
-                                                    Source="icaddress.png"
-                                                    VerticalOptions="Start"
-                                                   HorizontalOptions="Start"/>
-                                                <Label  
-                                                   Text="{Binding DiaChi, Mode=TwoWay}" 
-                                                   TextColor="#a5a2a2"
-                                                   FontSize="16"
-                                                   HorizontalOptions="Start"/>
-                                            </StackLayout>
-                                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Padding="0,3,0,0" FontSize="16">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Email: " FontAttributes="Bold" />
-                                                        <Span Text="{Binding Email, Mode=TwoWay}"  />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Nghề Nghiệp: " FontAttributes="Bold" />
-                                                        <Span Text="{Binding NgheNghiep, Mode=TwoWay}"  />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Điện thoại: " FontAttributes="Bold" />
-                                                        <Span Text="{Binding DienThoai, Mode=TwoWay}"  />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Giới tính: " FontAttributes="Bold" />
-                                                        <Span Text="{Binding GioiTinh, Mode=TwoWay}"  />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16" Padding="0,3,0,0">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Ngày sinh: " FontAttributes="Bold" />
-                                                        <Span Text="{Binding NgaySinh, Mode=TwoWay}"  />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <!--4. Contact information: Follow button-->
-                                          
-                                        </Grid>
-                                    </Frame>
-                                </StackLayout>   
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                        <StackLayout Orientation="Horizontal" 
+                                     Padding="20,10"
+                                 Spacing="0">
+                            <Label Text="Giới tính"
+                                   FontSize="15"
+                                  FontAttributes="Italic"
+                                   TextColor="DeepSkyBlue"/>
+                            <Label Text="{Binding khachhang.GioiTinh, Mode=TwoWay}"
+                                   FontSize="14"
+                                    Margin="10,0,0,0"
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
 
-            </ListView>
-        </RefreshView>
-        
-    </StackLayout> 
+                        <StackLayout Orientation="Horizontal" 
+                                     Padding="20,10"
+                                 Spacing="0">
+                            <Label Text="Địa chỉ"
+                                   FontSize="15"
+                                  FontAttributes="Italic"
+                                   TextColor="DeepSkyBlue"/>
+                            <Label Text="{Binding khachhang.DiaChi}"
+                                   FontSize="14"
+                                    Margin="10,0,0,0"
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" 
+                                     Padding="20,10"
+                                 Spacing="0">
+                            <Label Text="Nghề Nghiệp"
+                                   FontSize="15"
+                                   FontAttributes="Italic"
+                                   TextColor="DeepSkyBlue"/>
+                            <Label Text="{Binding khachhang.NgheNghiep, Mode=TwoWay}"
+                                   FontSize="14"
+                                    Margin="10,0,0,0"
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" 
+                                     Padding="20,10"
+                                 Spacing="0">
+                            <Label Text="Ngày sinh"
+                                   FontSize="15"
+                                   FontAttributes="Italic"
+                                   TextColor="DeepSkyBlue"/>
+                            <Label Text="{Binding khachhang.NgaySinh, Mode=TwoWay,  StringFormat='{0:d}'}"
+                                   FontSize="14"
+                                    Margin="10,0,0,0"
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </StackLayout>
+                    
+                    <!--<controls:ButtonWithPadding Text="Cập nhập thông tin" 
+                                            CornerRadius="100"
+                                            HorizontalOptions="CenterAndExpand"
+                                            BorderWidth="2"
+                                            BorderColor="DarkOrange"
+                                            Margin="8"
+                                            BackgroundColor="Tomato" 
+                                            TextColor="White"
+                                            WidthRequest="170"
+                                            HeightRequest="40"
+                                            FontSize="16" />-->
+                </StackLayout>
+            </RefreshView>
+        </StackLayout>
+    </ScrollView> 
 </ContentPage>

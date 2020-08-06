@@ -27,6 +27,7 @@ namespace ChatBot.ViewModels
                 userKhachHang = value;
                 OnPropertyChanged();
             }
-        }    
+        } 
+        public string confilmPassword { get; set; }
     }
 }

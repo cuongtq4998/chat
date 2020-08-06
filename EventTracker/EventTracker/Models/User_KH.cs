@@ -10,7 +10,5 @@ namespace ChatBot.Models
         public int id { get; set; }
         public string taiKhoan { get; set; } 
         public string matKhau { get; set; }
-        public DateTime thoiGianDangNhap { get; set; } = DateTime.Now;
-        public bool dangOnline { get; set; } = true;
     }
 }

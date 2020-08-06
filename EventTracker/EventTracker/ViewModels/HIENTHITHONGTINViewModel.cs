@@ -23,8 +23,8 @@ namespace ChatBot.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private List<Customers> _khachhang;
-        public List<Customers> khachhang
+        private Customers _khachhang;
+        public Customers khachhang
         {
             get { return _khachhang; }
             set
@@ -85,7 +85,7 @@ namespace ChatBot.ViewModels
                     //khachhang = await customersService.GetCustomersWithID(1, (int)getLinkPage.linkKhachHang);
 
                     var vm = new  LOGINViewModel();
-                    khachhang = vm.khachhangList;
+                    khachhang = vm.itemKhachHang;
                     IsRefreshing = false;
                 });
             }

@@ -2,27 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModels="clr-namespace:ChatBot.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModels="clr-namespace:ChatBot.ViewModels" xmlns:item="clr-namespace:ChatBot.Items" xmlns:controls="clr-namespace:ChatBot.Controls"
              mc:Ignorable="d"
-             x:Class="ChatBot.Views.ChatKNNViewPage">
+             x:Class="ChatBot.Views.ChatKNNViewPage"
+             Title="Hệ Thống Tư Vấn">
     <ContentPage.BindingContext>
         <ViewModels:ChatKNNViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Trả lời: "/>
-                <Label Text="{Binding messageOut}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" /> 
-            </StackLayout>
-            
+            <ListView ItemsSource="{Binding ListData}" 
+                      CachingStrategy="RecycleElement"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <item:ItemChatView />
+                        </ViewCell> 
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="CenterAndExpand">
-                <Label Text="Nhập tin nhắn: "/>
-                <Entry Text="{Binding messageInput}" />
-                <Button Command="{Binding buttonSend}"/>
+                         HorizontalOptions="Fill"
+                         Padding="20,10">
+                <Entry Text="{Binding messageInput}" 
+                       HorizontalOptions="FillAndExpand"
+                       Placeholder="Nhập câu hỏi..."/>
+                <controls:ButtonWithPadding 
+                                            CornerRadius="20" 
+                                            BorderWidth="10"
+                                            BorderColor="White" 
+                                             ImageSource="iconnext.png" 
+                                            BackgroundColor="White" 
+                                            TextColor="DeepSkyBlue"
+                                            WidthRequest="50"
+                                            HeightRequest="40"
+                                            FontSize="16"  
+                                            Command="{Binding buttonSend}"/> 
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

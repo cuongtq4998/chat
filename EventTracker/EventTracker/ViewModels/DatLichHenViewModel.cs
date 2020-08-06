@@ -8,10 +8,73 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.XamarinForms.Input;
 using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
+    public class CustomAgendaViewItemStyleSelector : AgendaItemStyleSelector
+    {
+        private DateTime now;
+        public CustomAgendaViewItemStyleSelector()
+        {
+            this.now = DateTime.Now;
+        }
+
+        public AgendaTextItemStyle CurrentMonthStyle { get; set; }
+        public AgendaTextItemStyle CurrentMonthWeeksStyle { get; set; }
+        public AgendaTextItemStyle TodayStyle { get; set; }
+        public AgendaAppointmentItemStyle AllDayAppointmentStyle { get; set; }
+
+        public override AgendaTextItemStyle SelectMonthItemStyle(AgendaMonthItem item)
+        {
+            if (this.now.Month == item.Date.Month && this.now.Year == item.Date.Year)
+            {
+                return this.CurrentMonthStyle;
+            }
+
+            return null;
+        }
+
+        public override AgendaTextItemStyle SelectWeekItemStyle(AgendaWeekItem item)
+        {
+            if (this.now.Month == item.StartDate.Month && this.now.Year == item.StartDate.Year)
+            {
+                return this.CurrentMonthWeeksStyle;
+            }
+
+            return null;
+        }
+
+        public override AgendaTextItemStyle SelectDayItemStyle(AgendaDayItem item)
+        {
+            if (this.now.Date == item.Date.Date)
+            {
+                return this.TodayStyle;
+            }
+
+            return null;
+        }
+
+        public override AgendaAppointmentItemStyle SelectAppointmentItemStyle(AgendaAppointmentItem item)
+        {
+            if (item.Appointment.IsAllDay)
+            {
+                return this.AllDayAppointmentStyle;
+            }
+
+            return null;
+        }
+    }
+    public class Appointment
+    { 
+        public string Title { get; set; }
+        public string Detail { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public Color Color { get; set; }
+        public bool IsAllDay { get; set; }
+    }
     public class DatLichHenPuss
     {
         public int IDDV { get; set; }
@@ -19,43 +82,58 @@ namespace ChatBot.ViewModels
         public DatLichHen datLicHen { get; set; }
         
     }
-    class DatLichHenViewModell : INotifyPropertyChanged
+    public class DatLichHenViewModell : INotifyPropertyChanged
     {
-        public List<SetIsSelected> listTTDV = new List<SetIsSelected>();
-        List<Customers> khachhangList = new List<Customers>();
+        public bool checknavigate { get; set; } = false;
+        Customers itemKhachHang = new Customers();
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private ObservableCollection<THONGTINDICHVU> _dichVuList;
-        public ObservableCollection<THONGTINDICHVU> dichVuList
-        {
-            get { return _dichVuList; }
-            set
-            {
-                _dichVuList = value;
-                OnPropertyChanged();
-            }
-        }
-        private List<SetIsSelected> _Items;
-        public List<SetIsSelected> Items
-        {
-            get { return _Items; }
-            set
-            {
-                _Items = value;
-                OnPropertyChanged();
-            }
-        }
+
+
 
         //public ObservableCollection<SetIsSelected> Items { set; get; }
+        public ObservableCollection<Appointment> Appointments { get; set; }
         public DatLichHenViewModell()
         {
-            getDataAsync();
-            InitializeDataAsync(); 
-            
+            _ = getDataAsync();
+            //InitializeDataAsync(); 
+
+            var date = DateTime.Today;
+            this.Appointments = new ObservableCollection<Appointment>
+            {
+                new Appointment {
+                    Title = "Meeting with Tom",
+                    Detail = "Sea Garden",
+                    StartDate = date.AddHours(10),
+                    EndDate = date.AddHours(11),
+                    Color = Color.Tomato
+                },
+                new Appointment {
+                    Title = "Lunch with Sara",
+                    Detail = "Restaurant",
+                    StartDate = date.AddHours(12).AddMinutes(30),
+                    EndDate = date.AddHours(14),
+                    Color = Color.DarkTurquoise
+                },
+                new Appointment {
+                    Title = "Elle Birthday",
+                    StartDate = date,
+                    EndDate = date.AddHours(11),
+                    Color = Color.Orange,
+                    IsAllDay = true
+                },
+                 new Appointment {
+                    Title = "Football Game",
+                    StartDate = date.AddDays(2).AddHours(15),
+                    EndDate = date.AddDays(2).AddHours(17),
+                    Color = Color.Green
+                }
+            };
+
         }
 
         DatLichHenPuss _datLichHen = new DatLichHenPuss()
@@ -77,53 +155,49 @@ namespace ChatBot.ViewModels
             }
         }
 
-        
-        private async Task InitializeDataAsync()
+        List<THONGTINDICHVU> _thongtindichvu = new List<THONGTINDICHVU>();
+        public List<THONGTINDICHVU> thongtindichvu
         {
-            var services = new Service();
-            dichVuList = await services.GetTTDV(2);
-            
-
-            for(int i = 0; i < dichVuList.Count; i++)
+            get { return _thongtindichvu; }
+            set
             {
-                listTTDV.Add(new SetIsSelected
-                {
-                    IsSelected = false,
-                    TieuDeDV = dichVuList[i].TieuDeDV,
-                    THONGTINDICHVU = new THONGTINDICHVU
-                    {
-                        ID = dichVuList[i].ID,
-                        ChiPhiDV = dichVuList[i].ChiPhiDV,
-                        TieuDeDV = dichVuList[i].TieuDeDV,
-                        NoiDungDV = dichVuList[i].NoiDungDV,
-                        ImageDV = dichVuList[i].ImageDV,
-                        CreateDate = DateTime.Now
-                    }
-                });
+                _thongtindichvu = value;
             }
-           
-            Items = listTTDV;
-            
+        }
+        private TimeSpan _timeSpan;
+
+        public TimeSpan MyTimeSpanProperty // make visible
+        {
+            get { return _timeSpan; } // put a breakpoint here
+            set { _timeSpan = value; } // put a breakpoint here
         }
 
-        public async Task<List<Customers>> getDataAsync()
+        public TimeSpan thoigian
+        {
+            get;
+            set;
+
+        }
+
+
+        public async Task<Customers> getDataAsync()
         {
             string taikhoan = "";
             string matkhau = "";
             if (Application.Current.Properties.ContainsKey("Taikhoan") && Application.Current.Properties.ContainsKey("Matkhau"))
             {
-                 taikhoan = Application.Current.Properties["Taikhoan"].ToString();
-                 matkhau = Application.Current.Properties["Matkhau"].ToString();
+                taikhoan = Application.Current.Properties["Taikhoan"].ToString();
+                matkhau = Application.Current.Properties["Matkhau"].ToString();
             }
             var services = new Service();
-            
+
             if (taikhoan != null && matkhau != null)
             {
-                 khachhangList = await services.GetCustomersWithID(taikhoan, matkhau, 1);
-                 
+                itemKhachHang = await services.GetCustomersWithID(taikhoan, matkhau, 1);
+
             }
-            datLichhen.IDKH = Convert.ToInt32(khachhangList[0].id);
-            return khachhangList;
+            datLichhen.IDKH = Convert.ToInt32(itemKhachHang.id);
+            return itemKhachHang;
         }
         public Command butonAddData
         {
@@ -131,8 +205,27 @@ namespace ChatBot.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var services = new Service(); 
-                    await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen); 
+
+                    if(datLichhen.datLicHen.ThoiGianHen <= DateTime.Now)
+                    {
+                        checknavigate = false;
+                        await Application.Current.MainPage.DisplayAlert("Thông báo", "Ngày hẹn của quý khách không hợp lệ!", "OK");
+                    }
+                    else if(datLichhen.datLicHen.YeuCau.Equals(string.Empty))
+                    {
+                        checknavigate = false;
+                        await Application.Current.MainPage.DisplayAlert("Thông báo", "Mời bạn chọn yêu cầu hẹn!", "OK");
+                    }
+                    else
+                    {
+                        checknavigate = true;
+                        TimeSpan thoigian = thoigian;
+                        var services = new Service();
+                        await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen);
+                        
+                        
+                    }
+                    
                 });
             }
         }
@@ -149,6 +242,22 @@ namespace ChatBot.ViewModels
             private set
             {
                 _yeuCauHen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        List<int> _thoigiannhacnho = new List<int>()
+        {
+            5,
+            10,
+            15
+        };
+        public List<int> thoigiannhacnho
+        {
+            get { return _thoigiannhacnho; }
+            private set
+            {
+                _thoigiannhacnho = value;
                 OnPropertyChanged();
             }
         }
