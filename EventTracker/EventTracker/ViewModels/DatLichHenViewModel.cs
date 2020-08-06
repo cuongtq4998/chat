@@ -133,7 +133,7 @@ namespace ChatBot.ViewModels
                 itemKhachHang = await services.GetCustomersWithID(taikhoan, matkhau, 1);
 
             }
-            datLichhen.IDKH = Convert.ToInt32(itemKhachHang.id);
+            datLichhen.IDKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
             return itemKhachHang;
         }
         public Command butonAddData
@@ -158,6 +158,7 @@ namespace ChatBot.ViewModels
                         checknavigate = true;
                         TimeSpan thoigian = thoigian;
                         var services = new Service();
+                        datLichhen.IDKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
                         await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen);
                         
                         
