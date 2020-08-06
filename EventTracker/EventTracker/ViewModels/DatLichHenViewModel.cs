@@ -8,73 +8,10 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.XamarinForms.Input;
 using Xamarin.Forms;
 
 namespace ChatBot.ViewModels
 {
-    public class CustomAgendaViewItemStyleSelector : AgendaItemStyleSelector
-    {
-        private DateTime now;
-        public CustomAgendaViewItemStyleSelector()
-        {
-            this.now = DateTime.Now;
-        }
-
-        public AgendaTextItemStyle CurrentMonthStyle { get; set; }
-        public AgendaTextItemStyle CurrentMonthWeeksStyle { get; set; }
-        public AgendaTextItemStyle TodayStyle { get; set; }
-        public AgendaAppointmentItemStyle AllDayAppointmentStyle { get; set; }
-
-        public override AgendaTextItemStyle SelectMonthItemStyle(AgendaMonthItem item)
-        {
-            if (this.now.Month == item.Date.Month && this.now.Year == item.Date.Year)
-            {
-                return this.CurrentMonthStyle;
-            }
-
-            return null;
-        }
-
-        public override AgendaTextItemStyle SelectWeekItemStyle(AgendaWeekItem item)
-        {
-            if (this.now.Month == item.StartDate.Month && this.now.Year == item.StartDate.Year)
-            {
-                return this.CurrentMonthWeeksStyle;
-            }
-
-            return null;
-        }
-
-        public override AgendaTextItemStyle SelectDayItemStyle(AgendaDayItem item)
-        {
-            if (this.now.Date == item.Date.Date)
-            {
-                return this.TodayStyle;
-            }
-
-            return null;
-        }
-
-        public override AgendaAppointmentItemStyle SelectAppointmentItemStyle(AgendaAppointmentItem item)
-        {
-            if (item.Appointment.IsAllDay)
-            {
-                return this.AllDayAppointmentStyle;
-            }
-
-            return null;
-        }
-    }
-    public class Appointment
-    { 
-        public string Title { get; set; }
-        public string Detail { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public Color Color { get; set; }
-        public bool IsAllDay { get; set; }
-    }
     public class DatLichHenPuss
     {
         public int IDDV { get; set; }
@@ -95,46 +32,46 @@ namespace ChatBot.ViewModels
 
 
 
-        //public ObservableCollection<SetIsSelected> Items { set; get; }
-        public ObservableCollection<Appointment> Appointments { get; set; }
-        public DatLichHenViewModell()
-        {
-            _ = getDataAsync();
-            //InitializeDataAsync(); 
+        ////public ObservableCollection<SetIsSelected> Items { set; get; }
+        //public ObservableCollection<Appointment> Appointments { get; set; }
+        //public DatLichHenViewModell()
+        //{
+        //    _ = getDataAsync();
+        //    //InitializeDataAsync(); 
 
-            var date = DateTime.Today;
-            this.Appointments = new ObservableCollection<Appointment>
-            {
-                new Appointment {
-                    Title = "Meeting with Tom",
-                    Detail = "Sea Garden",
-                    StartDate = date.AddHours(10),
-                    EndDate = date.AddHours(11),
-                    Color = Color.Tomato
-                },
-                new Appointment {
-                    Title = "Lunch with Sara",
-                    Detail = "Restaurant",
-                    StartDate = date.AddHours(12).AddMinutes(30),
-                    EndDate = date.AddHours(14),
-                    Color = Color.DarkTurquoise
-                },
-                new Appointment {
-                    Title = "Elle Birthday",
-                    StartDate = date,
-                    EndDate = date.AddHours(11),
-                    Color = Color.Orange,
-                    IsAllDay = true
-                },
-                 new Appointment {
-                    Title = "Football Game",
-                    StartDate = date.AddDays(2).AddHours(15),
-                    EndDate = date.AddDays(2).AddHours(17),
-                    Color = Color.Green
-                }
-            };
+        //    var date = DateTime.Today;
+        //    this.Appointments = new ObservableCollection<Appointment>
+        //    {
+        //        new Appointment {
+        //            Title = "Meeting with Tom",
+        //            Detail = "Sea Garden",
+        //            StartDate = date.AddHours(10),
+        //            EndDate = date.AddHours(11),
+        //            Color = Color.Tomato
+        //        },
+        //        new Appointment {
+        //            Title = "Lunch with Sara",
+        //            Detail = "Restaurant",
+        //            StartDate = date.AddHours(12).AddMinutes(30),
+        //            EndDate = date.AddHours(14),
+        //            Color = Color.DarkTurquoise
+        //        },
+        //        new Appointment {
+        //            Title = "Elle Birthday",
+        //            StartDate = date,
+        //            EndDate = date.AddHours(11),
+        //            Color = Color.Orange,
+        //            IsAllDay = true
+        //        },
+        //         new Appointment {
+        //            Title = "Football Game",
+        //            StartDate = date.AddDays(2).AddHours(15),
+        //            EndDate = date.AddDays(2).AddHours(17),
+        //            Color = Color.Green
+        //        }
+        //    };
 
-        }
+        //}
 
         DatLichHenPuss _datLichHen = new DatLichHenPuss()
         {
