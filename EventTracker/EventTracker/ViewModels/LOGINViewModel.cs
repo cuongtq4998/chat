@@ -33,6 +33,8 @@ namespace ChatBot.ViewModels
             {
                 return new Command(async () =>
                 {
+                    int gioiTinhNam = 1;
+                    int gioiTinhNu = 0;
                     var services = new Service();
                     itemKhachHang = await services.GetCustomersWithID(checkLogin.taiKhoan, checkLogin.matKhau, 1);
 
@@ -41,6 +43,16 @@ namespace ChatBot.ViewModels
                         Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
                         Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
                         Application.Current.Properties["IdKH"] = itemKhachHang.id; 
+
+                        if(itemKhachHang.GioiTinh == "Nam")
+                        {
+                            Application.Current.Properties["gioitinh"] = gioiTinhNam;
+                        }
+                        else
+                        {
+                            Application.Current.Properties["gioitinh"] = gioiTinhNu;
+                        }
+                        
 
                         await Application.Current.SavePropertiesAsync();
                     }

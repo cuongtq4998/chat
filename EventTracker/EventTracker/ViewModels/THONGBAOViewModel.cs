@@ -47,6 +47,7 @@ namespace ChatBot.ViewModels
     class THONGBAOViewModel : INotifyPropertyChanged
     {
         int idKH = 0;
+        int gioitinh = 1;
         public event PropertyChangedEventHandler PropertyChanged;
         private List<ThongTinChamSocKH> _items;
         public List<ThongTinChamSocKH> listItem
@@ -82,6 +83,7 @@ namespace ChatBot.ViewModels
             if (Application.Current.Properties.ContainsKey("IdKH"))
             {
                 idKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
+                gioitinh = Convert.ToInt32(Application.Current.Properties["gioitinh"].ToString());
             }
             _ = InitializeDataAsync();
         }
@@ -92,7 +94,7 @@ namespace ChatBot.ViewModels
             var services = new Service();
            
             
-            listItem = await services.GetChamSocKH(3, idKH);
+            listItem = await services.GetChamSocKH(3, idKH, gioitinh);
             
             ItemModelObject = new ObservableCollection<ObservableObject>();
 
@@ -142,7 +144,7 @@ namespace ChatBot.ViewModels
 
                     var customersService = new Service();
                     
-                    listItem = await customersService.GetChamSocKH(3, idKH);
+                    listItem = await customersService.GetChamSocKH(3, idKH,gioitinh);
 
                     IsRefreshing = false;
                 });

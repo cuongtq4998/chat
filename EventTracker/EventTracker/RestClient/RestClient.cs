@@ -96,12 +96,12 @@ namespace ChatBot.RestClient
 
         }
 
-        public async Task<List<T>> GetAsyncCSKH(int idKH)
+        public async Task<List<T>> GetAsyncCSKH(int idKH, int gioiTinh)
         {
             using (var client = new HttpClient(httpHandler))
             {
 
-                var json = await client.GetStringAsync(getLink() + "/" + idKH);
+                var json = await client.GetStringAsync(getLink() + "/" + idKH + "/" + gioiTinh);
 
                 var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
