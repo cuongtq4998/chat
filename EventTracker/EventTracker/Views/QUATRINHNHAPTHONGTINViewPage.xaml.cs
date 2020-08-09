@@ -27,7 +27,16 @@ namespace ChatBot.Views
 
         private void ButtonWithPadding_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TRANGCHUDEMO());
+            var vm = this.BindingContext as QUATRINHNHAPTHONGTINViewModel;
+            if (vm != null)
+            {
+                if (vm.checknavigate == true)
+                {
+                    Navigation.PopAsync();
+                    //Navigation.PushAsync(new TRANGCHUDEMO());
+                }
+            }
+           
         } 
     }
 }
