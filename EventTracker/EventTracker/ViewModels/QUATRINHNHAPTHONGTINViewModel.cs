@@ -41,6 +41,7 @@ namespace ChatBot.ViewModels
     }
     class QUATRINHNHAPTHONGTINViewModel : INotifyPropertyChanged
     {
+        public bool checknavigate { get; set; } = false;
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -63,13 +64,56 @@ namespace ChatBot.ViewModels
             {
                 return new Command( async () =>
                 {
-                    var services = new Service(); 
-                    await services.PostCustomers(_SelectedCustomers, (int)getLinkPage.linkKhachHang); 
+                    if (!EmailValidation(_SelectedCustomers.Email))
+                    {
+                        checknavigate = false;
+                        await Application.Current.MainPage.DisplayAlert("Thông báo", "Email khong hop le!!", "OK");
+                    }else if (!CheckPhone(_SelectedCustomers.DienThoai))
+                    {
+                        checknavigate = false;
+                        await Application.Current.MainPage.DisplayAlert("Thông báo", "Dien thoai phai la 10 so!!", "OK");
+                    }
+                    else if (!CheckBirtDay(_SelectedCustomers.NgaySinh))
+                    {
+                        checknavigate = false;
+                        await Application.Current.MainPage.DisplayAlert("Thông báo", "Ban chua du 18 tuoi!!", "OK");
+                    }
+                    else
+                    {
+                        checknavigate = true;
+                        var services = new Service();
+                        await services.PostCustomers(_SelectedCustomers, (int)getLinkPage.linkKhachHang);
+                    }
+                    
 
                 });
             }
         }
-         
+
+        //--------
+        public bool CheckBirtDay(DateTime value)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - value.Year;
+            if (age >= 18)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool CheckPhone(string Phone)
+        {
+            if (Phone.Length.Equals(10)) return true;
+            else return false;
+        }
+        private bool EmailValidation(string emailAddress)
+        {
+            if (emailAddress.Contains("@gmail.com")) return true;
+            else return false;
+        }
+
         //----------
         List<string> _NgheNghiep = new List<string>()
         {

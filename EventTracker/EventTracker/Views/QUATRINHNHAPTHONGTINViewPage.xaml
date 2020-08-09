@@ -114,6 +114,7 @@
                                    FontAttributes="Italic"
                                    TextColor="Black" />
                             <Entry Placeholder="Điện thoại..."
+                                   Keyboard="Numeric"
                                    Text="{Binding SelectedCustomers.DienThoai , Mode=TwoWay}" />
                         </StackLayout>
                         <Label Text="Thông tin cá nhân của quý khách chỉ sử dụng cho mục đích công việc(*)"
