@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:ChatBot.Items"
+             mc:Ignorable="d"
+             x:Class="ChatBot.Views.ChiTietThongBaoViewPage"
+             Title="Chi Tiết Thông Báo">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Orientation="Vertical"
+                     BackgroundColor="Transparent">
+
+                    <Frame Margin="10"
+                   HasShadow="True"
+                       Padding="20">
+                        <StackLayout Orientation="Vertical">
+                            <!--Ảnh dịch vụ-->
+                            <Image x:Name="ImageDVV" Source="{Binding Path=thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Fill"/>
+                            <!--Tiêu đề thông báo-->
+                            <StackLayout Orientation="Horizontal"
+                                      Spacing="0">
+                                <Label Text="Tiêu đề: "
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                                <Label x:Name="tieU_DE" Text="{Binding Path=tieU_DE}"/>
+                            </StackLayout>
+                            <!--Nội dung thông báo-->
+                            <StackLayout Orientation="Horizontal"
+                                      Spacing="0">
+                                <Label Text="Thông báo: "
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                                <Label x:Name="noI_DUNG" Text="{Binding Path=noI_DUNG}"/>
+                            </StackLayout>
+                            <!--Tên dịch vụ-->
+                            <StackLayout Orientation="Vertical"
+                                     Spacing="0">
+                                <Label Text="Dịch vụ: "
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                                <Label x:Name="TieuDeDV" Text="{Binding Path=thongtindichvu.TieuDeDV}"/>
+                            </StackLayout>
+                            <!--Chi tiết dịch vụ-->
+                            <StackLayout Orientation="Vertical"
+                                     Spacing="0">
+                                <Label x:Name="NoiDungDV" Text="{Binding Path=thongtindichvu.NoiDungDV}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical"
+                                     Spacing="0">
+                                <Label Text="Chi phí: "
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="Orange"/>
+                                <Label x:Name="ChiPhiDV" Text="{Binding Path=thongtindichvu.ChiPhiDV,  StringFormat='{0:#,0.#0} VNĐ'}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+       
+    </ContentPage.Content>
+</ContentPage>

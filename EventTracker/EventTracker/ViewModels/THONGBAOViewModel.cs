@@ -80,7 +80,7 @@ namespace ChatBot.ViewModels
             {
 
             }catch(Exception e) { Debug.WriteLine("Error"); }
-            if (Application.Current.Properties.ContainsKey("IdKH"))
+            if (Application.Current.Properties.ContainsKey("IdKH") && Application.Current.Properties.ContainsKey("gioitinh"))
             {
                 idKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
                 gioitinh = Convert.ToInt32(Application.Current.Properties["gioitinh"].ToString());

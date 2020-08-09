@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ChatBot.Models
 {
-    class CHAMSOCKH: ObservableObject
+    public class CHAMSOCKH: ObservableObject
     {
 
         private int _ID;

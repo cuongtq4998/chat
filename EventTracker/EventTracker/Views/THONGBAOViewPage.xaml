@@ -12,8 +12,7 @@
              BackgroundColor="Transparent">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
-    </ContentPage.BindingContext>
-    
+    </ContentPage.BindingContext> 
     <ContentPage.Resources>
         <ResourceDictionary >
             <DataTemplate x:Key="templateDatLichHen">
@@ -74,28 +73,56 @@
                     <Frame HasShadow="True"
                            CornerRadius="10"
                            Margin="10">
-                        <StackLayout Orientation="Vertical"
+                        <StackLayout Orientation="Horizontal"
                                          Margin="5">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Image Source="alarm.png"
+                            <!--<Image Source="alarm.png"
                                    HeightRequest="30"/>
-                                <Label Text="{Binding tieU_DE, Mode=TwoWay}"
+                             <Label Text="{Binding tieU_DE, Mode=TwoWay}"
                                         FontAttributes="Bold"
                                         TextColor="LightSkyBlue"
-                                       FontSize="16"/>
+                                       FontSize="16"/>-->
+
+                                <Image x:Name="ImageDVV" Source="{Binding Path=thongtindichvu.ImageDV, Converter={StaticResource ByteArrayToImage}}"
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Fill"
+                                       HeightRequest="90"
+                                       WidthRequest="90"/>
                             </StackLayout>
 
-                            <StackLayout
+                        <StackLayout
                                     Orientation="Vertical"
                                     Spacing="0"
                                     VerticalOptions="FillAndExpand"
                                     HorizontalOptions="FillAndExpand"
                                     Padding="5,0,0,0">
-                                <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
+                            <!--Tiêu đề thông báo-->
+                                <Label Text="{Binding tieU_DE, Mode=TwoWay}"
+                                        FontAttributes="Bold"
+                                        TextColor="Black"
+                                       FontSize="16"/>
+                            <!--nội dung thông báo-->
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label Text="Nội dung --"
+                                       FontSize="12"
+                                           TextColor="Black"
+                                           FontAttributes="Italic"/>
+                                    <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
                                            FontAttributes="Italic"
-                                           FontSize="13" />
-                            <Label Text="{Binding thoI_GIAN, Mode=TwoWay}"/>
+                                           FontSize="12"
+                                           TextColor="Black"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding thongtindichvu.TieuDeDV, Mode=TwoWay}"
+                                            FontAttributes="Italic"
+                                           FontSize="13"
+                                           HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"/>
+                                </StackLayout> 
                         </StackLayout>
                     </StackLayout>
                     </Frame>
@@ -113,7 +140,7 @@
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}">
             <ListView ItemsSource="{Binding ItemModelObject}"
-                      ItemTemplate="{StaticResource DataTemplateSelector}"
+                      ItemTemplate="{StaticResource DataTemplateSelector}" 
                       CachingStrategy="RecycleElement"
                       SeparatorVisibility="None"
                       HasUnevenRows="True"

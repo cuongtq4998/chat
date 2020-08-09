@@ -24,7 +24,9 @@ namespace ChatBot.Views
             var itemSelectedData = e.Item as ObservableObject;
             if (itemSelectedData is CHAMSOCKH)
             {
-                DisplayAlert("Alert", "Chăm sóc khách hàng", "OK");
+                //DisplayAlert("Alert", "Chăm sóc khách hàng", "OK");
+                var itemThongBao = itemSelectedData as CHAMSOCKH;
+                Navigation.PushAsync(new ChiTietThongBaoViewPage(itemThongBao));
             }
             else
             {

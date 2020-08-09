@@ -155,8 +155,7 @@ namespace ChatBot.ViewModels
                     }
                     else
                     {
-                        checknavigate = true;
-                        TimeSpan thoigian = thoigian;
+                        checknavigate = true; 
                         var services = new Service();
                         datLichhen.IDKH = Convert.ToInt32(Application.Current.Properties["IdKH"].ToString());
                         await services.DatLichHen(datLichhen, (int)getLinkPage.linkDatLichHen);
