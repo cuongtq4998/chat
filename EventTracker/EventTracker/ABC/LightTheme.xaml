@@ -5,7 +5,7 @@
 
 
     <!-- Background Image -->
-    <x:String x:Key="MountainImage">mountain_light</x:String>
+    <x:String x:Key="MountainImage">imagebg</x:String>
 
     <Color x:Key="HeaderColor">#213654</Color>
     <Color x:Key="ArrowColor">#768ea0</Color>

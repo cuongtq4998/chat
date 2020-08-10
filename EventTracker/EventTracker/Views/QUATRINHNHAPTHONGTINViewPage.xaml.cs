@@ -32,8 +32,7 @@ namespace ChatBot.Views
             {
                 if (vm.checknavigate == true)
                 {
-                    Navigation.PopAsync();
-                    //Navigation.PushAsync(new TRANGCHUDEMO());
+                    Navigation.PushAsync(new TRANGCHUDEMO());
                 }
             }
            

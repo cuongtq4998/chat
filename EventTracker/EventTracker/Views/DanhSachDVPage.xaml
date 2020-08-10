@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="EventTracker.DanhSachDVPage"
              Title="Gói Dịch Vụ"
-              BackgroundImageSource="mountain_dark.png">
+              BackgroundImageSource="imagebg.jpg">
     <ContentPage.BindingContext>
         <ViewModels:DANHSACHDVViewModel />
     </ContentPage.BindingContext>

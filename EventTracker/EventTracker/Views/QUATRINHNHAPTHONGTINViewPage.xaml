@@ -67,7 +67,7 @@
                         <StackLayout Orientation="Vertical"
                                      Spacing="0"
                                      Margin="0,0,0,10">
-                            <Label Text="Ngày sinh(*)"
+                            <Label Text="Giới tính(*)"
                                    FontSize="17"
                                    FontAttributes="Italic"
                                    TextColor="Black" />

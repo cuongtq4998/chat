@@ -1,4 +1,5 @@
-﻿using ChatBot.Models;
+﻿using ChatBot.ABC;
+using ChatBot.Models;
 using ChatBot.Services;
 using ChatBot.ViewModels;
 using EventTracker;
@@ -23,7 +24,14 @@ namespace ChatBot.Views
 
         private void ChuyenPageNhapThongTin_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ChatBot.ABC.TRANGCHUDEMO());
+            var vm = this.BindingContext as LOGINViewModel;
+            if (vm != null)
+            {
+                if (vm.checknavigate == true)
+                {
+                    Navigation.PushAsync(new TRANGCHUDEMO());
+                }
+            }
         } 
     }
 }

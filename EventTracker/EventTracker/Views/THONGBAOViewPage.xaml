@@ -9,7 +9,7 @@
              xmlns:converters="clr-namespace:ChatBot.Items" 
              xmlns:local="clr-namespace:ChatBot;assembly=ChatBot"
              Title="Thông Báo"
-             BackgroundColor="Transparent">
+             BackgroundImageSource="imagebg.jpg">
     <ContentPage.BindingContext>
         <ViewModels:THONGBAOViewModel/>
     </ContentPage.BindingContext> 
@@ -106,14 +106,12 @@
                             <!--nội dung thông báo-->
                                 <StackLayout Orientation="Horizontal"
                                              HorizontalOptions="FillAndExpand">
-                                    <Label Text="Nội dung --"
-                                       FontSize="12"
-                                           TextColor="Black"
-                                           FontAttributes="Italic"/>
+                                    
                                     <Label Text="{Binding noI_DUNG, Mode=TwoWay}"
                                            FontAttributes="Italic"
                                            FontSize="12"
-                                           TextColor="Black"/>
+                                           TextColor="Black"
+                                           LineBreakMode="MiddleTruncation"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal"
                                              HorizontalOptions="FillAndExpand">

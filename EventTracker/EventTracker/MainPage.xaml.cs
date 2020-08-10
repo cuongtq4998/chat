@@ -31,7 +31,7 @@ namespace EventTracker
                 string Matkhau = (string)Application.Current.Properties["Matkhau"];
                 if (Taikhoan != null && Matkhau != null)
                 {
-                    nameUser.Text = "HI! " + Taikhoan; 
+                    nameUser.Text = "TK: " + Taikhoan; 
                     Logout.Text = "Đăng xuất";
                 }
                 else
@@ -85,7 +85,13 @@ namespace EventTracker
              
             navigationDrawerList.ItemsSource = menuList;
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(TRANGCHUDEMO)));
+            try
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(TRANGCHUDEMO)));
+            }
+            catch(Exception e) { }
+            
+           
         } 
 
         public List<ItemMenu> menuList { get; set; }
@@ -112,7 +118,8 @@ namespace EventTracker
                 {
                     Application.Current.Properties["Taikhoan"] = null;
                     Application.Current.Properties["Matkhau"] = null;
-                    nameUser.Text = "HI!" + Application.Current.Properties["Taikhoan"];
+                    nameUser.Text = "TK: " + Application.Current.Properties["Taikhoan"];
+                    Logout.Text = "Đăng Nhập";
                     IsPresented = false;
                 }
                 else

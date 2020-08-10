@@ -12,6 +12,7 @@ namespace ChatBot.ViewModels
 {
     class LOGINViewModel : INotifyPropertyChanged
     {
+        public bool checknavigate { get; set; } = false;
         public Customers itemKhachHang { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -27,39 +28,67 @@ namespace ChatBot.ViewModels
                 checkLogin = value;
             }
         }
+
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
         public Command loginAccount
         {
             get
             {
                 return new Command(async () =>
                 {
-                    int gioiTinhNam = 1;
-                    int gioiTinhNu = 0;
-                    var services = new Service();
-                    itemKhachHang = await services.GetCustomersWithID(checkLogin.taiKhoan, checkLogin.matKhau, 1);
-
-                    if(itemKhachHang != null)
+                    if (checkLogin.taiKhoan == null ||
+                    checkLogin.matKhau == null ||
+                    checkLogin.taiKhoan == "" ||
+                    checkLogin.matKhau == "")
                     {
-                        Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
-                        Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
-                        Application.Current.Properties["IdKH"] = itemKhachHang.id; 
-
-                        if(itemKhachHang.GioiTinh == "Nam")
-                        {
-                            Application.Current.Properties["gioitinh"] = gioiTinhNam;
-                        }
-                        else
-                        {
-                            Application.Current.Properties["gioitinh"] = gioiTinhNu;
-                        }
-                        
-
-                        await Application.Current.SavePropertiesAsync();
+                        checknavigate = false;
+                        await Application.Current.MainPage.DisplayAlert("Thông báo", "Mời bạn nhập đầy đủ!!", "OK");
                     }
                     else
                     {
-                        Debug.Write("Error. ");
+                        IsRefreshing = true;
+                        int gioiTinhNam = 1;
+                        int gioiTinhNu = 0;
+                        var services = new Service();
+                        itemKhachHang = await services.GetCustomersWithID(checkLogin.taiKhoan, checkLogin.matKhau, 1);
+
+                        if (itemKhachHang.User_KH != null || itemKhachHang.HoTen != null)
+                        {
+                            checknavigate = true;
+                            IsRefreshing = false;
+                            Application.Current.Properties["Taikhoan"] = checkLogin.taiKhoan;
+                            Application.Current.Properties["Matkhau"] = checkLogin.matKhau;
+                            Application.Current.Properties["IdKH"] = itemKhachHang.id;
+
+                            if (itemKhachHang.GioiTinh == "Nam")
+                            {
+                                Application.Current.Properties["gioitinh"] = gioiTinhNam;
+                            }
+                            else
+                            {
+                                Application.Current.Properties["gioitinh"] = gioiTinhNu;
+                            }
+
+                            await Application.Current.SavePropertiesAsync();
+                        }
+                        else
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Thông báo", "Tài khoản hoặc mật khẩu sai!!", "OK");
+                            Debug.Write("Error. ");
+                            IsRefreshing = false;
+                            checknavigate = false;
+                        }
                     }
+                    
                 });
             }
         }

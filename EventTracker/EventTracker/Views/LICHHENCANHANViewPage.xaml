@@ -11,7 +11,7 @@
              xmlns:local="clr-namespace:ChatBot.Models"
              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              Title="Lịch Hẹn Của Tôi"
-             BackgroundImageSource="mountain_dark.png">
+             BackgroundImageSource="imagebg.jpg">
     <ContentPage.BindingContext>
         <ViewModels:LICHHENCANHANViewModel/>
     </ContentPage.BindingContext>

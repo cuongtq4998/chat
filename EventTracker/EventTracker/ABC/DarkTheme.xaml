@@ -4,7 +4,7 @@
              x:Class="DayVsNight.Themes.DarkTheme">
 
     <!-- Background Image -->
-    <x:String x:Key="MountainImage">mountain_dark</x:String>
+    <x:String x:Key="MountainImage">imagebg2</x:String>
 
     <Color x:Key="HeaderColor">#FFFFFF</Color>
     <Color x:Key="ArrowColor">#768ea0</Color>

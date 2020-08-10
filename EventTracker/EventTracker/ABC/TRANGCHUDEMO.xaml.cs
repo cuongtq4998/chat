@@ -108,7 +108,7 @@ namespace ChatBot.ABC
 
         private void DatLichHenTrigger_Tapped(object sender, EventArgs e)
         {
-            OnClickAsync();
+            _ = OnClickAsync();
         }
 
         private void ChatTrigger_Tapped(object sender, EventArgs e)
@@ -160,7 +160,13 @@ namespace ChatBot.ABC
                     _ = Navigation.PushAsync(new DatLichHenDanhSachDichVu());
                 }
             }
-            catch (Exception) { }
+            catch (Exception) {
+                bool check = await DisplayAlert("Thông báo", "Bạn chưa có thông tin.  Hãy đăng kí thông tin!", "Chấp nhận", "Hủy");
+                if (check)
+                {
+                    _ = Navigation.PushAsync(new DANGKITKViewPage());
+                }
+            }
         }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="clr-namespace:ChatBot.Items"
+             xmlns:converters="clr-namespace:ChatBot.Items" xmlns:controls="clr-namespace:ChatBot.Controls"
              mc:Ignorable="d"
              x:Class="ChatBot.Views.ChiTietThongBaoViewPage"
              Title="Chi Tiết Thông Báo">
@@ -38,7 +38,7 @@
                                 <Label x:Name="tieU_DE" Text="{Binding Path=tieU_DE}"/>
                             </StackLayout>
                             <!--Nội dung thông báo-->
-                            <StackLayout Orientation="Horizontal"
+                            <StackLayout Orientation="Vertical"
                                       Spacing="0">
                                 <Label Text="Thông báo: "
                                    FontSize="14"
@@ -70,6 +70,19 @@
                             </StackLayout>
                         </StackLayout>
                     </Frame>
+                    <controls:ButtonWithPadding Text="Đặt Hẹn Ngay"
+                                        x:Name="DatHenNgay" 
+                                        CornerRadius="100"
+                                        HorizontalOptions="End"
+                                        BorderWidth="2"
+                                        BorderColor="DarkOrange"
+                                        Margin="0,0,10,20"
+                                        BackgroundColor="Tomato"
+                                        TextColor="White"
+                                        WidthRequest="120"
+                                        HeightRequest="40"
+                                        FontSize="16"
+                                                Clicked="DatHenNgay_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

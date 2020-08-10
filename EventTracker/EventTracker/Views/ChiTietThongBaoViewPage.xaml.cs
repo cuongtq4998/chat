@@ -26,5 +26,10 @@ namespace ChatBot.Views
             ChiPhiDV.BindingContext = CSKH;
             NoiDungDV.BindingContext = CSKH;
          }
+
+        private void DatHenNgay_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DatLichHenDanhSachDichVu());
+        }
     }
 }

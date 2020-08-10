@@ -11,17 +11,19 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <Grid VerticalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Image Source="register.png"
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}">
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image Source="register.png"
                    Aspect="Fill"
                    HeightRequest="300"
                    VerticalOptions="StartAndExpand" />
-            <Frame Grid.Row="1"
+                <Frame Grid.Row="1"
                    HasShadow="True"
                    CornerRadius="10"
                    Margin="20,-70,20,0"
@@ -29,23 +31,23 @@
                    HeightRequest="250"
                    VerticalOptions="Start"
                    BackgroundColor="White">
-                <StackLayout Orientation="Vertical">
-                    <controls:EntryControls Title="Tài Khoản"
+                    <StackLayout Orientation="Vertical">
+                        <controls:EntryControls Title="Tài Khoản"
                                             HorizontalOptions="Center"
                                             Margin="20,25,20,10"
                                             Text="{Binding checkLogin.taiKhoan,Mode=TwoWay}"
                                             x:Name="Taikhoan"/>
-                    <controls:EntryControls Title="Mật Khẩu"
+                        <controls:EntryControls Title="Mật Khẩu"
                                             HorizontalOptions="Center"
                                             Margin="20,15,20,10"
                                             IsPassword="True"
                                             Text="{Binding checkLogin.matKhau, Mode=TwoWay}"
-                                            x:Name="Matkhau"/> 
-                </StackLayout>
-            </Frame>
+                                            x:Name="Matkhau"/>
+                    </StackLayout>
+                </Frame>
 
 
-            <controls:ButtonWithPadding Grid.Row="1"
+                <controls:ButtonWithPadding Grid.Row="1"
                                         VerticalOptions="EndAndExpand"
                                         BackgroundColor="Orange"
                                         Margin="48,0,48,10"
@@ -57,21 +59,23 @@
                                         x:Name="ChuyenPageNhapThongTin"
                                         Command="{Binding loginAccount}"
                                         Clicked="ChuyenPageNhapThongTin_Clicked"/>
-            <StackLayout Grid.Row="2"
+                <StackLayout Grid.Row="2"
                          Orientation="Horizontal"
                          VerticalOptions="EndAndExpand"
                          HorizontalOptions="CenterAndExpand">
-                <Label Text="Bạn chưa có tài khoản?"
+                    <Label Text="Bạn chưa có tài khoản?"
                        Margin="0,10"
                        FontSize="16"
                        VerticalOptions="CenterAndExpand" />
-                <Label Text="Đăng ký"
+                    <Label Text="Đăng ký"
                        Margin="0,15"
                        FontSize="16"
                        TextColor="SkyBlue"
                        VerticalOptions="CenterAndExpand" />
-            </StackLayout>
+                </StackLayout>
 
-        </Grid>
+            </Grid>
+        </RefreshView>
+        
     </ContentPage.Content>
 </ContentPage>

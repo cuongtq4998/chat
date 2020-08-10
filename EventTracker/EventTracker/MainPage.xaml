@@ -16,15 +16,14 @@
                            HeightRequest="200"/>
                     <StackLayout Orientation="Horizontal"
                                  Margin="10"> 
-                        <Label Text="HI! Cuon"
-                                Margin="5"
+                        <Label Margin="5"
                                x:Name="nameUser"
                                TextColor="DarkBlue"/>
                         <controls:ButtonWithPadding   
                                         BackgroundColor="BlueViolet"
                                         Margin="5"
                                         CornerRadius="10"
-                                        Text="Login"
+                                        Text="Đăng nhập"
                                         TextColor="White"  
                                         HeightRequest="30" 
                                         x:Name="Logout" 

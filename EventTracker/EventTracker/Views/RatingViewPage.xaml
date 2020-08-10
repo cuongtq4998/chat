@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:customcontrol="clr-namespace:ChatBot.Controls"
-             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot" xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls"
+             xmlns:ViewModels="clr-namespace:ChatBot.ViewModels;assembly=ChatBot"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls"
              mc:Ignorable="d"
              x:Class="ChatBot.Views.RatingViewPage"
              Title="Đánh Giá Dịch Vụ">
